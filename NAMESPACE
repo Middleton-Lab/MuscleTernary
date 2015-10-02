@@ -2,6 +2,7 @@
 
 export(make_unit_vector)
 export(means_by_muscle)
+export(muscle_color_map)
 export(read_coords)
 export(relative_proportion)
 import(dplyr)
