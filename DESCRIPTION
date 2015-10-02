@@ -1,0 +1,12 @@
+Package: MuscleTernary
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Description: More about what it does (maybe more than one line). One more line.
+License: GPL-2
+LazyData: TRUE
+Depends:
+  ggplot2,
+  ggtern,
+  readxl
