@@ -10,14 +10,21 @@
 #'
 muscle_color_map <- function(){
 
-  muscle_names <- c("mAMES", "mAMEM", "mAMEP", "mAMP", "mPSTs", "mPSTp",
-                    "mPTd", "mPTv", "mPPt", "mDM", "mLPT", "mEM",
-                    "mPM")
-  color_palette <- c("#0000FF", "#55FFFF", "#8080FF", "#00FF00",
-                     "#FF80FF", "#400080", "#FF8000", "#FF0000",
-                     "#808080", "#FF0080", "#09C4A8", "#FFFF00",
-                     "#7DB7E6")
+  cmap <- scale_color_manual(
+    name = "Muscle",
+    values = c("mAMES" = "#0000FF",
+               "mAMEM" = "#55FFFF",
+               "mAMEP" = "#8080FF",
+               "mAMP" = "#00FF00",
+               "mPSTs" = "#FF80FF",
+               "mPSTp" = "#400080",
+               "mPTd" = "#FF8000",
+               "mPTv" = "#FF0000",
+               "mPPt" = "#808080",
+               "mDM" = "#FF0080",
+               "mLPT" = "#09C4A8",
+               "mEM" = "#FFFF00",
+               "mPM" = "#7DB7E6"))
 
-  return(scale_color_manual(values = color_palette,
-                            name = "Muscle"))
+  return(cmap)
 }
