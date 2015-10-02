@@ -18,7 +18,7 @@ means_by_muscle <- function(df_no_means){
   df_means <- df_no_means %>% group_by(muscle) %>% summarise_each(funs(mean))
 
   # Put Muscle_Group back on. Note: Assumes alternating rows
-  df_means$Muscle_Group <- Muscle_Group[seq(1, nrow(df_means), by = 2)]
+  df_means$Muscle_Group <- Muscle_Group[seq(1, nrow(df_no_means), by = 2)]
 
   return(df_means)
 }
