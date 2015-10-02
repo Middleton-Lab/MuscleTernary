@@ -18,7 +18,6 @@ muscle_color_map <- function(){
                      "#808080", "#FF0080", "#09C4A8", "#FFFF00",
                      "#7DB7E6")
 
-  return(scale_color_manual(labels = muscle_names,
-                            values = color_palette,
+  return(scale_color_manual(values = color_palette,
                             name = "Muscle"))
 }
