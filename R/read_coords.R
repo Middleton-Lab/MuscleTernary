@@ -1,0 +1,72 @@
+#' Read and process coordinates file
+#'
+#' @param coords_file String with path to coordinates file.
+#' @param force_file (Optional) String with path to force file.
+#' @param force_factor Scaling factor for force. Defaults to 1.
+#'
+#' @return \code{data.frame} suitable for plotting with \code{ggtern()}.
+#' @export
+#'
+read_coords <- function(coords_file,
+                        force_file = NULL,
+                        force_factor = 1){
+  # Read coordinate data
+  M <- read_excel(coords_file)
+
+  col_names <- c("muscle", "x_origin", "y_origin", "z_origin",
+                 "x_insertion", "y_insertion", "z_insertion")
+
+  # Check column names
+  if (!all.equal(names(M), col_names)){
+    stop('Column names need fixing.\n
+         Should be "muscle", "x_origin", "y_origin", "z_origin",\n
+         "x_insertion", "y_insertion", "z_insertion"')
+  }
+
+  # Read force data
+  if (!is.null(force_file)){
+    M_extras <- read_excel(force_file)
+    M_extras <- M_extras[complete.cases(M_extras), ]
+
+    # Normalize force and then scale to some value of force_factor
+    M_extras$force_norm <- M_extras$force / max(M_extras$force)
+    M_extras$force_norm <- M_extras$force_norm * force_factor
+  }
+
+  # Split off origin and insertion columns
+  coords_or <- M[, c("x_origin", "y_origin", "z_origin")]
+  coords_ins <- M[, c("x_insertion", "y_insertion", "z_insertion")]
+
+  # Calculate vector from origin to insertion.
+  vectors <- as.matrix(coords_or) - as.matrix(coords_ins)
+  colnames(vectors) <- c("x", "y", "z")
+
+  # Pass rows sequentially to make_unit_vector and relative proportion
+  unit_vectors <- t(apply(vectors, 1, make_unit_vector))
+  prop_vectors <- t(apply(vectors, 1, relative_proportion))
+
+  # Need a data.frame for ggplot.
+  prop_vectors <- as.data.frame(prop_vectors)
+
+  # Scale to percentage
+  prop_vectors <- prop_vectors * 100
+
+  # Put Muscle column back onto prop_vector
+  prop_vectors$muscle <- M$muscle
+
+  # Merge if M_extras exists)
+  if (exists("M_extras")){
+    df_to_plot <- merge(prop_vectors, M_extras)
+  } else {
+    df_to_plot <- prop_vectors
+  }
+
+  # Make Left_Right column
+  df_to_plot$Left_Right <- ifelse(grepl("^L", df_to_plot$muscle), "L", "R")
+
+  # Drop L and R
+  df_to_plot$muscle <- gsub("L ", "", df_to_plot$muscle)
+  df_to_plot$muscle <- gsub("R ", "", df_to_plot$muscle)
+
+  return(df_to_plot)
+}
