@@ -20,4 +20,5 @@
 #' @importFrom utils globalVariables
 NULL
 
-
+# Ignore some global variables
+utils::globalVariables(c("matches", "muscle", "."))
