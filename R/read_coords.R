@@ -28,6 +28,17 @@ read_coords <- function(coords_file,
     M_extras <- read_excel(force_file)
     M_extras <- M_extras[complete.cases(M_extras), ]
 
+    for (i in 2:ncol(M_extras)){
+      variable_name <- names(M_extras)[i]
+
+      # See: http://stackoverflow.com/q/21618423/168137
+      tmp <- M_extras %>% select(matches(variable_name)) %>%
+        collect %>% .[[variable_name]]
+      if (is.character(tmp)){
+        M_extras[, variable_name] <- factor(tmp)
+      }
+    }
+
     # Normalize force and then scale to some value of force_factor
     M_extras$force_norm <- M_extras$force / max(M_extras$force)
     M_extras$force_norm <- M_extras$force_norm * force_factor
@@ -63,10 +74,19 @@ read_coords <- function(coords_file,
 
   # Make Left_Right column
   df_to_plot$Left_Right <- ifelse(grepl("^L", df_to_plot$muscle), "L", "R")
+  df_to_plot$Left_Right <- factor(df_to_plot$Left_Right)
 
   # Drop L and R
   df_to_plot$muscle <- gsub("L ", "", df_to_plot$muscle)
   df_to_plot$muscle <- gsub("R ", "", df_to_plot$muscle)
+
+  # Sort by muscle
+  df_to_plot <- df_to_plot %>% arrange(muscle)
+
+  # Make sure that there are even number of rows
+  if (nrow(df_to_plot) %% 2 != 0){
+    stop("There probably should be an even number of rows.")
+  }
 
   return(df_to_plot)
 }
