@@ -22,7 +22,7 @@ muscle_color_map <- function(){
                "mPTv" = "#FF0000",
                "mPPt" = "#808080",
                "mDM" = "#FF0080",
-               "mLPT" = "#09C4A8",
+               "mLPt" = "#09C4A8",
                "mEM" = "#FFFF00",
                "mPM" = "#7DB7E6"))
 
