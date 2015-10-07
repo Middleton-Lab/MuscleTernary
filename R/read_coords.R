@@ -2,14 +2,12 @@
 #'
 #' @param coords_file String with path to coordinates file.
 #' @param force_file (Optional) String with path to force file.
-#' @param force_factor Scaling factor for force. Defaults to 1.
 #'
 #' @return \code{data.frame} suitable for plotting with \code{ggtern()}.
 #' @export
 #'
 read_coords <- function(coords_file,
-                        force_file = NULL,
-                        force_factor = 1){
+                        force_file = NULL){
   # Read coordinate data
   M <- read_excel(coords_file)
 
@@ -38,10 +36,6 @@ read_coords <- function(coords_file,
         M_extras[, variable_name] <- factor(tmp)
       }
     }
-
-    # Normalize force and then scale to some value of force_factor
-    M_extras$force_norm <- M_extras$force / max(M_extras$force)
-    M_extras$force_norm <- M_extras$force_norm * force_factor
   }
 
   # Split off origin and insertion columns

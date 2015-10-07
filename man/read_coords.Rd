@@ -4,14 +4,12 @@
 \alias{read_coords}
 \title{Read and process coordinates file}
 \usage{
-read_coords(coords_file, force_file = NULL, force_factor = 1)
+read_coords(coords_file, force_file = NULL)
 }
 \arguments{
 \item{coords_file}{String with path to coordinates file.}
 
 \item{force_file}{(Optional) String with path to force file.}
-
-\item{force_factor}{Scaling factor for force. Defaults to 1.}
 }
 \value{
 \code{data.frame} suitable for plotting with \code{ggtern()}.

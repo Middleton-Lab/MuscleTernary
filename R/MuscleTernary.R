@@ -4,8 +4,8 @@
 #'
 #' \tabular{ll}{ Package: \tab MuscleTernary\cr
 #'               Type: \tab Package\cr
-#'               Version: \tab 0.6.0\cr
-#'               Date: \tab 2015-10-05\cr
+#'               Version: \tab 0.7.0\cr
+#'               Date: \tab 2015-10-07\cr
 #'               License: \tab GPL\cr
 #'               LazyLoad: \tab yes\cr
 #'               LazyData: \tab yes\cr }
