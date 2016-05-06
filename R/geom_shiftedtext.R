@@ -57,10 +57,10 @@ GeomShiftedtext <- proto(ggplot2:::GeomText, {
                    coordinates, ...,
                    parse = FALSE,
                    na.rm = FALSE) {
-    data <- remove_missing(data,
-                           na.rm,
-                           c("x", "y", "label"),
-                           name = "geom_shiftedtext")
+    data <- ggplot2::remove_missing(data,
+                                    na.rm,
+                                    c("x", "y", "label"),
+                                    name = "geom_shiftedtext")
 
     lab <- data$label
     if (parse) {

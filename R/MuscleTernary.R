@@ -18,7 +18,6 @@
 #' @import ggplot2 ggtern readxl dplyr
 #' @importFrom stats complete.cases
 #' @importFrom utils globalVariables assignInNamespace
-#' @importFrom proto proto
 NULL
 
 # Ignore some global variables
