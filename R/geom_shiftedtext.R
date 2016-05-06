@@ -13,7 +13,9 @@
 #'
 #' @export
 #'
-geom_shiftedtext <- function (mapping = NULL, data = NULL, stat = "identity",
+geom_shiftedtext <- function (mapping = NULL,
+                              data = NULL,
+                              stat = "identity",
                               position = "identity",
                               parse = FALSE, ...) {
 
@@ -40,16 +42,25 @@ geom_shiftedtext <- function (mapping = NULL, data = NULL, stat = "identity",
 
   utils::assignInNamespace(".approved", .approved, "ggtern")
 
-  GeomShiftedtext$new(mapping = mapping, data = data, stat = stat,
+  GeomShiftedtext$new(mapping = mapping,
+                      data = data,
+                      stat = stat,
                       position = position,
                       parse = parse, ...)
 }
 
 GeomShiftedtext <- proto(ggplot2:::GeomText, {
   objname <- "shiftedtext"
-  draw <- function(., data, scales, coordinates, ..., parse = FALSE, na.rm = FALSE) {
-    data <- remove_missing(data, na.rm,
-                           c("x", "y", "label"), name = "geom_shiftedtext")
+  draw <- function(.,
+                   data,
+                   scales,
+                   coordinates, ...,
+                   parse = FALSE,
+                   na.rm = FALSE) {
+    data <- remove_missing(data,
+                           na.rm,
+                           c("x", "y", "label"),
+                           name = "geom_shiftedtext")
 
     lab <- data$label
     if (parse) {
@@ -57,13 +68,16 @@ GeomShiftedtext <- proto(ggplot2:::GeomText, {
     }
 
     with(coord_transform(coordinates, data, scales),
-         textGrob(lab, unit(x, "native") + unit(0.375* size, "mm"),
+         textGrob(lab,
+                  unit(x, "native") + unit(0.375 * size, "mm"),
                   unit(y, "native"),
-                  hjust=hjust, vjust=vjust, rot=angle,
+                  hjust = hjust,
+                  vjust = vjust,
+                  rot = angle,
                   gp = gpar(col = alpha(colour, alpha),
-                            fontfamily = family, fontface = fontface, lineheight = lineheight))
-
+                            fontfamily = family,
+                            fontface = fontface,
+                            lineheight = lineheight))
     )
   }
-
 })
