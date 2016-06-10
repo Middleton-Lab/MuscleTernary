@@ -49,7 +49,7 @@ geom_shiftedtext <- function (mapping = NULL,
                       parse = parse, ...)
 }
 
-GeomShiftedtext <- proto(ggplot2:::GeomText, {
+GeomShiftedtext <- ggproto(ggplot2:::GeomText, expr = {
   objname <- "shiftedtext"
   draw <- function(.,
                    data,
