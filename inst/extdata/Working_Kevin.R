@@ -21,20 +21,20 @@ M_extras$force_norm <- M_extras$force_norm * force_factor
 df_means <- coords_process(coords_infile, M_extras)
 
 #####################################################################################################
-ggtern(df_means, aes(x = x, y = y, z = z, color = muscle, size = force_norm)) +
-  geom_point() +
-  scale_size_area(max_size = 10) +
-  theme_showarrows() +
-  ggtitle(coords_infile)
 
-ggtern(df_means, aes(x = x, y = y, z = z, color = muscle, size = force_norm)) +
+ggtern(df_means, aes(x = x, y = y, z = z,
+                     color = muscle,
+                     size = force_norm)) +
   geom_point() +
-  theme_showarrows() +
   guides(shape = FALSE) +
   muscle_color_map() +
   scale_size_continuous(range = c(3, 10), name = "Force (N)") +
-  guides(colour = guide_legend(override.aes = list(size=5))) +
-  Tlab("DV") +
-  Rlab("RC") +
-  Llab("ML") +
-  theme(axis.tern.text = element_text(size = 14))
+  guides(colour = guide_legend(override.aes = list(size = 5))) +
+  labs( x       = "ML",
+        xarrow  = "Mediolateral",
+        y       = "DV",
+        yarrow  = "Dorsoventral",
+        z       = "RC",
+        zarrow  = "Rostrocaudal") +
+  theme_bw(base_size = 16) +
+  theme_showarrows()
