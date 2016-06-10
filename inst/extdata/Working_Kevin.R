@@ -6,8 +6,8 @@ library("dplyr")
 
 source("coords_process.R")
 
-coords_infile <- "Chicken coords.xlsx"
-force_infile <- "Chicken forces.xlsx"
+coords_infile <- "Chicken_coords.xlsx"
+force_infile <- "Chicken_forces.xlsx"
 force_factor <- 1
 
 # Read force data
