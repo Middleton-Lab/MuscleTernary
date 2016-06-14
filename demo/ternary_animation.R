@@ -2,7 +2,24 @@ library("MuscleTernary")
 
 ## Load AL008 and AL031 data, calculate means, and merge into one
 ## data.frame.
-example("merge_coords")
+
+AL_008 <- read_coords(system.file("extdata",
+                                  "AL_008_coords.xlsx",
+                                  package = "MuscleTernary"),
+                      system.file("extdata",
+                                  "AL_008_forces.xlsx",
+                                  package = "MuscleTernary"),
+                      L_R_means = TRUE)
+
+AL_031 <- read_coords(system.file("extdata",
+                                  "AL_008_coords.xlsx",
+                                  package = "MuscleTernary"),
+                      system.file("extdata",
+                                  "AL_008_forces.xlsx",
+                                  package = "MuscleTernary"),
+                      L_R_means = FALSE)
+
+M <- merge_coords(AL_031, AL_008)
 
 ## Interpolate each row into length_out new rows.
 length_out <- 100
@@ -36,11 +53,17 @@ for (i in 1:length_out) {
 }
 
 # Set interval to 1/24 s.
-animation::ani.options(interval = 1/24)
+ani.options(interval = 1/24)
+
+# For OS X with ImageMagick installed somewhere on the path
+# e.g., using homebrew.
+ani.options(convert = "convert")
+
+# For windows, install the ImageMagick standalone release:
+# (http://www.imagemagick.org/script/binary-releases.php) Use a
+# variation of the next line to set the absolute path to convert.exe.
+# ani.options(convert = 'C:\\Program Files\\Image Magic\\convert.exe')
 
 saveGIF({for (i in 1:length_out) print(P[[i]])},
         movie.name = "ternary_animation.gif",
-        # May need "imconvert" in Windows.
-        # http://www.imagemagick.org/script/binary-releases.php
-        convert = "convert",
         ani.width = 800, ani.height = 600)
