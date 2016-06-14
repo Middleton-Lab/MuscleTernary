@@ -1,8 +1,6 @@
 library("MuscleTernary")
 
-## Load AL008 and AL031 data, calculate means, and merge into one
-## data.frame.
-
+## Load AL008 data
 AL_008 <- read_coords(system.file("extdata",
                                   "AL_008_coords.xlsx",
                                   package = "MuscleTernary"),
