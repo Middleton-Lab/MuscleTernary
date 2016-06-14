@@ -2,12 +2,34 @@
 #'
 #' @param coords_file String with path to coordinates file.
 #' @param force_file (Optional) String with path to force file.
+#' @param L_R_means If `TRUE` (default), the means of left and right
+#'   muscle are returned.
 #'
 #' @return \code{data.frame} suitable for plotting with \code{ggtern()}.
+#'
 #' @export
 #'
+#' @examples
+#'
+#' read_coords(system.file("extdata",
+#'                         "AL_008_coords.xlsx",
+#'                         package = "MuscleTernary"),
+#'             system.file("extdata",
+#'                         "AL_008_forces.xlsx",
+#'                         package = "MuscleTernary"),
+#'                         L_R_means = TRUE)
+#'
+#' read_coords(system.file("extdata",
+#'                         "AL_008_coords.xlsx",
+#'                         package = "MuscleTernary"),
+#'             system.file("extdata",
+#'                         "AL_008_forces.xlsx",
+#'                         package = "MuscleTernary"),
+#'                         L_R_means = FALSE)
+#'
 read_coords <- function(coords_file,
-                        force_file = NULL){
+                        force_file = NULL,
+                        L_R_means = TRUE){
   # Read coordinate data
   M <- read_excel(coords_file)
 
@@ -23,17 +45,17 @@ read_coords <- function(coords_file,
 
   # Read force data
   if (!is.null(force_file)){
-    M_extras <- read_excel(force_file)
-    M_extras <- M_extras[complete.cases(M_extras), ]
+    M_force <- read_excel(force_file)
+    M_force <- M_force[complete.cases(M_force), ]
 
-    for (i in 2:ncol(M_extras)){
-      variable_name <- names(M_extras)[i]
+    for (i in 2:ncol(M_force)){
+      variable_name <- names(M_force)[i]
 
       # See: http://stackoverflow.com/q/21618423/168137
-      tmp <- M_extras %>% select(matches(variable_name)) %>%
+      tmp <- M_force %>% select(matches(variable_name)) %>%
         collect %>% .[[variable_name]]
       if (is.character(tmp)){
-        M_extras[, variable_name] <- factor(tmp)
+        M_force[, variable_name] <- factor(tmp)
       }
     }
   }
@@ -59,9 +81,9 @@ read_coords <- function(coords_file,
   # Put Muscle column back onto prop_vector
   prop_vectors$muscle <- M$muscle
 
-  # Merge if M_extras exists)
-  if (exists("M_extras")){
-    df_to_plot <- merge(prop_vectors, M_extras)
+  # Merge if M_force exists)
+  if (exists("M_force")){
+    df_to_plot <- merge(prop_vectors, M_force)
   } else {
     df_to_plot <- prop_vectors
   }
@@ -70,7 +92,7 @@ read_coords <- function(coords_file,
   df_to_plot$Left_Right <- ifelse(grepl("^L", df_to_plot$muscle), "L", "R")
   df_to_plot$Left_Right <- factor(df_to_plot$Left_Right)
 
-  # Drop L and R
+  # Drop L and R from muscle name
   df_to_plot$muscle <- gsub("L ", "", df_to_plot$muscle)
   df_to_plot$muscle <- gsub("R ", "", df_to_plot$muscle)
 
@@ -82,5 +104,17 @@ read_coords <- function(coords_file,
     stop("There probably should be an even number of rows.")
   }
 
-  return(df_to_plot)
+  # Calculate L-R means if required.
+  if (L_R_means) {
+    df_to_plot_mean <- df_to_plot %>% select(muscle, x, y, z, force) %>%
+      group_by(muscle) %>% summarise_each(funs(mean))
+    tmp_rows_to_merge <- df_to_plot %>%
+      select(-c(muscle, x, y, z, force, Left_Right)) %>%
+      slice(seq(1, nrow(df_to_plot), 2))
+    df_to_plot_mean <- cbind(df_to_plot_mean, tmp_rows_to_merge)
+  } else {
+    df_to_plot_mean <- df_to_plot
+  }
+
+  return(df_to_plot_mean)
 }

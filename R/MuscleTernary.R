@@ -4,8 +4,8 @@
 #'
 #' \tabular{ll}{ Package: \tab MuscleTernary\cr
 #'               Type: \tab Package\cr
-#'               Version: \tab 0.8.0\cr
-#'               Date: \tab 2016-06-10\cr
+#'               Version: \tab 0.9.0\cr
+#'               Date: \tab 2016-06-14\cr
 #'               License: \tab GPL\cr
 #'               LazyLoad: \tab yes\cr
 #'               LazyData: \tab yes\cr }
@@ -15,7 +15,7 @@
 #' @docType package
 #' @author Kevin M. Middleton (\url{middletonk@@missouri.edu})
 #' @keywords package
-#' @import ggplot2 ggtern readxl dplyr
+#' @import ggplot2 ggtern readxl dplyr animation
 #' @importFrom stats complete.cases
 #' @importFrom utils globalVariables assignInNamespace
 NULL

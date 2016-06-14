@@ -4,17 +4,39 @@
 \alias{read_coords}
 \title{Read and process coordinates file}
 \usage{
-read_coords(coords_file, force_file = NULL)
+read_coords(coords_file, force_file = NULL, L_R_means = TRUE)
 }
 \arguments{
 \item{coords_file}{String with path to coordinates file.}
 
 \item{force_file}{(Optional) String with path to force file.}
+
+\item{L_R_means}{If `TRUE` (default), the means of left and right
+muscle are returned.}
 }
 \value{
 \code{data.frame} suitable for plotting with \code{ggtern()}.
 }
 \description{
 Read and process coordinates file
+}
+\examples{
+
+read_coords(system.file("extdata",
+                        "AL_008_coords.xlsx",
+                        package = "MuscleTernary"),
+            system.file("extdata",
+                        "AL_008_forces.xlsx",
+                        package = "MuscleTernary"),
+                        L_R_means = TRUE)
+
+read_coords(system.file("extdata",
+                        "AL_008_coords.xlsx",
+                        package = "MuscleTernary"),
+            system.file("extdata",
+                        "AL_008_forces.xlsx",
+                        package = "MuscleTernary"),
+                        L_R_means = FALSE)
+
 }
 
