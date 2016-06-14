@@ -1,10 +1,4 @@
-library("ggplot2")
-library("ggtern")
 library("MuscleTernary")
-library("readxl")
-library("dplyr")
-
-source("coords_process.R")
 
 coords_infile <- "Chicken_coords.xlsx"
 force_infile <- "Chicken_forces.xlsx"
