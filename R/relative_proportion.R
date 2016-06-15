@@ -7,7 +7,9 @@
 #' @export
 #'
 relative_proportion <- function(x){
-  if (length(x) != 3){
+
+  # Check
+  if (length(x) != 3) {
     stop("Vector of length 3 required.")
   }
 

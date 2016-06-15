@@ -12,12 +12,12 @@ AL_008 <- read_coords(system.file("extdata",
                       L_R_means = TRUE)
 
 AL_031 <- read_coords(system.file("extdata",
-                                  "AL_008_coords.xlsx",
+                                  "AL_031_coords.xlsx",
                                   package = "MuscleTernary"),
                       system.file("extdata",
-                                  "AL_008_forces.xlsx",
+                                  "AL_031_forces.xlsx",
                                   package = "MuscleTernary"),
-                      L_R_means = FALSE)
+                      L_R_means = TRUE)
 
 M <- merge_coords(AL_031, AL_008)
 
@@ -59,10 +59,11 @@ ani.options(interval = 1/24)
 # e.g., using homebrew.
 ani.options(convert = "convert")
 
-# For windows, install the ImageMagick standalone release:
-# (http://www.imagemagick.org/script/binary-releases.php) Use a
+# For Windows, install the ImageMagick standalone release:
+# (http://www.imagemagick.org/script/binary-releases.php). Use a
 # variation of the next line to set the absolute path to convert.exe.
-# ani.options(convert = 'C:\\Program Files\\Image Magic\\convert.exe')
+#
+# ani.options(convert = 'C:\\Program Files\\ImageMagick\\convert.exe')
 
 saveGIF({for (i in 1:length_out) print(P[[i]])},
         movie.name = "ternary_animation.gif",

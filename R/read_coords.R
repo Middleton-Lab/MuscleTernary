@@ -37,24 +37,24 @@ read_coords <- function(coords_file,
                  "x_insertion", "y_insertion", "z_insertion")
 
   # Check column names
-  if (!all.equal(names(M), col_names)){
+  if (!all.equal(names(M), col_names)) {
     stop('Column names need fixing.\n
          Should be "muscle", "x_origin", "y_origin", "z_origin",\n
          "x_insertion", "y_insertion", "z_insertion"')
   }
 
   # Read force data
-  if (!is.null(force_file)){
+  if (!is.null(force_file)) {
     M_force <- read_excel(force_file)
     M_force <- M_force[complete.cases(M_force), ]
 
-    for (i in 2:ncol(M_force)){
+    for (i in 2:ncol(M_force)) {
       variable_name <- names(M_force)[i]
 
       # See: http://stackoverflow.com/q/21618423/168137
       tmp <- M_force %>% select(matches(variable_name)) %>%
         collect %>% .[[variable_name]]
-      if (is.character(tmp)){
+      if (is.character(tmp)) {
         M_force[, variable_name] <- factor(tmp)
       }
     }
@@ -82,9 +82,10 @@ read_coords <- function(coords_file,
   prop_vectors$muscle <- M$muscle
 
   # Merge if M_force exists)
-  if (exists("M_force")){
+  if (exists("M_force")) {
     df_to_plot <- merge(prop_vectors, M_force)
   } else {
+    message("Force file not provided.")
     df_to_plot <- prop_vectors
   }
 
@@ -100,7 +101,7 @@ read_coords <- function(coords_file,
   df_to_plot <- df_to_plot %>% arrange(muscle)
 
   # Make sure that there are even number of rows
-  if (nrow(df_to_plot) %% 2 != 0){
+  if (nrow(df_to_plot) %% 2 != 0) {
     stop("There probably should be an even number of rows.")
   }
 

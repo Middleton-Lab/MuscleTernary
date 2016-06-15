@@ -4,7 +4,7 @@
 #'
 #' \tabular{ll}{ Package: \tab MuscleTernary\cr
 #'               Type: \tab Package\cr
-#'               Version: \tab 0.10\cr
+#'               Version: \tab 0.11\cr
 #'               Date: \tab 2016-06-14\cr
 #'               License: \tab GPL\cr
 #'               LazyLoad: \tab yes\cr
@@ -15,10 +15,13 @@
 #' @docType package
 #' @author Kevin M. Middleton (\url{middletonk@@missouri.edu})
 #' @keywords package
-#' @import ggplot2 ggtern readxl dplyr animation
+#' @import ggtern readxl dplyr animation
 #' @importFrom stats complete.cases
 #' @importFrom utils globalVariables assignInNamespace
+#' @importFrom ggplot2 ggproto
 NULL
 
 # Ignore some global variables
-utils::globalVariables(c("matches", "muscle", "."))
+utils::globalVariables(c("matches", "muscle", ".", "Muscle_Group",
+                         "Left_Right", "coord_transform",
+                         "scale_color_manual", "x", "y", "z"))

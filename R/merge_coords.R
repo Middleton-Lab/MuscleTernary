@@ -30,9 +30,16 @@
 #' M <- merge_coords(AL_031, AL_008)
 #' M
 #'
-merge_coords <- function(M1, M2){
+merge_coords <- function(M1, M2) {
+
+  # Checks
+  if (!all.equal(names(M1), names(M2))) {
+    stop("Column names of M1 and M2 do not match.")
+  }
+
   names(M1) <- paste0(names(M1), "_1")
   names(M2) <- paste0(names(M2), "_2")
   M <- cbind(M1, M2)
+
   return(M)
 }
