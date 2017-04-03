@@ -15,4 +15,3 @@ A normalized unit vector of length 3
 \description{
 Create a unit vector from a given vector
 }
-

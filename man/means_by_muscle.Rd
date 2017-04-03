@@ -15,4 +15,3 @@ means_by_muscle(df_no_means)
 \description{
 Aggregate means for each muscle.
 }
-

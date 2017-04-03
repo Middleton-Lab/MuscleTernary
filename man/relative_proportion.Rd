@@ -15,4 +15,3 @@ A normalized unit vector of length 3
 \description{
 Calculate the relative proportion of the items of a given vector
 }
-

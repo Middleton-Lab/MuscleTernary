@@ -26,4 +26,3 @@ A geom usable by ggplot()
 \description{
 See: http://stackoverflow.com/q/19694497/168137
 }
-

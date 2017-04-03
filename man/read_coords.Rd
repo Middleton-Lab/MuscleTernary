@@ -39,4 +39,3 @@ read_coords(system.file("extdata",
                         L_R_means = FALSE)
 
 }
-

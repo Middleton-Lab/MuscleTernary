@@ -39,4 +39,3 @@ M <- merge_coords(AL_031, AL_008)
 M
 
 }
-

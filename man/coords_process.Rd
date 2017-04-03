@@ -18,4 +18,3 @@ file.}
 \description{
 Process coordinates and force files.
 }
-

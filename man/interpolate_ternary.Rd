@@ -20,4 +20,3 @@ interpolate_ternary(x, length_out = 200)
 \description{
 Interpolate between two point in a coordinates object.
 }
-

@@ -2,8 +2,8 @@
 % Please edit documentation in R/MuscleTernary.R
 \docType{package}
 \name{MuscleTernary-package}
-\alias{MuscleTernary}
 \alias{MuscleTernary-package}
+\alias{MuscleTernary}
 \title{Muscle Ternary}
 \description{
 More description
@@ -11,8 +11,8 @@ More description
 \details{
 \tabular{ll}{ Package: \tab MuscleTernary\cr
               Type: \tab Package\cr
-              Version: \tab 0.11\cr
-              Date: \tab 2016-06-14\cr
+              Version: \tab 0.12\cr
+              Date: \tab 2017-04-03\cr
               License: \tab GPL\cr
               LazyLoad: \tab yes\cr
               LazyData: \tab yes\cr }
@@ -21,4 +21,3 @@ More description
 Kevin M. Middleton (\url{middletonk@missouri.edu})
 }
 \keyword{package}
-
