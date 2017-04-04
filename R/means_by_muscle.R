@@ -13,6 +13,12 @@ means_by_muscle <- function(df_no_means){
   # data.frame to hold factors
   categorical_vars <- data.frame(muscle = df_no_means$muscle)
 
+  # Check for 1 row per muscle
+  if (length(unique(df_no_means$muscle)) != nrow(df_no_means) / 2) {
+    stop("There do not appear to be two rows per muscle.
+  Do not use this function.")
+  }
+
   # variables to drop
   drop_vars <- list()
 
