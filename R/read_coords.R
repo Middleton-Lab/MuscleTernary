@@ -100,13 +100,14 @@ read_coords <- function(coords_file,
   # Sort by muscle
   df_to_plot <- df_to_plot %>% arrange(muscle)
 
-  # Make sure that there are even number of rows
-  if (nrow(df_to_plot) %% 2 != 0) {
-    stop("There probably should be an even number of rows.")
-  }
 
   # Calculate L-R means if required.
   if (L_R_means) {
+    # Make sure that there are even number of rows
+    if (nrow(df_to_plot) %% 2 != 0) {
+      stop("There probably should be an even number of rows.")
+    }
+
     df_to_plot_mean <- df_to_plot %>% select(muscle, x, y, z, force) %>%
       group_by(muscle) %>% summarise_each(funs(mean))
     tmp_rows_to_merge <- df_to_plot %>%
