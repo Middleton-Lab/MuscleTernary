@@ -1,7 +1,7 @@
 Package: MuscleTernary
 Type: Package
 Title: Plot Muscle Resultants in Ternary Space
-Version: 0.14
+Version: 0.15
 Authors@R: person("Kevin", "Middleton", email = "middletonk@missouri.edu", role = c("aut", "cre"))
 Description: This package is designed for visualizing 3D muscle
     vectors in ternary space. Functions are available reads in origin and
@@ -13,8 +13,8 @@ LazyData: TRUE
 Depends:
     ggtern,
     readxl,
-    dplyr,
+    tidyverse,
     animation
 Imports:
     ggplot2
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0

@@ -61,8 +61,8 @@ read_coords <- function(coords_file,
   }
 
   # Split off origin and insertion columns
-  coords_or <- M[, c("x_origin", "y_origin", "z_origin")]
-  coords_ins <- M[, c("x_insertion", "y_insertion", "z_insertion")]
+  coords_or <- M %>% dplyr::select(contains("origin"))
+  coords_ins <- M %>% dplyr::select(contains("insertion"))
 
   # Calculate vector from origin to insertion.
   vectors <- as.matrix(coords_or) - as.matrix(coords_ins)
@@ -94,12 +94,11 @@ read_coords <- function(coords_file,
   df_to_plot$Left_Right <- factor(df_to_plot$Left_Right)
 
   # Drop L and R from muscle name
-  df_to_plot$muscle <- gsub("L ", "", df_to_plot$muscle)
-  df_to_plot$muscle <- gsub("R ", "", df_to_plot$muscle)
+  df_to_plot$muscle <- str_remove(df_to_plot$muscle, "L ")
+  df_to_plot$muscle <- str_remove(df_to_plot$muscle, "R ")
 
   # Sort by muscle
   df_to_plot <- df_to_plot %>% arrange(muscle)
-
 
   # Calculate L-R means if required.
   if (L_R_means) {
@@ -109,7 +108,7 @@ read_coords <- function(coords_file,
     }
 
     df_to_plot_mean <- df_to_plot %>% select(muscle, x, y, z, force) %>%
-      group_by(muscle) %>% summarise_each(funs(mean))
+      group_by(muscle) %>% summarise_all(funs(mean))
     tmp_rows_to_merge <- df_to_plot %>%
       select(-c(muscle, x, y, z, force, Left_Right)) %>%
       slice(seq(1, nrow(df_to_plot), 2))

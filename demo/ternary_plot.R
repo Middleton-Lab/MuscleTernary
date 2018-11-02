@@ -1,17 +1,18 @@
-library("MuscleTernary")
+library(MuscleTernary)
 
 ## Load AL008 data
-AL_008 <- read_coords(system.file("extdata",
-                                  "AL_008_coords.xlsx",
-                                  package = "MuscleTernary"),
-                      system.file("extdata",
-                                  "AL_008_forces.xlsx",
-                                  package = "MuscleTernary"),
-                      L_R_means = TRUE)
+AL_008 <- read_coords(
+  coords_file = system.file("extdata",
+                            "AL_008_coords.xlsx",
+                            package = "MuscleTernary"),
+  force_file = system.file("extdata",
+                           "AL_008_forces.xlsx",
+                           package = "MuscleTernary"),
+  L_R_means = TRUE)
 
 ggtern(AL_008, aes(x = x, y = y, z = z,
-               color = muscle,
-               size = force)) +
+                   color = muscle,
+                   size = force)) +
   geom_point() +
   muscle_color_map() +
   labs( x       = "ML",
