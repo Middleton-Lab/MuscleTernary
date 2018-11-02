@@ -22,6 +22,13 @@
 NULL
 
 # Ignore some global variables
-utils::globalVariables(c("matches", "muscle", ".", "Muscle_Group",
-                         "Left_Right", "coord_transform",
-                         "scale_color_manual", "x", "y", "z"))
+utils::globalVariables(c("matches",
+                         "muscle",
+                         ".",
+                         "Muscle_Group",
+                         "Left_Right",
+                         "coord_transform",
+                         "scale_color_manual",
+                         "x",
+                         "y",
+                         "z"))

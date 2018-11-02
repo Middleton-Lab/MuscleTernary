@@ -17,4 +17,5 @@ Depends:
     animation
 Imports:
     ggplot2
+Encoding: UTF-8
 RoxygenNote: 6.1.0
