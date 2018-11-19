@@ -25,7 +25,7 @@ process_coords <- function(coords, grouping,
   }
 
   if (forces) {
-    if (!any(str_detect("force", coords_n))) {
+    if (!any(str_detect("force", names(coords)))) {
       stop("Need 'force' column.")
     }
   }
@@ -39,7 +39,7 @@ process_coords <- function(coords, grouping,
                             "y_origin", "z_origin",
                             "x_insertion", "y_insertion",
                             "z_insertion")))) {
-        more_cols <- rlist::append(more_cols, ii)
+        more_cols <- append(more_cols, ii)
       }
     more_cols <- as.character(more_cols)
     }
