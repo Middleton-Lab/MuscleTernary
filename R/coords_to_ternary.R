@@ -24,10 +24,10 @@ coords_to_ternary <- function(coords, grouping = NULL) {
   }
 
   # Get other column names
-  if (ncol(coords) > 7) {
+  if (ncol(coords) > 6) {
     more_cols <- list()
     for (ii in names(coords)) {
-      if (!any(str_detect(ii,
+      if (!any(stringr::str_detect(ii,
                           c("x_origin",
                             "y_origin", "z_origin",
                             "x_insertion", "y_insertion",
@@ -42,7 +42,7 @@ coords_to_ternary <- function(coords, grouping = NULL) {
   }
 
   # Check that additional, non-grouping columns aren't character
-  if (ncol(coords) > 7) {
+  if (ncol(coords) > 6) {
     if (!is.null(grouping)) {
       cols_wo_grouping <- cols_to_keep %>%
         dplyr::select(-one_of(grouping))
@@ -74,7 +74,7 @@ coords_to_ternary <- function(coords, grouping = NULL) {
   prop_vectors <- prop_vectors * 100
 
   # Reattach cols_to_keep
-  if (ncol(coords) > 7) {
+  if (ncol(coords) > 6) {
     df <- dplyr::bind_cols(cols_to_keep, prop_vectors)
   }
 

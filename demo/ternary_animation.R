@@ -1,25 +1,22 @@
-library("MuscleTernary")
+library(MuscleTernary)
 
 ## Load AL008 and AL031 data, calculate means, and merge into one
 ## data.frame.
 
-AL_008 <- read_coords(system.file("extdata",
-                                  "AL_008_coords.xlsx",
-                                  package = "MuscleTernary"),
-                      system.file("extdata",
-                                  "AL_008_forces.xlsx",
-                                  package = "MuscleTernary"),
-                      L_R_means = TRUE)
+AL_008 <- read_csv(system.file("extdata",
+                               "AL_008_data.csv",
+                               package = "MuscleTernary")) %>%
+  dplyr::select(-side, -force) %>%
+  coords_to_ternary(., grouping = c("muscle"))
 
-AL_031 <- read_coords(system.file("extdata",
-                                  "AL_031_coords.xlsx",
-                                  package = "MuscleTernary"),
-                      system.file("extdata",
-                                  "AL_031_forces.xlsx",
-                                  package = "MuscleTernary"),
-                      L_R_means = TRUE)
+AL_031 <- read_csv(system.file("extdata",
+                               "AL_031_data.csv",
+                               package = "MuscleTernary")) %>%
+  dplyr::select(-side, -force) %>%
+  coords_to_ternary(., grouping = c("muscle"))
 
-M <- merge_coords(AL_031, AL_008)
+M <- left_join(AL_031, AL_008, by = "muscle", suffix = c("_1", "_2")) %>%
+  as.data.frame()
 
 ## Interpolate each row into length_out new rows.
 length_out <- 100
