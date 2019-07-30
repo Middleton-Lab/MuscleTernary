@@ -18,8 +18,8 @@ coords_to_ternary <- function(coords, grouping = NULL) {
                "x_insertion", "y_insertion", "z_insertion")) {
     if (!any(str_detect(ii, names(coords)))) {
       stop('Check column names. At least "muscle", "x_origin",
-            "y_origin", "z_origin",
-            "x_insertion", "y_insertion", "z_insertion".')
+            "y_origin", "z_origin", "x_insertion", "y_insertion",
+            and "z_insertion" must be supplied.')
     }
   }
 
@@ -82,7 +82,8 @@ coords_to_ternary <- function(coords, grouping = NULL) {
   if (!is.null(grouping)) {
     df <- df %>%
       group_by_at(grouping) %>%
-      summarise_all(funs(mean))
+      summarise_all(list(~mean(.)))
+    names(df) <- stringr::str_remove(names(df), "_name")
   }
 
   return(df)

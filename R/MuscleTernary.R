@@ -4,8 +4,8 @@
 #'
 #' \tabular{ll}{ Package: \tab MuscleTernary\cr
 #'               Type: \tab Package\cr
-#'               Version: \tab 0.17\cr
-#'               Date: \tab 2018-11-21\cr
+#'               Version: \tab 0.18\cr
+#'               Date: \tab 2019-07-30\cr
 #'               License: \tab GPL\cr
 #'               LazyLoad: \tab yes\cr
 #'               LazyData: \tab yes\cr }
@@ -28,6 +28,7 @@ utils::globalVariables(c("matches",
                          ".",
                          "coord_transform",
                          "scale_color_manual",
+                         "scale_fill_manual",
                          "x",
                          "y",
                          "z"))
