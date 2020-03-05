@@ -4,7 +4,14 @@
 \alias{make_mel}
 \title{Write mel file}
 \usage{
-make_mel(stl, data, scale_radius = TRUE, max_radius = 8, rev_arrows = TRUE)
+make_mel(
+  stl,
+  data,
+  outfile = NULL,
+  scale_radius = TRUE,
+  max_radius = 8,
+  rev_arrows = TRUE
+)
 }
 \arguments{
 \item{stl}{String with the stl file. Assumed to present in the working
@@ -12,12 +19,16 @@ directory}
 
 \item{data}{Data.frame with the data}
 
+\item{outfile}{String Name of file to write to. Defaults to the base name
+of the stl file.}
+
 \item{scale_radius}{Boolean (default TRUE) Should the radius be scaled to
 the maximum value}
 
 \item{max_radius}{Numeric Maximum radius value}
 
-\item{rev_arrows}{Boolean Should the arrows be reversed (probably TRUE)}
+\item{rev_arrows}{Boolean (default TRUE) Should the arrows be reversed
+(you probably want TRUE)}
 }
 \description{
 Write mel file
