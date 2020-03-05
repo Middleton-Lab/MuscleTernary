@@ -4,8 +4,14 @@
 \alias{geom_shiftedtext}
 \title{geom for labeling geom_points}
 \usage{
-geom_shiftedtext(mapping = NULL, data = NULL, stat = "identity",
-  position = "identity", parse = FALSE, ...)
+geom_shiftedtext(
+  mapping = NULL,
+  data = NULL,
+  stat = "identity",
+  position = "identity",
+  parse = FALSE,
+  ...
+)
 }
 \arguments{
 \item{mapping}{The aes mapping}

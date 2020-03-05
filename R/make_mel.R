@@ -1,23 +1,25 @@
-#' Title
+#' Write mel file
 #'
-#' @param stl
-#' @param data
-#' @param scale_radius
-#' @param max_radius
-#' @param rev_arrows
+#' @param stl String with the stl file. Assumed to present in the working
+#' directory
+#' @param data Data.frame with the data
+#' @param scale_radius Boolean (default TRUE) Should the radius be scaled to
+#' the maximum value
+#' @param max_radius Numeric Maximum radius value
+#' @param rev_arrows Boolean Should the arrows be reversed (probably TRUE)
 #'
-#' @return
 #' @export
 #'
-#' @examples
 make_mel <- function(stl,
                      data,
                      scale_radius = TRUE,
                      max_radius = 8,
                      rev_arrows = TRUE) {
-  file_prefix <- str_sub(stl, start = 1L, end = -5L)
+  file_prefix <- stringr::str_sub(stl, start = 1L, end = -5L)
   stl_path <- file.path(getwd(), stl)
   outfile <- paste0(file_prefix, ".mel")
+
+  message("Assuming that the stl file is found at ", stl_path)
 
   # Set up radii for cylinder and cone
   if (scale_radius) {
@@ -38,9 +40,9 @@ make_mel <- function(stl,
                format(Sys.time(), "%a %b %d %H:%M:%S %Y")),
         file = outfile, append = TRUE)
   write(paste0('// Note: the ratio of max to min forces is ',
-               round(max(M$force) / min(M$force), 3)),
+               round(max(data$force) / min(data$force), 3)),
         file = outfile, append = TRUE)
-  write('\n', file = outfile, append = TRUE)
+  write('', file = outfile, append = TRUE)
 
   # Import shader information
   write('// Import color shader presets', file = outfile, append = TRUE)
@@ -57,19 +59,15 @@ make_mel <- function(stl,
   write('hyperShade -assign Color_Presets:Bone;',
         file = outfile, append = TRUE)
   write(paste0('hide ', file_prefix, ';\n'),
+        file = outfile, append = TRUE)
+
+  # Iterate through rows of data and write code for making arrows
+  nul <- pmap(data, write_arrows,
+                    outfile = outfile,
+                    rev_arrows = rev_arrows)
+
+  # Unhide stl_model
+  write('// Unhide model;', file = outfile, append = TRUE)
+  write(paste0('showHidden ', file_prefix, ';'),
                file = outfile, append = TRUE)
-
-  # pmap() along rows of data
-  pmap(data,
-       write_arrows)
 }
-
-write_arrows <- function(muscle, side, x_origin, y_origin, z_origin,
-                         x_insertion, y_insertion, z_insertion, force) {
-
-}
-
-stl <- "mystlfile.stl"
-data <- read_csv(system.file("extdata",
-                             "AL_008_data.csv",
-                             package = "MuscleTernary"))

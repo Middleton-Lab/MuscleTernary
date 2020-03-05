@@ -4,8 +4,8 @@
 #'
 #' \tabular{ll}{ Package: \tab MuscleTernary\cr
 #'               Type: \tab Package\cr
-#'               Version: \tab 0.18\cr
-#'               Date: \tab 2019-07-30\cr
+#'               Version: \tab 0.19\cr
+#'               Date: \tab 2020-03-05\cr
 #'               License: \tab GPL\cr
 #'               LazyLoad: \tab yes\cr
 #'               LazyData: \tab yes\cr }
@@ -20,6 +20,7 @@
 #' @importFrom utils globalVariables assignInNamespace
 #' @importFrom ggplot2 ggproto
 #' @importFrom stringr str_detect
+#' @importFrom purrr pmap
 NULL
 
 # Ignore some global variables
