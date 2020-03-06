@@ -3,7 +3,11 @@
 #' @param u Numeric vector
 #' @param v Numeric vector
 #'
+#'
+#' @export
 #' @return Numeric dot product of `u` and `v`.
+#'
+#' @export
 #'
 dot <- function(u, v) {
   return(sum(u * v))
@@ -13,6 +17,8 @@ dot <- function(u, v) {
 #' Normalize a vector (L2 norm)
 #'
 #' @param u Vector
+#'
+#' @export
 #'
 #' @return L2 norm of `u`.
 #'
@@ -52,6 +58,8 @@ get_euler_angles <- function(A, B) {
 #'
 #' @return U rotation matrix between A and B
 #'
+#' @export
+#'
 RU <- function(A, B) {
   A_norm <- A / norm(A)
   B_norm <- B / norm(B)
@@ -77,6 +85,8 @@ RU <- function(A, B) {
 #' @param v Matrix
 #'
 #' @return Skew-symmetric cross-product of `v`
+#'
+#' @export
 #'
 ssc <- function(v) {
   return(matrix(c(0, -v[3], v[2],
@@ -107,7 +117,7 @@ euler <- function(U) {
 }
 
 
-#' Compute vector cross product
+#' Compute 3D vector cross product
 #'
 #' Compute the vector cross product between x and y, and return the
 #' components indexed by i.
@@ -118,6 +128,8 @@ euler <- function(U) {
 #' @param i Indices
 #'
 #' @return Cross product matrix
+#'
+#' @export
 #'
 CrossProduct3D <- function(x, y, i=1:3) {
   # Project inputs into 3D, since the cross product only makes sense in 3D.

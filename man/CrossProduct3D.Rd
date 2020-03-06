@@ -2,7 +2,7 @@
 % Please edit documentation in R/utility_functions.R
 \name{CrossProduct3D}
 \alias{CrossProduct3D}
-\title{Compute vector cross product}
+\title{Compute 3D vector cross product}
 \usage{
 CrossProduct3D(x, y, i = 1:3)
 }
