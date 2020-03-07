@@ -17,6 +17,7 @@ write_arrows(
   cylinder_r,
   cone_r,
   cone_hr,
+  ...,
   outfile,
   rev_arrows
 )

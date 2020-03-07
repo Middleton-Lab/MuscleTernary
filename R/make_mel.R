@@ -19,6 +19,19 @@ make_mel <- function(stl,
                      scale_radius = TRUE,
                      max_radius = 8,
                      rev_arrows = TRUE) {
+
+  # Check column names
+  col_needed <- c("x_origin", "y_origin", "z_origin",
+                  "x_insertion", "y_insertion", "z_insertion", "muscle",
+                  "force", "side")
+  col_names <- names(data)
+  if (length(intersect(col_needed, col_names)) != 9) {
+    stop(strwrap('Columns must include "x_origin", "y_origin", "z_origin",
+        "x_insertion", "y_insertion", "z_insertion", "muscle", "side",
+                 "force"'))
+  }
+
+  # Extract file info
   file_prefix <- stringr::str_sub(stl, start = 1L, end = -5L)
   stl_path <- file.path(getwd(), stl)
   if(is.null(outfile)) outfile <- paste0(file_prefix, ".mel")
@@ -68,8 +81,8 @@ make_mel <- function(stl,
   # Import shader information
   write('// Import color shader presets', file = outfile, append = TRUE)
   write(paste0('file -import -type "mayaBinary" -ignoreVersion -ra true',
-        '-mergeNamespacesOnClash false -namespace "Color_Presets" ',
-        '-options "v=0;"  -pr "Color_Presets.mb";'),
+               '-mergeNamespacesOnClash false -namespace "Color_Presets" ',
+               '-options "v=0;"  -pr "Color_Presets.mb";'),
         file = outfile, append = TRUE)
 
   # Import model. Note need full path to stl.

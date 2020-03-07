@@ -18,11 +18,14 @@
 #'
 write_arrows <- function(muscle, side, x_origin, y_origin, z_origin,
                          x_insertion, y_insertion, z_insertion, force,
-                         cylinder_r, cone_r, cone_hr,
+                         cylinder_r, cone_r, cone_hr, ...,
                          outfile, rev_arrows) {
+
+  muscle_name <- paste(muscle, side, sep = "_")
+
   write("/////////////////////////////////////",
         file = outfile, append = TRUE)
-  write(paste0("// ", muscle),
+  write(paste0("// ", muscle_name),
         file = outfile, append = TRUE)
 
   if (rev_arrows) {
@@ -70,16 +73,17 @@ write_arrows <- function(muscle, side, x_origin, y_origin, z_origin,
         file = outfile, append = TRUE)
 
   # Extrude cylinder
-  write(paste0('extrude -n ', muscle, 'cyl -et 1 -po 0 circ curve1;'),
+  write(paste0('extrude -n ', muscle_name,
+               'cyl -et 1 -po 0 circ curve1;'),
         file = outfile, append = TRUE)
 
   # Make, rotate, and move cone
-  write(paste0('cone -n ', muscle, 'Cone -po 0 -axis 0 1 0 -r ', cone_r,
+  write(paste0('cone -n ', muscle_name, 'Cone -po 0 -axis 0 1 0 -r ', cone_r,
                ' -hr ', cone_hr, ';'),
         file = outfile, append = TRUE)
-  write(paste0('rotate -r -xyz ', rotations, ' ', muscle, 'Cone;'),
+  write(paste0('rotate -r -xyz ', rotations, ' ', muscle_name, 'Cone;'),
         file = outfile, append = TRUE)
-  write(paste0('move ', insertion_coords, ' ', muscle, 'Cone;'),
+  write(paste0('move ', insertion_coords, ' ', muscle_name, 'Cone;'),
         file = outfile, append = TRUE)
 
   # Clean up
@@ -90,12 +94,12 @@ write_arrows <- function(muscle, side, x_origin, y_origin, z_origin,
 
   # Apply shader
   shader <- paste0('Color_Presets:', muscle, "SG")
-  write(paste0('select -r ', muscle, 'Cone ', muscle, 'cyl;'),
+  write(paste0('select -r ', muscle_name, 'Cone ', muscle_name, 'cyl;'),
         file = outfile, append = TRUE)
   write(paste0('hyperShade -assign ', shader, ';'),
         file = outfile, append = TRUE)
 
   # Reverse surface normals
-  write(paste0('reverseSurface -ch on -rpo on -d 3 ', muscle, 'cyl;\n\n'),
+  write(paste0('reverseSurface -ch on -rpo on -d 3 ', muscle_name, 'cyl;\n\n'),
         file = outfile, append = TRUE)
 }
