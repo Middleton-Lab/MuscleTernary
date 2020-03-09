@@ -6,3 +6,8 @@ data <- read_csv(system.file("extdata",
 
 make_mel(stl = "AL_008.stl",
          data = data)
+
+file.copy(system.file("extdata",
+                      "Color_Presets.mb",
+                      package = "MuscleTernary"),
+          to = getwd())
