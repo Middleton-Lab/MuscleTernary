@@ -1,0 +1,5 @@
+stl,centroid,radius
+AL008,121623.4,8
+AL031,14729.73,
+Presto,123310.1,
+Gompho,16758.28,
