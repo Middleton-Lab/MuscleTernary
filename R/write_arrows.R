@@ -18,7 +18,7 @@
 #'
 write_arrows <- function(muscle, side, x_origin, y_origin, z_origin,
                          x_insertion, y_insertion, z_insertion, force,
-                         cylinder_r, cone_r, cone_hr, ...,
+                         cylinder_r, cone_r, cone_hr,
                          outfile, rev_arrows) {
 
   muscle_name <- paste(muscle, side, sep = "_")

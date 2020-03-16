@@ -2,6 +2,7 @@
 
 export(CrossProduct3D)
 export(RU)
+export(centroid_size)
 export(coords_to_ternary)
 export(dot)
 export(euler)

@@ -1,22 +1,10 @@
-library(rgl)
-library(tidyverse)
-
-centroid_size <- function(ply){
-  p <- read.ply(ply, ShowSpecimen = FALSE)$vb %>%
-    t() %>%
-    as.data.frame() %>%
-    dplyr::select(ends_with("pts"))
-
-  centroid <- colMeans(p)
-
-  sqrt(sum((centroid[1] - p$xpts) ^ 2 +
-             (centroid[2] - p$ypts) ^ 2 +
-             (centroid[3] - p$zpts) ^ 2))
-}
-
-ply <- "~/Downloads/AL_008.ply"
-centroid_size(ply)
-
+#' Calculate centroid size for an stl file
+#'
+#' @param stl String path to stl file
+#'
+#' @return Numeric Centroid size
+#' @export
+#'
 centroid_size <- function(stl) {
   st <- rgl::readSTL(stl, plot = FALSE)
   centroid <- colMeans(st)
@@ -25,5 +13,3 @@ centroid_size <- function(stl) {
                    (centroid[3] - st[, 3]) ^ 2))
   return(cs)
 }
-
-centroid_size("~/Downloads/gomphosuchus.stl")
