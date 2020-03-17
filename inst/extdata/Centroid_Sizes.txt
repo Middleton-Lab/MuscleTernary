@@ -1,9 +1,8 @@
 stl,centroid,radius
 AL008,121623.4,8
-AL031,14729.73,
-Presto,123310.1,
-Gompho,16758.28,
-Chicken,953.7129,
-Grey,,
-Ostrich,40538.51,
-Trex,41392.18,
+AL031,14729.73,1
+Presto,123310.1,8
+Gompho,16758.28,1
+Chicken,953.7129,0.1
+Ostrich,40538.51,3
+Trex,41392.18,3
