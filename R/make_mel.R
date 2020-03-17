@@ -1,15 +1,16 @@
 #' Write mel file
 #'
-#' @param stl String with the stl file. Assumed to present in the working
-#' directory
-#' @param data Data.frame with the data
-#' @param outfile String Name of file to write to. Defaults to the base name
+#' @param stl string Location of the stl file. Assumed to present in the
+#' working directory
+#' @param data data.frame Object with the data
+#' @param outfile string Name of file to write to. Defaults to the base name
 #' of the stl file.
-#' @param scale_radius Boolean (default TRUE) Should the radius be scaled to
-#' the maximum value
-#' @param max_radius Numeric Maximum radius value
-#' @param rev_arrows Boolean (default TRUE) Should the arrows be reversed
-#' (you probably want TRUE)
+#' @param scale_radius boolean (default \code{TRUE}) Should the radius be
+#' scaled to the maximum value automatically based on the stl centroid size?
+#' @param max_radius numeric Maximum radius value. Ignored if
+#' \code{scale_radius} is \code{TRUE}.
+#' @param rev_arrows boolean (default \code{TRUE}) Should the arrowheads be
+#' reversed (you probably want \code{TRUE})
 #'
 #' @export
 #'
@@ -50,6 +51,10 @@ make_mel <- function(stl,
 
   # Set up radii for cylinder and cone
   if (scale_radius) {
+    # Read stl file and get centroid size
+    centroid <- centroid_size(stl)
+    max_radius <- 1.126e-01 + 6.488e-05 * centroid
+
     # Normalize to maximum force value
     data <- data %>%
       mutate(cylinder_r = force / max(force) * max_radius)
@@ -57,6 +62,13 @@ make_mel <- function(stl,
     data <- data %>%
       mutate(cylinder_r = max_radius / 2)
   }
+
+  message("Note: the ratio of max to min forces is ",
+          round(max(data$force) / min(data$force), 3), "\n")
+  message(strwrap(paste0("The maximum cylinder width is ",
+                         round(max(data$cylinder_r), 3),
+                         ". Adjust this based on the size of your model
+                         overall.")))
 
   data$cone_r <- data$cylinder_r * 2
   data$cone_hr <- 2  # cone_r / 2
@@ -69,12 +81,6 @@ make_mel <- function(stl,
   write(paste0("// Note: the ratio of max to min forces is ",
                round(max(data$force) / min(data$force), 3)),
         file = outfile, append = TRUE)
-  message("Note: the ratio of max to min forces is ",
-          round(max(data$force) / min(data$force), 3), "\n")
-  message(strwrap(paste0("The maximum cylinder width is ",
-                         round(max(data$cylinder_r, 3)),
-                         ". Adjust this based on the size of your model
-                         overall.")))
 
   write('', file = outfile, append = TRUE)
 
