@@ -3,6 +3,8 @@
 #' @param stl string Location of the stl file. Assumed to present in the
 #' working directory
 #' @param data data.frame Object with the data
+#' @param shader_file string Either "default" to use the standard palette,
+#' or the path to a csv file with colors for each muscle.
 #' @param outfile string Name of file to write to. Defaults to the base name
 #' of the stl file.
 #' @param scale_radius boolean (default \code{TRUE}) Should the radius be
@@ -16,6 +18,7 @@
 #'
 make_mel <- function(stl,
                      data,
+                     shader_file = "default",
                      outfile = NULL,
                      scale_radius = TRUE,
                      max_radius = 8,
@@ -84,33 +87,30 @@ make_mel <- function(stl,
 
   write('', file = outfile, append = TRUE)
 
-  # Import shader information
-  write('// Import color shader presets', file = outfile, append = TRUE)
-  write(paste0('file -import -type "mayaBinary" -ignoreVersion -ra true',
-               '-mergeNamespacesOnClash false -namespace "Color_Presets" ',
-               '-options "v=0;"  -pr "Color_Presets.mb";'),
-        file = outfile, append = TRUE)
+  # Generate shader
+  if (shader_file == "default") {
+    shader <- readr::read_csv(system.file("extdata",
+                                   "muscle_colors.csv",
+                                   package = "MuscleTernary"))
+  } else {
+    shader <- readr::read_csv(shader)
+  }
+  generate_shader(shader, outfile)
 
   # Import model. Note need full path to stl.
-  write('// Import stl model', file = outfile, append = TRUE)
+  write('\n// Import stl model', file = outfile, append = TRUE)
   write(paste0('file -import -type "STLImport" -ignoreVersion -ra true ',
                '-mergeNamespacesOnClash false -namespace "',
                file_prefix, '" -pr "', stl_path, '";'),
         file = outfile, append = TRUE)
   write(paste0('select -r ', file_prefix, ';'),
         file = outfile, append = TRUE)
-  write('hyperShade -assign Color_Presets:Bone;',
+  write('sets -e -forceElement BoneSG;',
         file = outfile, append = TRUE)
-  write(paste0('hide ', file_prefix, ';\n'),
-        file = outfile, append = TRUE)
+  write('', file = outfile, append = TRUE)
 
   # Iterate through rows of data and write code for making arrows
   nul <- pmap(data, write_arrows,
               outfile = outfile,
               rev_arrows = rev_arrows)
-
-  # Unhide stl_model
-  write('// Unhide model;', file = outfile, append = TRUE)
-  write(paste0('showHidden ', file_prefix, ';'),
-        file = outfile, append = TRUE)
 }

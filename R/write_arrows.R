@@ -93,10 +93,10 @@ write_arrows <- function(muscle, side, x_origin, y_origin, z_origin,
   write('doDelete;', file = outfile, append = TRUE)
 
   # Apply shader
-  shader <- paste0('Color_Presets:', muscle, "SG")
   write(paste0('select -r ', muscle_name, 'Cone ', muscle_name, 'cyl;'),
         file = outfile, append = TRUE)
-  write(paste0('hyperShade -assign ', shader, ';'),
+  write(paste0('sets -e -forceElement ',
+               stringr::str_sub(muscle_name, end = -3), 'SG;'),
         file = outfile, append = TRUE)
 
   # Reverse surface normals

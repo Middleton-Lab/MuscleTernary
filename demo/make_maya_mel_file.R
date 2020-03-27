@@ -5,6 +5,7 @@ data <- read_csv(system.file("extdata",
                              package = "MuscleTernary"))
 
 make_mel(stl = "AL_008.stl",
+         shader_file = "default",
          data = data)
 
 file.copy(system.file("extdata",

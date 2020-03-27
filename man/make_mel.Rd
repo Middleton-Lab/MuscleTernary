@@ -7,6 +7,7 @@
 make_mel(
   stl,
   data,
+  shader_file = "default",
   outfile = NULL,
   scale_radius = TRUE,
   max_radius = 8,
@@ -14,21 +15,25 @@ make_mel(
 )
 }
 \arguments{
-\item{stl}{String with the stl file. Assumed to present in the working
-directory}
+\item{stl}{string Location of the stl file. Assumed to present in the
+working directory}
 
-\item{data}{Data.frame with the data}
+\item{data}{data.frame Object with the data}
 
-\item{outfile}{String Name of file to write to. Defaults to the base name
+\item{shader_file}{string Either "default" to use the standard palette,
+or the path to a csv file with colors for each muscle.}
+
+\item{outfile}{string Name of file to write to. Defaults to the base name
 of the stl file.}
 
-\item{scale_radius}{Boolean (default TRUE) Should the radius be scaled to
-the maximum value}
+\item{scale_radius}{boolean (default \code{TRUE}) Should the radius be
+scaled to the maximum value automatically based on the stl centroid size?}
 
-\item{max_radius}{Numeric Maximum radius value}
+\item{max_radius}{numeric Maximum radius value. Ignored if
+\code{scale_radius} is \code{TRUE}.}
 
-\item{rev_arrows}{Boolean (default TRUE) Should the arrows be reversed
-(you probably want TRUE)}
+\item{rev_arrows}{boolean (default \code{TRUE}) Should the arrowheads be
+reversed (you probably want \code{TRUE})}
 }
 \description{
 Write mel file

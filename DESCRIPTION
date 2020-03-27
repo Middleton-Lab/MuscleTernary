@@ -21,7 +21,8 @@ Imports:
     rlist,
     stringr,
     purrr,
-    rgl
+    rgl,
+    readr
 Encoding: UTF-8
 RoxygenNote: 7.1.0
 Suggests: 
