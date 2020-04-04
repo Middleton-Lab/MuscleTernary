@@ -93,7 +93,7 @@ make_mel <- function(stl,
                                    "muscle_colors.csv",
                                    package = "MuscleTernary"))
   } else {
-    shader <- readr::read_csv(shader)
+    shader <- readr::read_csv(shader_file)
   }
   generate_shader(shader, outfile)
 
