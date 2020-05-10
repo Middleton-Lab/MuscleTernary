@@ -71,7 +71,7 @@ make_mel <- function(stl,
   message(strwrap(paste0("The maximum cylinder width is ",
                          round(max(data$cylinder_r), 3),
                          ". Adjust this based on the size of your model
-                         overall.")))
+                         overall.\n")))
 
   data$cone_r <- data$cylinder_r * 2
   data$cone_hr <- 2  # cone_r / 2
@@ -93,6 +93,7 @@ make_mel <- function(stl,
                                    "muscle_colors.csv",
                                    package = "MuscleTernary"))
   } else {
+    if (!endsWith(shader_file, "csv")) stop("shader_file should be csv.")
     shader <- readr::read_csv(shader_file)
   }
   generate_shader(shader, outfile)
