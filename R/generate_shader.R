@@ -1,5 +1,6 @@
 generate_shader <- function(shader, outfile) {
   # Checks on columns names
+  if !(muscle %in% names(shader)) stop("Shader should have a 'muscle' column.")
 
   # Lambert counter
   l <- 2
@@ -20,20 +21,21 @@ generate_shader <- function(shader, outfile) {
   write('rename lambert2SG "BoneSG" ;', file = outfile, append = TRUE)
 
   # Iterate through shader file
-  nul <- purrr::map(.x = 1:nrow(shader), .f = function(ii, shader, outfile) {
+  nul <- purrr::map(.x = 1:nrow(shader),
+                    .f = function(ii, shader, outfile) {
     r <- shader %>% slice(ii) %>% as.data.frame()
-    write(paste0('\n// ', r$Muscle, ' shader'),
+    write(paste0('\n// ', r$muscle, ' shader'),
           file = outfile, append = TRUE)
     write('shadingNode -asShader lambert;', file = outfile, append = TRUE)
     write('sets -renderable true -noSurfaceShader true -empty -name lambert2SG;',
           file = outfile, append = TRUE)
     write('connectAttr -f lambert2.outColor lambert2SG.surfaceShader;',
           file = outfile, append = TRUE)
-    write(paste0('rename lambert2 ', r$Muscle, ' ;'),
+    write(paste0('rename lambert2 ', r$muscle, ' ;'),
           file = outfile, append = TRUE)
-    write(paste0('setAttr "', r$Muscle, '.color" -type double3 ', r$R1, ' ', r$G1, ' ',  r$B1, ' ;'),
+    write(paste0('setAttr "', r$muscle, '.color" -type double3 ', r$R1, ' ', r$G1, ' ',  r$B1, ' ;'),
           file = outfile, append = TRUE)
-    write(paste0('rename lambert2SG ', r$Muscle, 'SG ;'),
+    write(paste0('rename lambert2SG ', r$muscle, 'SG ;'),
           file = outfile, append = TRUE)
   },
   shader = shader,
