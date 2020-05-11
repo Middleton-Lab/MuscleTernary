@@ -16,3 +16,4 @@ Skew-symmetric cross-product of `v`
 Calculate the skew-symmetric cross-product matrix of v
 See: See: http://math.stackexchange.com/a/897677/6965
 }
+\keyword{internal}

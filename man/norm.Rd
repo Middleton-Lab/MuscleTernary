@@ -15,3 +15,4 @@ L2 norm of `u`.
 \description{
 Normalize a vector (L2 norm)
 }
+\keyword{internal}

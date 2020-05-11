@@ -17,3 +17,4 @@ Numeric dot product of `u` and `v`.
 \description{
 Dot product
 }
+\keyword{internal}

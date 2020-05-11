@@ -7,7 +7,7 @@
 #' @export
 #' @return Numeric dot product of `u` and `v`.
 #'
-#' @export
+#' @keywords internal
 #'
 dot <- function(u, v) {
   return(sum(u * v))
@@ -18,7 +18,7 @@ dot <- function(u, v) {
 #'
 #' @param u Vector
 #'
-#' @export
+#' @keywords internal
 #'
 #' @return L2 norm of `u`.
 #'
@@ -37,7 +37,7 @@ norm <- function(u) {
 #'
 #' @return Euler angles between A and B
 #'
-#' @export
+#' @keywords internal
 #'
 get_euler_angles <- function(A, B) {
   U <- RU(A, B)
@@ -58,7 +58,7 @@ get_euler_angles <- function(A, B) {
 #'
 #' @return U rotation matrix between A and B
 #'
-#' @export
+#' @keywords internal
 #'
 RU <- function(A, B) {
   A_norm <- A / norm(A)
@@ -86,7 +86,7 @@ RU <- function(A, B) {
 #'
 #' @return Skew-symmetric cross-product of `v`
 #'
-#' @export
+#' @keywords internal
 #'
 ssc <- function(v) {
   return(matrix(c(0, -v[3], v[2],
@@ -106,7 +106,7 @@ ssc <- function(v) {
 #'
 #' @return Euler angles
 #'
-#' @export
+#' @keywords internal
 #'
 euler <- function(U) {
   xrot <- atan2(U[3, 2], U[3, 3]) * 180 / pi
@@ -129,7 +129,7 @@ euler <- function(U) {
 #'
 #' @return Cross product matrix
 #'
-#' @export
+#' @keywords internal
 #'
 CrossProduct3D <- function(x, y, i=1:3) {
   # Project inputs into 3D, since the cross product only makes sense in 3D.

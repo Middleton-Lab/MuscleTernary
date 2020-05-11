@@ -21,3 +21,4 @@ Compute the vector cross product between x and y, and return the
 components indexed by i.
 See: https://stackoverflow.com/a/21736807/168137
 }
+\keyword{internal}

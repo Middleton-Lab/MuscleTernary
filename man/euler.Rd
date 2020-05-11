@@ -17,3 +17,4 @@ Note that the order
 is x, y, x.
 See: http://nghiaho.com/?page_id=846
 }
+\keyword{internal}
