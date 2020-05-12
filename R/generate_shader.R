@@ -1,6 +1,8 @@
 generate_shader <- function(shader, outfile) {
   # Checks on columns names
-  if !(muscle %in% names(shader)) stop("Shader should have a 'muscle' column.")
+  if (!(muscle %in% names(shader))) {
+    stop("Shader should have a 'muscle' column.")
+  }
 
   # Lambert counter
   l <- 2

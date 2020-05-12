@@ -95,7 +95,7 @@ make_mel <- function(stl,
   } else {
     if (!endsWith(shader_file, "csv")) stop("shader_file should be csv.")
     shader <- readr::read_csv(shader_file) %>%
-      mutate(muscle = str_replace_all(muscle, " ", "_"))
+      mutate(muscle = stringr::str_replace_all(muscle, " ", "_"))
   }
   generate_shader(shader, outfile)
 
