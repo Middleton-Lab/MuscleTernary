@@ -97,7 +97,18 @@ make_mel <- function(stl,
     shader <- readr::read_csv(shader_file) %>%
       mutate(muscle = stringr::str_replace_all(muscle, " ", "_"))
   }
-  generate_shader(shader, outfile)
+
+  # Check that all muscle columns in data are found in shader
+  missing_from_shader <- data$muscle[!(data$muscle %in% shader$muscle)]
+  if (rlang::is_empty(missing_from_shader)) {
+    generate_shader(shader, outfile)
+  } else {
+    if (!rlang::is_empty(missing_from_shader)) {
+      message("Muscles in data missing from shader: \n")
+      message(paste(missing_from_shader, collapse = "\n"))
+      stop()
+    }
+  }
 
   # Import model. Note need full path to stl.
   write('\n// Import stl model', file = outfile, append = TRUE)
