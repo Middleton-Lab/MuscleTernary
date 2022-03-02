@@ -8,7 +8,9 @@
 #' @param outfile string Name of file to write to. Defaults to the base name
 #' of the stl file.
 #' @param scale_radius boolean (default \code{TRUE}) Should the radius be
-#' scaled to the maximum value automatically based on the stl centroid size?
+#' scaled based on the force variable?
+#' @param use_stl boolean (default \code{FALSE}. Should scaling use the
+#' maximum value automatically based on the stl centroid size?
 #' @param max_radius numeric Maximum radius value. Ignored if
 #' \code{scale_radius} is \code{TRUE}.
 #' @param rev_arrows boolean (default \code{TRUE}) Should the arrowheads be
@@ -21,6 +23,7 @@ make_mel <- function(stl,
                      shader_file = "default",
                      outfile = NULL,
                      scale_radius = TRUE,
+                     use_stl = FALSE,
                      max_radius = 8,
                      rev_arrows = TRUE) {
 
@@ -54,9 +57,12 @@ make_mel <- function(stl,
 
   # Set up radii for cylinder and cone
   if (scale_radius) {
-    # Read stl file and get centroid size
-    centroid <- centroid_size(stl)
-    max_radius <- 1.126e-01 + 6.488e-05 * centroid
+    # Rescale max_radius based on centroid size
+    if (use_stl) {
+      # Read stl file and get centroid size
+      centroid <- centroid_size(stl)
+      max_radius <- 1.126e-01 + 6.488e-05 * centroid
+    }
 
     # Normalize to maximum force value
     data <- data %>%
@@ -68,10 +74,10 @@ make_mel <- function(stl,
 
   message("Note: the ratio of max to min forces is ",
           round(max(data$force) / min(data$force), 3), "\n")
-  message(strwrap(paste0("The maximum cylinder width is ",
-                         round(max(data$cylinder_r), 3),
-                         ". Adjust this based on the size of your model
-                         overall.\n")))
+  message(strwrap(
+    paste0("The maximum cylinder width is ",
+           round(max(data$cylinder_r), 3),
+           ". Adjust this based on the size of your model.\n")))
 
   data$cone_r <- data$cylinder_r * 2
   data$cone_hr <- 2  # cone_r / 2
@@ -90,8 +96,8 @@ make_mel <- function(stl,
   # Generate shader
   if (shader_file == "default") {
     shader <- readr::read_csv(system.file("extdata",
-                                   "muscle_colors.csv",
-                                   package = "MuscleTernary"))
+                                          "muscle_colors.csv",
+                                          package = "MuscleTernary"))
   } else {
     if (!endsWith(shader_file, "csv")) stop("shader_file should be csv.")
     shader <- readr::read_csv(shader_file) %>%

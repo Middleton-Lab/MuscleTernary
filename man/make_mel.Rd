@@ -10,6 +10,7 @@ make_mel(
   shader_file = "default",
   outfile = NULL,
   scale_radius = TRUE,
+  use_stl = FALSE,
   max_radius = 8,
   rev_arrows = TRUE
 )
@@ -27,7 +28,10 @@ or the path to a csv file with colors for each muscle.}
 of the stl file.}
 
 \item{scale_radius}{boolean (default \code{TRUE}) Should the radius be
-scaled to the maximum value automatically based on the stl centroid size?}
+scaled based on the force variable?}
+
+\item{use_stl}{boolean (default \code{FALSE}. Should scaling use the
+maximum value automatically based on the stl centroid size?}
 
 \item{max_radius}{numeric Maximum radius value. Ignored if
 \code{scale_radius} is \code{TRUE}.}
