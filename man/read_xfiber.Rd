@@ -2,17 +2,17 @@
 % Please edit documentation in R/read_xfiber.R
 \name{read_xfiber}
 \alias{read_xfiber}
-\title{Read file from Avizo xfiber}
+\title{Import from Avizo xfiber Excel}
 \usage{
-read_xfiber(fname)
+read_xfiber(filename)
 }
 \arguments{
-\item{fname}{string: file name to load (should be xlsx).}
+\item{filename}{string: file name to load (should be xlsx).}
 }
 \value{
-tibble:
+tibble: All tracks concatenated.
 }
 \description{
 By default, xfiber write an excel file in XML format. Loading such a file
-and the resaving as xlsx will allow it to be read into R.
+and the resaving as xlsx will allow it to be read into R with this function.
 }

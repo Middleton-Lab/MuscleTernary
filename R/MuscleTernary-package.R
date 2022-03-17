@@ -14,13 +14,20 @@
 #' @aliases MuscleTernary-package MuscleTernary
 #' @docType package
 #' @author Kevin M. Middleton (\url{middletonk@@missouri.edu})
-#' @keywords package
+#' @keywords package internal
+## usethis namespace: start
 #' @import ggtern readxl tidyverse animation rlist dplyr
-#' @importFrom stats complete.cases
-#' @importFrom utils globalVariables assignInNamespace
 #' @importFrom ggplot2 ggproto
-#' @importFrom stringr str_detect
 #' @importFrom purrr pmap
+#' @importFrom stats complete.cases
+#' @importFrom stringr str_detect
+#' @importFrom utils globalVariables assignInNamespace
+#' @importFrom xml2 read_xml
+#' @importFrom xml2 xml_children
+#' @importFrom xml2 xml_contents
+#' @importFrom xml2 xml_text
+## usethis namespace: end
+"_PACKAGE"
 NULL
 
 # Ignore some global variables
@@ -37,3 +44,4 @@ utils::globalVariables(c("matches",
                          "OrientationTheta",
                          "pt_pair",
                          "track_num"))
+
