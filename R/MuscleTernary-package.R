@@ -13,8 +13,11 @@
 #' @name MuscleTernary-package
 #' @aliases MuscleTernary-package MuscleTernary
 #' @docType package
+#'
 #' @author Kevin M. Middleton (\url{middletonk@@missouri.edu})
+#'
 #' @keywords package internal
+#'
 ## usethis namespace: start
 #' @import ggtern readxl tidyverse animation rlist dplyr
 #' @importFrom ggplot2 ggproto
