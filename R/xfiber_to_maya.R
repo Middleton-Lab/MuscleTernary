@@ -12,21 +12,21 @@ xfiber_to_maya <- function(fname, outfile, radius = 8, n = NULL) {
 
   if (!is.null(n)) {
     if (n > unique(Tracks$track_num)) {
-      stop("n is greater than then number of unique tracks")
+      stop("n is greater than the number of unique tracks")
     }
 
-    Tracks <- Tracks %>%
+    Tracks <- Tracks |>
       filter(track_num %in% sample(unique(Tracks$track_num), size = n))
   }
 
   # Generate ID for each segment
-  Tracks <- Tracks %>%
+  Tracks <- Tracks |>
     dplyr::mutate(track_num = paste0("tr_", track_num),
-                  pt_pair = stringr::str_replace(pt_pair, ",", "_")) %>%
+                  pt_pair = stringr::str_replace(pt_pair, ",", "_")) |>
     tidyr::unite("ID", track_num, pt_pair)
 
   # Drop Orientation columns
-  Tracks <- Tracks %>%
+  Tracks <- Tracks |>
     dplyr::select(-OrientationTheta, -OrientationPhi)
 
   message("Writing .mel file to ", outfile, "\n")

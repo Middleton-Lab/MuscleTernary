@@ -39,7 +39,7 @@ means_by_muscle <- function(df_no_means){
   message("\nAssuming that any categorical variables alternate by rows.\n")
 
   # Means by Left_Right
-  df_means <- df_no_means %>% group_by(muscle) %>% summarise_each(funs(mean))
+  df_means <- df_no_means |> group_by(muscle) |> summarise_each(funs(mean))
 
   # Put categorical variables back on. Note: Assumes alternating rows
   categorical_vars <-

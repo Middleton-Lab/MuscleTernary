@@ -36,7 +36,7 @@ coords_to_ternary <- function(coords, grouping = NULL) {
       }
       more_cols <- as.character(more_cols)
     }
-    cols_to_keep <- coords %>% dplyr::select(more_cols)
+    cols_to_keep <- coords |> dplyr::select(more_cols)
   } else if (!is.null(grouping)) {
     stop("No additional columns detected, but grouping requested.")
   }
@@ -44,7 +44,7 @@ coords_to_ternary <- function(coords, grouping = NULL) {
   # Check that additional, non-grouping columns aren't character
   if (ncol(coords) > 6) {
     if (!is.null(grouping)) {
-      cols_wo_grouping <- cols_to_keep %>%
+      cols_wo_grouping <- cols_to_keep |>
         dplyr::select(-one_of(grouping))
       col_classes <- sapply(cols_wo_grouping, class)
       if ("character" %in% col_classes) {
@@ -56,8 +56,8 @@ coords_to_ternary <- function(coords, grouping = NULL) {
     }
   }
 
-  coords_or <- coords %>% dplyr::select(contains("origin"))
-  coords_ins <- coords %>% dplyr::select(contains("insertion"))
+  coords_or <- coords |> dplyr::select(contains("origin"))
+  coords_ins <- coords |> dplyr::select(contains("insertion"))
 
   # Calculate vector from origin to insertion.
   vectors <- as.matrix(coords_or) - as.matrix(coords_ins)
@@ -80,8 +80,8 @@ coords_to_ternary <- function(coords, grouping = NULL) {
 
   # Means based on grouping variables
   if (!is.null(grouping)) {
-    df <- df %>%
-      group_by_at(grouping) %>%
+    df <- df |>
+      group_by_at(grouping) |>
       summarise_all(list(~mean(.)))
     names(df) <- stringr::str_remove(names(df), "_name")
   }

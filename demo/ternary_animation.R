@@ -5,17 +5,17 @@ library(MuscleTernary)
 
 AL_008 <- read_csv(system.file("extdata",
                                "AL_008_data.csv",
-                               package = "MuscleTernary")) %>%
-  dplyr::select(-side, -force) %>%
+                               package = "MuscleTernary")) |>
+  dplyr::select(-side, -force) |>
   coords_to_ternary(., grouping = c("muscle"))
 
 AL_031 <- read_csv(system.file("extdata",
                                "AL_031_data.csv",
-                               package = "MuscleTernary")) %>%
-  dplyr::select(-side, -force) %>%
+                               package = "MuscleTernary")) |>
+  dplyr::select(-side, -force) |>
   coords_to_ternary(., grouping = c("muscle"))
 
-M <- left_join(AL_031, AL_008, by = "muscle", suffix = c("_1", "_2")) %>%
+M <- left_join(AL_031, AL_008, by = "muscle", suffix = c("_1", "_2")) |>
   as.data.frame()
 
 ## Interpolate each row into length_out new rows.
@@ -32,7 +32,7 @@ D <- do.call(rbind, D)
 P <- list()
 
 for (i in 1:length_out) {
-  d <- D %>% filter(.frame == i)
+  d <- D |> filter(.frame == i)
   P[[i]] <- ggtern(d, aes(x = x, y = y, z = z,
                           color = muscle_1)) +
     geom_point(size = 5) +

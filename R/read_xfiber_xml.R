@@ -16,14 +16,14 @@ read_xfiber_xml <- function(filename) {
     rows <- xml2::xml_children(tab)
 
     # Column names
-    col_names <- xml2::xml_contents(rows[1]) %>% xml_text()
+    col_names <- xml2::xml_contents(rows[1]) |> xml_text()
 
     # Pre-allocate matrix
     M <- matrix(data = "", nrow = length(rows) - 1, ncol = length(col_names))
 
     # Iterate from row 2 until the end, extracting text
     for (ii in 1:nrow(M)) {
-      M[ii, ] <- xml2::xml_contents(rows[ii + 1]) %>% xml_text()
+      M[ii, ] <- xml2::xml_contents(rows[ii + 1]) |> xml_text()
     }
 
     M <- as.data.frame(M)
@@ -31,10 +31,10 @@ read_xfiber_xml <- function(filename) {
 
     # Convert some columns to numeric
     if (sheet_num == 3) {
-      M <- M %>%
+      M <- M |>
         dplyr::mutate(across(1:17, as.numeric))
     } else {
-      M <- M %>%
+      M <- M |>
         dplyr::mutate(across(everything(), as.numeric))
     }
 
@@ -64,7 +64,7 @@ read_xfiber_xml <- function(filename) {
 
   for (ii in 1:nrow(Segments)) {
     x <- Segments[ii, ]
-    pts <- stringr::str_split(x$`Point IDs`, ",")[[1]] %>%
+    pts <- stringr::str_split(x$`Point IDs`, ",")[[1]] |>
       as.numeric()
     P <- tibble(p1 = pts[1:(length(pts) - 1)],
                 p2 = pts[2:(length(pts))])

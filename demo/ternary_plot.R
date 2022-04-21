@@ -2,9 +2,9 @@ library(MuscleTernary)
 
 read_csv(system.file("extdata",
                      "AL_008_data.csv",
-                     package = "MuscleTernary")) %>%
-  dplyr::select(-side) %>%
-  coords_to_ternary(., grouping = c("muscle")) %>%
+                     package = "MuscleTernary")) |>
+  dplyr::select(-side) |>
+  coords_to_ternary(., grouping = c("muscle")) |>
   ggtern(aes(x = x, y = y, z = z,
              color = muscle,
              size = force)) +
@@ -24,9 +24,9 @@ read_csv(system.file("extdata",
 
 read_csv(system.file("extdata",
                      "AL_031_data.csv",
-                     package = "MuscleTernary")) %>%
-  dplyr::select(-side) %>%
-  coords_to_ternary(., grouping = c("muscle")) %>%
+                     package = "MuscleTernary")) |>
+  dplyr::select(-side) |>
+  coords_to_ternary(., grouping = c("muscle")) |>
   ggtern(aes(x = x, y = y, z = z,
              color = muscle,
              size = force)) +
@@ -46,9 +46,9 @@ read_csv(system.file("extdata",
 
 read_csv(system.file("extdata",
                      "Chicken_data.csv",
-                     package = "MuscleTernary")) %>%
-  dplyr::select(-side) %>%
-  coords_to_ternary(., grouping = c("muscle")) %>%
+                     package = "MuscleTernary")) |>
+  dplyr::select(-side) |>
+  coords_to_ternary(., grouping = c("muscle")) |>
   ggtern(aes(x = x, y = y, z = z,
              color = muscle,
              size = force)) +

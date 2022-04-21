@@ -33,7 +33,7 @@ read_xfiber <- function(filename) {
 
   for (ii in 1:nrow(Segments)) {
     x <- Segments[ii, ]
-    pts <- stringr::str_split(x$`Point IDs`, ",")[[1]] %>%
+    pts <- stringr::str_split(x$`Point IDs`, ",")[[1]] |>
       as.numeric()
     P <- tibble(p1 = pts[1:(length(pts) - 1)],
                 p2 = pts[2:(length(pts))])

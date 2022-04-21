@@ -65,10 +65,10 @@ make_mel <- function(stl,
     }
 
     # Normalize to maximum force value
-    data <- data %>%
+    data <- data |>
       mutate(cylinder_r = force / max(force) * max_radius)
   } else{
-    data <- data %>%
+    data <- data |>
       mutate(cylinder_r = max_radius / 2)
   }
 
@@ -100,7 +100,7 @@ make_mel <- function(stl,
                                           package = "MuscleTernary"))
   } else {
     if (!endsWith(shader_file, "csv")) stop("shader_file should be csv.")
-    shader <- readr::read_csv(shader_file) %>%
+    shader <- readr::read_csv(shader_file) |>
       mutate(muscle = stringr::str_replace_all(muscle, " ", "_"))
   }
 

@@ -25,7 +25,7 @@ generate_shader <- function(shader, outfile) {
   # Iterate through shader file
   nul <- purrr::map(.x = 1:nrow(shader),
                     .f = function(ii, shader, outfile) {
-    r <- shader %>% slice(ii) %>% as.data.frame()
+    r <- shader |> slice(ii) |> as.data.frame()
     write(paste0('\n// ', r$muscle, ' shader'),
           file = outfile, append = TRUE)
     write('shadingNode -asShader lambert;', file = outfile, append = TRUE)
