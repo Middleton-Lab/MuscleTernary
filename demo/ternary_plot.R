@@ -1,10 +1,12 @@
 library(MuscleTernary)
 
-read_csv(system.file("extdata",
-                     "AL_008_data.csv",
-                     package = "MuscleTernary")) |>
-  dplyr::select(-side) |>
-  coords_to_ternary(., grouping = c("muscle")) |>
+D <- read_csv(system.file("extdata",
+                          "AL_008_data.csv",
+                          package = "MuscleTernary"),
+              show_col_types = FALSE) |>
+  dplyr::select(-side)
+
+coords_to_ternary(coords = D, grouping = c("muscle")) |>
   ggtern(aes(x = x, y = y, z = z,
              color = muscle,
              size = force)) +
@@ -22,11 +24,13 @@ read_csv(system.file("extdata",
   guides(colour = guide_legend(override.aes = list(size = 6),
                                ncol = 2, byrow = TRUE))
 
-read_csv(system.file("extdata",
-                     "AL_031_data.csv",
-                     package = "MuscleTernary")) |>
-  dplyr::select(-side) |>
-  coords_to_ternary(., grouping = c("muscle")) |>
+D <- read_csv(system.file("extdata",
+                          "AL_031_data.csv",
+                          package = "MuscleTernary"),
+              show_col_types = FALSE) |>
+  dplyr::select(-side)
+
+coords_to_ternary(coords = D, grouping = c("muscle")) |>
   ggtern(aes(x = x, y = y, z = z,
              color = muscle,
              size = force)) +
@@ -44,11 +48,13 @@ read_csv(system.file("extdata",
   guides(colour = guide_legend(override.aes = list(size = 6),
                                ncol = 2, byrow = TRUE))
 
-read_csv(system.file("extdata",
-                     "Chicken_data.csv",
-                     package = "MuscleTernary")) |>
-  dplyr::select(-side) |>
-  coords_to_ternary(., grouping = c("muscle")) |>
+D <- read_csv(system.file("extdata",
+                          "Chicken_data.csv",
+                          package = "MuscleTernary"),
+              show_col_types = FALSE) |>
+  dplyr::select(-side)
+
+coords_to_ternary(coords = D, grouping = c("muscle")) |>
   ggtern(aes(x = x, y = y, z = z,
              color = muscle,
              size = force)) +

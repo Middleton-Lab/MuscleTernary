@@ -5,15 +5,17 @@ library(MuscleTernary)
 
 AL_008 <- read_csv(system.file("extdata",
                                "AL_008_data.csv",
-                               package = "MuscleTernary")) |>
+                               package = "MuscleTernary"),
+                   show_col_types = FALSE) |>
   dplyr::select(-side, -force) |>
-  coords_to_ternary(., grouping = c("muscle"))
+  coords_to_ternary(grouping = c("muscle"))
 
 AL_031 <- read_csv(system.file("extdata",
                                "AL_031_data.csv",
-                               package = "MuscleTernary")) |>
+                               package = "MuscleTernary"),
+                   show_col_types = FALSE) |>
   dplyr::select(-side, -force) |>
-  coords_to_ternary(., grouping = c("muscle"))
+  coords_to_ternary(grouping = c("muscle"))
 
 M <- left_join(AL_031, AL_008, by = "muscle", suffix = c("_1", "_2")) |>
   as.data.frame()
