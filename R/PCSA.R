@@ -15,6 +15,7 @@ PCSA <- function(stl1, stl2,
                  fascicle_length = 1,
                  theta = 0,
                  units_adjust = 1) {
+
   if (units_adjust == 1) {
     message("Assuming units are mm.")
   } else {

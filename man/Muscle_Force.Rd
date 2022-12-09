@@ -9,7 +9,8 @@ Muscle_Force(PCSA, Tspec = 0.3)
 \arguments{
 \item{PCSA}{numeric: Value for PCSA (e.g., from \code{PCSA()})}
 
-\item{Tspec}{numeric: Value for specific tension of muscle in cubic mm.}
+\item{Tspec}{numeric: Value for specific tension of muscle in cubic mm.
+Default of 0.3 is reasonable for mammalian muscle.}
 }
 \value{
 numeric: Estimate of muscle force

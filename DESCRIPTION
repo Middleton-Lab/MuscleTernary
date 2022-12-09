@@ -2,7 +2,8 @@ Package: MuscleTernary
 Type: Package
 Title: Plot Muscle Resultants in Ternary Space
 Version: 0.21
-Authors@R: person("Kevin", "Middleton", email = "middletonk@missouri.edu", role = c("aut", "cre"))
+Authors@R: person("Kevin", "Middleton", email = "middletonk@missouri.edu",
+    role = c("aut", "cre"))
 Description: This package is designed for visualizing 3D muscle
     vectors in ternary space. Functions are available to read in origin and
     insertion data from files, with force or moment data and an arbitrary
@@ -27,6 +28,6 @@ Imports:
     tidyr,
     xml2
 Encoding: UTF-8
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Suggests: 
     testthat

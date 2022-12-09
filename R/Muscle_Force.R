@@ -4,6 +4,7 @@
 #'
 #' @param PCSA numeric: Value for PCSA (e.g., from \code{PCSA()})
 #' @param Tspec numeric: Value for specific tension of muscle in cubic mm.
+#' Default of 0.3 is reasonable for mammalian muscle.
 #'
 #' @return numeric: Estimate of muscle force
 #'
