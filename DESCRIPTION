@@ -27,6 +27,6 @@ Imports:
     tidyr,
     xml2
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.2
 Suggests: 
     testthat
