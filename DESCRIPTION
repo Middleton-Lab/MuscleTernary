@@ -1,7 +1,7 @@
 Package: MuscleTernary
 Type: Package
 Title: Plot Muscle Resultants in Ternary Space
-Version: 0.21
+Version: 0.22
 Authors@R: person("Kevin", "Middleton", email = "middletonk@missouri.edu",
     role = c("aut", "cre"))
 Description: This package is designed for visualizing 3D muscle
@@ -30,4 +30,7 @@ Imports:
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat
+VignetteBuilder: knitr

@@ -1,0 +1,28 @@
+---
+title: "Working with stl centroids"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{centroid}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, message=FALSE, warning=FALSE}
+library(MuscleTernary)
+
+centroid_location(system.file("extdata",
+                              "L_mAMEM_or.stl",
+                              package = "MuscleTernary"))
+
+centroid_size(system.file("extdata",
+                          "L_mAMEM_or.stl",
+                          package = "MuscleTernary"))
+
+```
