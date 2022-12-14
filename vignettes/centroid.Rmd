@@ -24,7 +24,7 @@ The `rgl` package has a function to import stl files: `readSTL()`. **Important**
 
 `MuscleTernary` has a wrapper function `read_stl()` around the `rgl` function which *should* catch any read errors, but it hasn't been tested for all possible cases (i.e., those I haven't encountered yet). If you are reading stl files in directly, use `read_stl()`.
 
-The package includes a pair of files that map the origin and insertion areas of the left m. Pterygoideus dorsalis (mPTm): `L_mPTd_Or.stl` and `L_mPTd_Ins.stl`
+The package includes a pair of files that map the origin and insertion areas of the left m. Pterygoideus dorsalis (mPTd): `L_mPTd_Or.stl` and `L_mPTd_Ins.stl`
 
 ```{r setup, message=FALSE, warning=FALSE}
 library(MuscleTernary)

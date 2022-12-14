@@ -35,3 +35,4 @@ Suggests:
     rmarkdown,
     testthat
 VignetteBuilder: knitr
+Config/Needs/website: tidyverse/tidytemplate
