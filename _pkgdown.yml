@@ -61,3 +61,12 @@ reference:
   - relative_proportion
   - write_arrows
 
+articles:
+- title: Functions
+  navbar: ~
+  contents:
+  - centroid
+  - ternary_plot
+  - ternary_plot_xfiber
+  - ternary_animation
+  - make_maya_mel_file

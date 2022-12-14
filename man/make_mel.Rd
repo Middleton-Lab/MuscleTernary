@@ -12,7 +12,8 @@ make_mel(
   scale_radius = TRUE,
   use_stl = FALSE,
   max_radius = 8,
-  rev_arrows = TRUE
+  rev_arrows = TRUE,
+  write_file = TRUE
 )
 }
 \arguments{
@@ -38,6 +39,9 @@ maximum value automatically based on the stl centroid size?}
 
 \item{rev_arrows}{boolean (default \code{TRUE}) Should the arrowheads be
 reversed (you probably want \code{TRUE})}
+
+\item{write_file}{boolean (default \code{TRUE}) Should the mel file be
+written out}
 }
 \description{
 Write mel file

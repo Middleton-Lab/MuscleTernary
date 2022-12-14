@@ -48,7 +48,9 @@ write_arrows(
 
 \item{outfile}{String file to write to}
 
-\item{rev_arrows}{Boolean Reverse arrows or not}
+\item{rev_arrows}{Boolean Reverse arrows or not
+
+ @export}
 }
 \description{
 Write Maya arrows code
