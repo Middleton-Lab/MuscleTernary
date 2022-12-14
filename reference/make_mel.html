@@ -25,10 +25,10 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/centroid.html">Working with stl files</a>
-    <a class="dropdown-item" href="../articles/make_maya_mel_file.html">Make Maya mel File</a>
-    <a class="dropdown-item" href="../articles/ternary_animation.html">Animate a ternary plot</a>
     <a class="dropdown-item" href="../articles/ternary_plot.html">Make a ternary plot</a>
     <a class="dropdown-item" href="../articles/ternary_plot_xfiber.html">Make a ternary plot from Xfiber data</a>
+    <a class="dropdown-item" href="../articles/ternary_animation.html">Animate a ternary plot</a>
+    <a class="dropdown-item" href="../articles/make_maya_mel_file.html">Make Maya mel File</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -60,7 +60,8 @@
 <span>  scale_radius <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  use_stl <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  max_radius <span class="op">=</span> <span class="fl">8</span>,</span>
-<span>  rev_arrows <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  rev_arrows <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  write_file <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -103,6 +104,11 @@ maximum value automatically based on the stl centroid size?</p></dd>
 <dt>rev_arrows</dt>
 <dd><p>boolean (default <code>TRUE</code>) Should the arrowheads be
 reversed (you probably want <code>TRUE</code>)</p></dd>
+
+
+<dt>write_file</dt>
+<dd><p>boolean (default <code>TRUE</code>) Should the mel file be
+written out</p></dd>
 
 </dl></div>
 
