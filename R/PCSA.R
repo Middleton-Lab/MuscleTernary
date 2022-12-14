@@ -11,7 +11,7 @@
 #'
 #' @export
 #'
-PCSA <- function(stl1, stl2,
+pcsa <- function(stl1, stl2,
                  fascicle_length = 1,
                  theta = 0,
                  units_adjust = 1) {
@@ -28,7 +28,9 @@ PCSA <- function(stl1, stl2,
   csize1 <- centroid_size(stl1) * units_adjust
   csize2 <- centroid_size(stl2) * units_adjust
 
-  Lm <- sqrt((c1[1] - c2[1]) ^ 2 + (c1[2] - c2[2]) ^ 2 + (c1[3] - c2[3]) ^ 2)
+  Lm <- sqrt((c1[1] - c2[1]) ^ 2 +
+               (c1[2] - c2[2]) ^ 2 +
+               (c1[3] - c2[3]) ^ 2)
 
   Vm <- Lm / 3 * (csize1 + csize2 + sqrt(csize1 * csize2))
 

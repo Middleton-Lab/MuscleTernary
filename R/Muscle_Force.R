@@ -2,7 +2,7 @@
 #'
 #' Use PCSA and specific tension to estimate muscle force
 #'
-#' @param PCSA numeric: Value for PCSA (e.g., from \code{PCSA()})
+#' @param PCSA numeric: Value for PCSA (e.g., from \code{pcsa()})
 #' @param Tspec numeric: Value for specific tension of muscle in cubic mm.
 #' Default of 0.3 is reasonable for mammalian muscle.
 #'
@@ -10,6 +10,6 @@
 #'
 #' @export
 #'
-Muscle_Force <- function(PCSA, Tspec = 0.3) {
+muscle_force <- function(PCSA, Tspec = 0.3) {
   return(PCSA * Tspec)
 }
