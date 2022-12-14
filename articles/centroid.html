@@ -122,9 +122,10 @@ of the vertices of the triangles.</p>
 <div class="section level2">
 <h2 id="centroid-location-and-centroid-size">Centroid location and centroid size<a class="anchor" aria-label="anchor" href="#centroid-location-and-centroid-size"></a>
 </h2>
-<p>The centroid of the mesh is simply the mean of each column. To simply
-usage, <code><a href="../reference/centroid_location.html">centroid_location()</a></code> take a single argument with
-the</p>
+<p>The centroid location (often just the “centroid”) of the mesh is
+simply the mean of each column. To simply usage,
+<code><a href="../reference/centroid_location.html">centroid_location()</a></code> takes a single argument with the string
+path to the STL file.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colMeans</a></span><span class="op">(</span><span class="va">stl</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]   64.784475    8.529847 -567.928419</span></span>
