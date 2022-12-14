@@ -20,9 +20,9 @@ Stereolithography (`.stl`) mesh files can be exported from most segmentation sof
 
 There is no directionality to the calculation of either centroid size (area) or location from a mesh, so either surface can be the "origin". If you are generating Maya mel code for generating a model + muscle vectors, then the order matters to get the arrowhead on the correct end, however there is a flag in `make_mel()` to reverse the arrows.
 
-The `rgl` package has a function to import stl files: `readSTL()`. **Important**: you should export stl meshes as *binary, with little endian byte encoding*. If not, you will get a cryptic error that will be very difficult to diagnose.
+The `rgl` package has a function to import stl files: `readSTL()`. 
 
-`MuscleTernary` has a wrapper function `read_stl()` around the `rgl` function which *should* catch any read errors, but it hasn't been tested for all possible cases (i.e., those I haven't encountered yet). If you are reading stl files in directly, use `read_stl()`.
+**Important**: you should export stl meshes as *binary, with little endian byte encoding*. If not, you will get a cryptic error that will be very difficult to diagnose. `MuscleTernary` has a wrapper function `read_stl()` around the `rgl` function which *should* catch any read errors, but it hasn't been tested for all possible cases (i.e., those I haven't encountered yet). If you are reading stl files in directly, use `read_stl()`.
 
 The package includes a pair of files that map the origin and insertion areas of the left m. Pterygoideus dorsalis (mPTd): `L_mPTd_Or.stl` and `L_mPTd_Ins.stl`
 
@@ -37,7 +37,7 @@ stl_path <- system.file("extdata",
 stl <- read_stl(stl_path)
 ```
 
-`read_stl()` returns a matrix with (x, y, z) coordinates of the vertices of the triangles.
+`read_stl()` returns a matrix with (x, y, z) coordinates of the vertices of the mesh triangles.
 
 ```{r}
 stl[1:10, ]
@@ -71,13 +71,21 @@ sqrt(sum((centroid[1] - stl[, 1]) ^ 2 +
 centroid_size(stl_path)
 ```
 
+## Deriving ternary coordinates from a pair of stl meshes
+
+
+## Estimating PCSA
+
+
+## Estimating muscle force
+
 
 ## References
 
-Cost IN, Middleton KM, Sellers KC, Echols MS, Witmer LM, Davis JL, Holliday CM. 2020. Palatal Biomechanics and Its Significance for Cranial Kinesis in *Tyrannosaurus rex*. Anat Rec 303:999–1017.
+Cost IN, Middleton KM, Sellers KC, Echols MS, Witmer LM, Davis JL, Holliday CM. 2020. Palatal Biomechanics and Its Significance for Cranial Kinesis in *Tyrannosaurus rex*. [Anat Rec 303:999-1017.](http://dx.doi.org/10.1002/ar.24219)
 
 Cost IN, Sellers KC, Rozin RE, Spates AT, Middleton KM, Holliday CM. 2022. 2D and 3D visualizations of archosaur jaw muscle mechanics, ontogeny and phylogeny using ternary diagrams and 3D modeling. [J Exp Biol 225](http://dx.doi.org/10.1242/jeb.243216)
 
-Wilken AT, Middleton KM, Sellers KC, Cost IN, Holliday CM. 2019. The roles of joint tissues and jaw muscles in palatal biomechanics of the Savannah monitor (*Varanus exanthematicus*) and their significance for cranial kinesis. J Exp Biol 222:1–14.
+Wilken AT, Middleton KM, Sellers KC, Cost IN, Holliday CM. 2019. The roles of joint tissues and jaw muscles in palatal biomechanics of the Savannah monitor (*Varanus exanthematicus*) and their significance for cranial kinesis. [J Exp Biol 222:1-14.](http://dx.doi.org/10.1242/jeb.201459)
 
-Wilken AT, Sellers KC, Cost IN, Rozin RE, Middleton KM, Holliday CM. 2020. Connecting the chondrocranium: Biomechanics of the suspensorium in reptiles. Vertebrate Zoology 70:275–290.
+Wilken AT, Sellers KC, Cost IN, Rozin RE, Middleton KM, Holliday CM. 2020. Connecting the chondrocranium: Biomechanics of the suspensorium in reptiles. [Vertebrate Zoology 70:275-290.](http://dx.doi.org/10.26049/VZ70-3-2020-02)

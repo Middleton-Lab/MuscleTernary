@@ -14,19 +14,57 @@ knitr::opts_chunk$set(
 )
 ```
 
+To create a ternary plot from origin and insertion data, first we need data. Attachment centroid data are available for the AL_008 specimen (although similar data can be extracted directly from stl files; see the "Working with stl files" vignette).
+
 ```{r, warning=FALSE, message=FALSE}
 library(MuscleTernary)
 
-D <- read_csv(system.file("extdata",
-                          "AL_008_data.csv",
-                          package = "MuscleTernary"),
-              show_col_types = FALSE) |>
+AL008 <- read_csv(system.file("extdata",
+                              "AL_008_data.csv",
+                              package = "MuscleTernary"),
+                  show_col_types = FALSE) |>
   dplyr::select(-side)
+AL008
+```
 
-coords_to_ternary(coords = D, grouping = c("muscle")) |>
-  ggtern(aes(x = x, y = y, z = z,
-             color = muscle,
-             size = force)) +
+We need to convert the x, y, and z origin and insertion columns into relative ternary coordinates using the `coords_to_ternary()` function. Here we also use the `grouping` option to return the mean for each muscle.
+
+```{r}
+ternary_coords <- coords_to_ternary(coords = AL008, grouping = c("muscle"))
+ternary_coords
+```
+
+The `force` column contains the estimated force for each muscle. Force can be estimated from PCSA, which can be derived from attachment areas (see the "Working with stl files" vignette).
+
+The simplest ternary plot simply maps the `x`, `y`, and `z` columns and colors points by muscle:
+
+```{r}
+ggtern(data = ternary_coords,
+       aes(x = x, y = y, z = z,
+           color = muscle)) +
+  geom_point()
+```
+
+We can make this a more ready-to-use plot by recoloring using the standard palette for muscle colors. `muscle_color_map()` is a function that returns the mapping of muscle to its hex code.
+
+```{r}
+muscle_color_map
+
+ggtern(data = ternary_coords,
+       aes(x = x, y = y, z = z,
+           color = muscle,
+           size = force)) +
+  geom_point() +
+  muscle_color_map()
+```
+
+And finally we can add labels, change the theme, and update the scale, resizing the points according to force.
+
+```{r}
+ggtern(data = ternary_coords,
+       aes(x = x, y = y, z = z,
+           color = muscle,
+           size = force)) +
   geom_point() +
   muscle_color_map() +
   labs(x       = "ML",
@@ -40,54 +78,4 @@ coords_to_ternary(coords = D, grouping = c("muscle")) |>
   scale_size_continuous(range = c(5, 15), name = "Force (N)") +
   guides(colour = guide_legend(override.aes = list(size = 6),
                                ncol = 2, byrow = TRUE))
-
-D <- read_csv(system.file("extdata",
-                          "AL_031_data.csv",
-                          package = "MuscleTernary"),
-              show_col_types = FALSE) |>
-  dplyr::select(-side)
-
-coords_to_ternary(coords = D, grouping = c("muscle")) |>
-  ggtern(aes(x = x, y = y, z = z,
-             color = muscle,
-             size = force)) +
-  geom_point() +
-  muscle_color_map() +
-  labs(x       = "ML",
-       xarrow  = "Mediolateral",
-       y       = "DV",
-       yarrow  = "Dorsoventral",
-       z       = "RC",
-       zarrow  = "Rostrocaudal") +
-  theme_bw(base_size = 16) +
-  theme_showarrows() +
-  scale_size_continuous(range = c(5, 15), name = "Force (N)") +
-  guides(colour = guide_legend(override.aes = list(size = 6),
-                               ncol = 2, byrow = TRUE))
-
-D <- read_csv(system.file("extdata",
-                          "Chicken_data.csv",
-                          package = "MuscleTernary"),
-              show_col_types = FALSE) |>
-  dplyr::select(-side)
-
-coords_to_ternary(coords = D, grouping = c("muscle")) |>
-  ggtern(aes(x = x, y = y, z = z,
-             color = muscle,
-             size = force)) +
-  geom_point() +
-  muscle_color_map() +
-  labs(x       = "ML",
-       xarrow  = "Mediolateral",
-       y       = "DV",
-       yarrow  = "Dorsoventral",
-       z       = "RC",
-       zarrow  = "Rostrocaudal") +
-  theme_bw(base_size = 16) +
-  theme_showarrows() +
-  scale_size_continuous(range = c(5, 15), name = "Force (N)") +
-  guides(colour = guide_legend(override.aes = list(size = 6),
-                               ncol = 2, byrow = TRUE),
-         size = guide_legend(override.aes = list(size = 6),
-                             ncol = 2, byrow = TRUE))
 ```
