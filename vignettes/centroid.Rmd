@@ -15,15 +15,16 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Working with `stl` files
 
-Stereolithography (`.stl`) files can be exported from most segmentation software. In our workflow, usually there are two files for each muscle, wherein the origin and insertion attachment areas of the muscle are "mapped" onto the surface of a bone model (see Cost et al., 2020, 2022; Wilken et al., 2019, 2020 for description).
+Stereolithography (`.stl`) mesh files can be exported from most segmentation software. In our workflow, there are two files for each muscle, wherein the origin and insertion attachment areas of the muscle are "mapped" onto the surface of a bone model (see Cost et al., 2020, 2022; Wilken et al., 2019, 2020 for description).
 
-There is no directionality to the calculation of either centroid size or location, so either surface can be the "origin". If you are generating Maya mel code for generating a model + muscle vectors, then the order matters to get the arrowhead on the correct end, however there is a flag in `make_mel()` to reverse the arrows.
+There is no directionality to the calculation of either centroid size (area) or location from a mesh, so either surface can be the "origin". If you are generating Maya mel code for generating a model + muscle vectors, then the order matters to get the arrowhead on the correct end, however there is a flag in `make_mel()` to reverse the arrows.
 
-The `rgl` package has a function to import stl files: `readSTL()`. **Important**: you should export stl meshes as *binary, with little endian byte encoding*. If not, you will get a cryptic error that will be very difficult to diagnose. `MuscleTernary` has a wrapper function `read_stl()` around the `rgl` function which *should* catch any read errors, but it hasn't been tested for all possible cases (i.e., those I haven't encountered yet).
+The `rgl` package has a function to import stl files: `readSTL()`. **Important**: you should export stl meshes as *binary, with little endian byte encoding*. If not, you will get a cryptic error that will be very difficult to diagnose.
 
-The package includes a pair of stls for the left m. Pterygoideus dorsalis (mPTm): `L_mPTd_Or.stl` and `L_mPTd_Ins.stl`
+`MuscleTernary` has a wrapper function `read_stl()` around the `rgl` function which *should* catch any read errors, but it hasn't been tested for all possible cases (i.e., those I haven't encountered yet). If you are reading stl files in directly, use `read_stl()`.
+
+The package includes a pair of files that map the origin and insertion areas of the left m. Pterygoideus dorsalis (mPTm): `L_mPTd_Or.stl` and `L_mPTd_Ins.stl`
 
 ```{r setup, message=FALSE, warning=FALSE}
 library(MuscleTernary)
@@ -40,11 +41,15 @@ stl <- read_stl(stl_path)
 
 ```{r}
 stl[1:10, ]
+
+# Dimensions of the matrix
+dim(stl)
 ```
+
 
 ## Centroid location and centroid size
 
-The centroid location (often just the "centroid") of the mesh is simply the mean of each column. To simply usage, `centroid_location()` takes a single argument with the string path to the STL file.
+The centroid location (often just the "centroid") of the mesh is simply the mean of each column. To simply usage, `centroid_location()` takes a single argument with the string path to the file.
 
 ```{r}
 colMeans(stl)
@@ -65,6 +70,7 @@ sqrt(sum((centroid[1] - stl[, 1]) ^ 2 +
 
 centroid_size(stl_path)
 ```
+
 
 ## References
 
