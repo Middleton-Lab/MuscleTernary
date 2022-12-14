@@ -86,15 +86,17 @@ make_mel <- function(stl,
   data$cone_hr <- 2  # cone_r / 2
 
   # Write header info
-  write(paste0("// File: ", outfile), file = outfile)
-  write(paste0("// Generated: ",
-               format(Sys.time(), "%a %b %d %H:%M:%S %Y")),
-        file = outfile, append = TRUE)
-  write(paste0("// Note: the ratio of max to min forces is ",
-               round(max(data$force) / min(data$force), 3)),
-        file = outfile, append = TRUE)
+  if (write_file) {
+    write(paste0("// File: ", outfile), file = outfile)
+    write(paste0("// Generated: ",
+                 format(Sys.time(), "%a %b %d %H:%M:%S %Y")),
+          file = outfile, append = TRUE)
+    write(paste0("// Note: the ratio of max to min forces is ",
+                 round(max(data$force) / min(data$force), 3)),
+          file = outfile, append = TRUE)
 
-  write('', file = outfile, append = TRUE)
+    write('', file = outfile, append = TRUE)
+  }
 
   # Generate shader
   if (shader_file == "default") {
@@ -110,7 +112,7 @@ make_mel <- function(stl,
   # Check that all muscle columns in data are found in shader
   missing_from_shader <- data$muscle[!(data$muscle %in% shader$muscle)]
   if (rlang::is_empty(missing_from_shader)) {
-    generate_shader(shader, outfile)
+    if (write_file) generate_shader(shader, outfile)
   } else {
     if (!rlang::is_empty(missing_from_shader)) {
       message("Muscles in data missing from shader: \n")

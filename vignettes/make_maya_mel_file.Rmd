@@ -17,12 +17,18 @@ knitr::opts_chunk$set(
 ```{r, warning=FALSE, message=FALSE}
 library(MuscleTernary)
 
-data <- read_csv(system.file("extdata",
+AL008 <- read_csv(system.file("extdata",
                              "AL_008_data.csv",
-                             package = "MuscleTernary"))
+                             package = "MuscleTernary"),
+                 show_col_types = FALSE)
+AL008
+```
 
+We'll pass the parameter `write_file = FALSE` so that the `.mel` file is not written to disk. In normal practice, you would set `write_file = TRUE` (or leave out because this is the default behavior).
+
+```{r}
 make_mel(stl = "AL_008.stl",
          shader_file = "default",
-         data = data)
-
+         data = AL008,
+         write_file = FALSE)
 ```
