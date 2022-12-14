@@ -41,9 +41,15 @@
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="working-with-stl-meshes">Working with stl meshes<a class="anchor" aria-label="anchor" href="#working-with-stl-meshes"></a></h2>
       
       
+
+      
+    </div><div class="section level2">
+      
+      <h3 id="reading-meshes-and-working-with-centroids">Reading meshes and working with centroids<a class="anchor" aria-label="anchor" href="#reading-meshes-and-working-with-centroids"></a></h3>
+      <p class="section-desc"></p><p>Functions to import meshes and calculate centroids and sizes (areas)</p>
 
       
     </div><div id="" class="section level2">
@@ -53,14 +59,9 @@
 
       <dl><dt>
           
-          <code><a href="Muscle_Force.html">muscle_force()</a></code> 
+          <code><a href="read_stl.html">read_stl()</a></code> 
         </dt>
-        <dd>Estimate muscle force</dd>
-      </dl><dl><dt>
-          
-          <code><a href="PCSA.html">pcsa()</a></code> 
-        </dt>
-        <dd>Estimate PCSA from from a pair of muscle attachment stls.</dd>
+        <dd>Import STL mesh</dd>
       </dl><dl><dt>
           
           <code><a href="centroid_location.html">centroid_location()</a></code> 
@@ -71,41 +72,48 @@
           <code><a href="centroid_size.html">centroid_size()</a></code> 
         </dt>
         <dd>Calculate centroid size for an stl file</dd>
+      </dl></div><div class="section level2">
+      
+      <h3 id="pcsa-and-muscle-force-estimation">PCSA and muscle force estimation<a class="anchor" aria-label="anchor" href="#pcsa-and-muscle-force-estimation"></a></h3>
+      <p class="section-desc"></p><p>Functions for estimating PCSA from centroid data and muscle force from PCSA estimates</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="PCSA.html">pcsa()</a></code> 
+        </dt>
+        <dd>Estimate PCSA from from a pair of muscle attachment stls.</dd>
       </dl><dl><dt>
+          
+          <code><a href="Muscle_Force.html">muscle_force()</a></code> 
+        </dt>
+        <dd>Estimate muscle force</dd>
+      </dl></div><div class="section level2">
+      <h2 id="making-ternary-plots">Making ternary plots<a class="anchor" aria-label="anchor" href="#making-ternary-plots"></a></h2>
+      
+      <p class="section-desc"></p><p>Functions used to generate ternary plots</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="coords_to_ternary.html">coords_to_ternary()</a></code> 
         </dt>
         <dd>Process coordinates data.frame</dd>
       </dl><dl><dt>
           
-          <code><a href="geom_shiftedtext.html">geom_shiftedtext()</a></code> 
-        </dt>
-        <dd>geom for labeling geom_points</dd>
-      </dl><dl><dt>
-          
           <code><a href="interpolate_ternary.html">interpolate_ternary()</a></code> 
         </dt>
         <dd>Interpolate between two point in a coordinates object.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="interpolate_xyz.html">interpolate_xyz()</a></code> 
-        </dt>
-        <dd>Interpolate (x, y, z) coordinates</dd>
-      </dl><dl><dt>
-          
-          <code><a href="make_mel.html">make_mel()</a></code> 
-        </dt>
-        <dd>Write mel file</dd>
-      </dl><dl><dt>
-          
-          <code><a href="make_unit_vector.html">make_unit_vector()</a></code> 
-        </dt>
-        <dd>Create a unit vector from a given vector</dd>
-      </dl><dl><dt>
-          
-          <code><a href="means_by_muscle.html">means_by_muscle()</a></code> 
-        </dt>
-        <dd>Means by Muscle</dd>
       </dl><dl><dt>
           
           <code><a href="muscle_color_map.html">muscle_color_map()</a></code> 
@@ -118,10 +126,21 @@
         <dd>Holliday Lab Muscle Color Map</dd>
       </dl><dl><dt>
           
-          <code><a href="read_stl.html">read_stl()</a></code> 
+          <code><a href="means_by_muscle.html">means_by_muscle()</a></code> 
         </dt>
-        <dd>Import STL mesh</dd>
-      </dl><dl><dt>
+        <dd>Means by Muscle</dd>
+      </dl></div><div class="section level2">
+      <h2 id="working-with-xfiber-data">Working with Xfiber data<a class="anchor" aria-label="anchor" href="#working-with-xfiber-data"></a></h2>
+      
+      <p class="section-desc"></p><p>Functions to read and process data from Avizo Xfiber suitable for passing to <code><a href="../reference/coords_to_ternary.html">coords_to_ternary()</a></code></p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="read_xfiber.html">read_xfiber()</a></code> 
         </dt>
@@ -131,6 +150,48 @@
           <code><a href="read_xfiber_xml.html">read_xfiber_xml()</a></code> 
         </dt>
         <dd>Import from Avizo xfiber XML</dd>
+      </dl></div><div class="section level2">
+      <h2 id="generating-maya-mel-scripts">Generating Maya mel scripts<a class="anchor" aria-label="anchor" href="#generating-maya-mel-scripts"></a></h2>
+      
+      <p class="section-desc"></p><p>Functions for outputting mel scripts to create model + vector arrows in Maya.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="make_mel.html">make_mel()</a></code> 
+        </dt>
+        <dd>Write mel file</dd>
+      </dl><dl><dt>
+          
+          <code><a href="xfiber_to_maya.html">xfiber_to_maya()</a></code> 
+        </dt>
+        <dd>Generate Maya mel file from xfiber tracing</dd>
+      </dl><dl><dt>
+          
+          <code><a href="geom_shiftedtext.html">geom_shiftedtext()</a></code> 
+        </dt>
+        <dd>geom for labeling geom_points</dd>
+      </dl></div><div class="section level2">
+      <h2 id="utility-functions">Utility functions<a class="anchor" aria-label="anchor" href="#utility-functions"></a></h2>
+      
+      <p class="section-desc"></p><p>Functions that are not normally called directly, but which may be useful and are thus documented and exported.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="make_unit_vector.html">make_unit_vector()</a></code> 
+        </dt>
+        <dd>Create a unit vector from a given vector</dd>
       </dl><dl><dt>
           
           <code><a href="relative_proportion.html">relative_proportion()</a></code> 
@@ -141,13 +202,9 @@
           <code><a href="write_arrows.html">write_arrows()</a></code> 
         </dt>
         <dd>Write Maya arrows code</dd>
-      </dl><dl><dt>
-          
-          <code><a href="xfiber_to_maya.html">xfiber_to_maya()</a></code> 
-        </dt>
-        <dd>Generate Maya mel file from xfiber tracing</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
