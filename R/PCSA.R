@@ -16,6 +16,8 @@ pcsa <- function(stl1, stl2,
                  theta = 0,
                  units_adjust = 1) {
 
+  message("Assuming theta is measured in radians.")
+
   if (units_adjust == 1) {
     message("Assuming units are mm.")
   } else {

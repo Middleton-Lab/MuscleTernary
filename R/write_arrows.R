@@ -15,7 +15,7 @@
 #' @param outfile String file to write to
 #' @param rev_arrows Boolean Reverse arrows or not
 #'
-#' @keywords internal
+#'  @export
 #'
 write_arrows <- function(muscle, side, x_origin, y_origin, z_origin,
                          x_insertion, y_insertion, z_insertion, force,

@@ -59,3 +59,5 @@ reference:
   contents:
   - make_unit_vector
   - relative_proportion
+  - write_arrows
+
