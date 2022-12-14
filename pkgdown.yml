@@ -3,7 +3,11 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   centroid: centroid.html
-last_built: 2022-12-14T19:04Z
+  make_maya_mel_file: make_maya_mel_file.html
+  ternary_animation: ternary_animation.html
+  ternary_plot: ternary_plot.html
+  ternary_plot_xfiber: ternary_plot_xfiber.html
+last_built: 2022-12-14T19:25Z
 urls:
   reference: https://middleton-lab.github.io/MuscleTernary/reference
   article: https://middleton-lab.github.io/MuscleTernary/articles
