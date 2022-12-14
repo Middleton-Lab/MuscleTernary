@@ -70,30 +70,30 @@
 
     
     
-<div class="section level2">
-<h2 id="working-with-stl-files">Working with <code>stl</code> files<a class="anchor" aria-label="anchor" href="#working-with-stl-files"></a>
-</h2>
-<p>Stereolithography (<code>.stl</code>) files can be exported from most
-segmentation software. In our workflow, usually there are two files for
+<p>Stereolithography (<code>.stl</code>) mesh files can be exported from
+most segmentation software. In our workflow, there are two files for
 each muscle, wherein the origin and insertion attachment areas of the
 muscle are “mapped” onto the surface of a bone model (see Cost et al.,
 2020, 2022; Wilken et al., 2019, 2020 for description).</p>
 <p>There is no directionality to the calculation of either centroid size
-or location, so either surface can be the “origin”. If you are
-generating Maya mel code for generating a model + muscle vectors, then
-the order matters to get the arrowhead on the correct end, however there
-is a flag in <code><a href="../reference/make_mel.html">make_mel()</a></code> to reverse the arrows.</p>
+(area) or location from a mesh, so either surface can be the “origin”.
+If you are generating Maya mel code for generating a model + muscle
+vectors, then the order matters to get the arrowhead on the correct end,
+however there is a flag in <code><a href="../reference/make_mel.html">make_mel()</a></code> to reverse the
+arrows.</p>
 <p>The <code>rgl</code> package has a function to import stl files:
 <code>readSTL()</code>. <strong>Important</strong>: you should export
 stl meshes as <em>binary, with little endian byte encoding</em>. If not,
-you will get a cryptic error that will be very difficult to diagnose.
-<code>MuscleTernary</code> has a wrapper function
+you will get a cryptic error that will be very difficult to
+diagnose.</p>
+<p><code>MuscleTernary</code> has a wrapper function
 <code><a href="../reference/read_stl.html">read_stl()</a></code> around the <code>rgl</code> function which
 <em>should</em> catch any read errors, but it hasn’t been tested for all
-possible cases (i.e., those I haven’t encountered yet).</p>
-<p>The package includes a pair of stls for the left m. Pterygoideus
-dorsalis (mPTm): <code>L_mPTd_Or.stl</code> and
-<code>L_mPTd_Ins.stl</code></p>
+possible cases (i.e., those I haven’t encountered yet). If you are
+reading stl files in directly, use <code><a href="../reference/read_stl.html">read_stl()</a></code>.</p>
+<p>The package includes a pair of files that map the origin and
+insertion areas of the left m. Pterygoideus dorsalis (mPTm):
+<code>L_mPTd_Or.stl</code> and <code>L_mPTd_Ins.stl</code></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">MuscleTernary</span><span class="op">)</span></span>
 <span></span>
@@ -117,15 +117,18 @@ of the vertices of the triangles.</p>
 <span><span class="co">#&gt;  [7,] 80.15350 -10.181118 -572.8048</span></span>
 <span><span class="co">#&gt;  [8,] 79.55407 -10.362929 -572.4216</span></span>
 <span><span class="co">#&gt;  [9,] 80.77268 -10.513458 -572.4617</span></span>
-<span><span class="co">#&gt; [10,] 80.15495 -11.792723 -570.9537</span></span></code></pre></div>
-</div>
+<span><span class="co">#&gt; [10,] 80.15495 -11.792723 -570.9537</span></span>
+<span></span>
+<span><span class="co"># Dimensions of the matrix</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">stl</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 6423    3</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="centroid-location-and-centroid-size">Centroid location and centroid size<a class="anchor" aria-label="anchor" href="#centroid-location-and-centroid-size"></a>
 </h2>
 <p>The centroid location (often just the “centroid”) of the mesh is
 simply the mean of each column. To simply usage,
 <code><a href="../reference/centroid_location.html">centroid_location()</a></code> takes a single argument with the string
-path to the STL file.</p>
+path to the file.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colMeans</a></span><span class="op">(</span><span class="va">stl</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]   64.784475    8.529847 -567.928419</span></span>
