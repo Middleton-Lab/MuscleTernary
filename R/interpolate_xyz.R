@@ -11,6 +11,8 @@
 #' @return `data.frame` interpolated between `start` and `end` with
 #'   column for frame number.
 #'
+#' @keywords internal
+#'
 interpolate_xyz <- function(start, end, length_out){
 
   # Checks

@@ -11,5 +11,5 @@ make_unit_vector <- function(x) {
     stop("Vector of length 3 required.")
   }
 
-  return(x / sqrt((x[1])^2+(x[2])^2+(x[3])^2))
+  return(x / sqrt((x[1]) ^ 2 + (x[2]) ^ 2 + (x[3]) ^ 2))
 }

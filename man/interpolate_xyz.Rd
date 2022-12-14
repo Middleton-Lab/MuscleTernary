@@ -22,3 +22,4 @@ Given a start and end point for a pair of xyz coordinate, return
 the linearly interpolated data.frame between them. This functional
 also adds a `.frame` column that allows animation.
 }
+\keyword{internal}

@@ -9,7 +9,7 @@ template:
 reference:
 - title: Working with stl meshes
 
-- subtitle: Reading and centroids
+- subtitle: Reading meshes and working with centroids
   desc: >
     Functions to import meshes and calculate centroids and sizes (areas)
   contents:
@@ -24,3 +24,38 @@ reference:
   contents:
   - pcsa
   - muscle_force
+
+- title: Making ternary plots
+  desc: >
+    Functions used to generate ternary plots
+  contents:
+  - coords_to_ternary
+  - interpolate_ternary
+  - muscle_color_map
+  - muscle_fill_map
+  - means_by_muscle
+
+- title: Working with Xfiber data
+  desc: >
+    Functions to read and process data from Avizo Xfiber suitable for passing
+    to `coords_to_ternary()`
+  contents:
+  - read_xfiber
+  - read_xfiber_xml
+
+- title: Generating Maya mel scripts
+  desc: >
+    Functions for outputting mel scripts to create model + vector arrows in
+    Maya.
+  contents:
+  - make_mel
+  - xfiber_to_maya
+  - geom_shiftedtext
+
+- title: Utility functions
+  desc: >
+    Functions that are not normally called directly, but which may be useful
+    and are thus documented and exported.
+  contents:
+  - make_unit_vector
+  - relative_proportion
