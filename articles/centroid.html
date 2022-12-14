@@ -88,11 +88,11 @@ vectors, then the order matters to get the arrowhead on the correct end,
 however there is a flag in <code><a href="../reference/make_mel.html">make_mel()</a></code> to reverse the
 arrows.</p>
 <p>The <code>rgl</code> package has a function to import stl files:
-<code>readSTL()</code>. <strong>Important</strong>: you should export
-stl meshes as <em>binary, with little endian byte encoding</em>. If not,
-you will get a cryptic error that will be very difficult to
-diagnose.</p>
-<p><code>MuscleTernary</code> has a wrapper function
+<code>readSTL()</code>.</p>
+<p><strong>Important</strong>: you should export stl meshes as
+<em>binary, with little endian byte encoding</em>. If not, you will get
+a cryptic error that will be very difficult to diagnose.
+<code>MuscleTernary</code> has a wrapper function
 <code><a href="../reference/read_stl.html">read_stl()</a></code> around the <code>rgl</code> function which
 <em>should</em> catch any read errors, but it hasn’t been tested for all
 possible cases (i.e., those I haven’t encountered yet). If you are
@@ -110,7 +110,7 @@ insertion areas of the left m. Pterygoideus dorsalis (mPTd):
 <span></span>
 <span><span class="va">stl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_stl.html">read_stl</a></span><span class="op">(</span><span class="va">stl_path</span><span class="op">)</span></span></code></pre></div>
 <p><code><a href="../reference/read_stl.html">read_stl()</a></code> returns a matrix with (x, y, z) coordinates
-of the vertices of the triangles.</p>
+of the vertices of the mesh triangles.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">stl</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">]</span></span>
 <span><span class="co">#&gt;           [,1]       [,2]      [,3]</span></span>
@@ -157,21 +157,34 @@ centroid.</p>
 <span><span class="co">#&gt; [1] 2576.131</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="deriving-ternary-coordinates-from-a-pair-of-stl-meshes">Deriving ternary coordinates from a pair of stl meshes<a class="anchor" aria-label="anchor" href="#deriving-ternary-coordinates-from-a-pair-of-stl-meshes"></a>
+</h2>
+</div>
+<div class="section level2">
+<h2 id="estimating-pcsa">Estimating PCSA<a class="anchor" aria-label="anchor" href="#estimating-pcsa"></a>
+</h2>
+</div>
+<div class="section level2">
+<h2 id="estimating-muscle-force">Estimating muscle force<a class="anchor" aria-label="anchor" href="#estimating-muscle-force"></a>
+</h2>
+</div>
+<div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <p>Cost IN, Middleton KM, Sellers KC, Echols MS, Witmer LM, Davis JL,
 Holliday CM. 2020. Palatal Biomechanics and Its Significance for Cranial
-Kinesis in <em>Tyrannosaurus rex</em>. Anat Rec 303:999–1017.</p>
+Kinesis in <em>Tyrannosaurus rex</em>. <a href="http://dx.doi.org/10.1002/ar.24219" class="external-link">Anat Rec 303:999-1017.</a></p>
 <p>Cost IN, Sellers KC, Rozin RE, Spates AT, Middleton KM, Holliday CM.
 2022. 2D and 3D visualizations of archosaur jaw muscle mechanics,
 ontogeny and phylogeny using ternary diagrams and 3D modeling. <a href="http://dx.doi.org/10.1242/jeb.243216" class="external-link">J Exp Biol 225</a></p>
 <p>Wilken AT, Middleton KM, Sellers KC, Cost IN, Holliday CM. 2019. The
 roles of joint tissues and jaw muscles in palatal biomechanics of the
 Savannah monitor (<em>Varanus exanthematicus</em>) and their
-significance for cranial kinesis. J Exp Biol 222:1–14.</p>
+significance for cranial kinesis. <a href="http://dx.doi.org/10.1242/jeb.201459" class="external-link">J Exp Biol 222:1-14.</a></p>
 <p>Wilken AT, Sellers KC, Cost IN, Rozin RE, Middleton KM, Holliday CM.
 2020. Connecting the chondrocranium: Biomechanics of the suspensorium in
-reptiles. Vertebrate Zoology 70:275–290.</p>
+reptiles. <a href="http://dx.doi.org/10.26049/VZ70-3-2020-02" class="external-link">Vertebrate
+Zoology 70:275-290.</a></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

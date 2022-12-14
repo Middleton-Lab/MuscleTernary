@@ -76,45 +76,102 @@
 
     
     
+<p>To create a ternary plot from origin and insertion data, first we
+need data. Attachment centroid data are available for the AL_008
+specimen (although similar data can be extracted directly from stl
+files; see the “Working with stl files” vignette).</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">MuscleTernary</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">D</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
-<span>                          <span class="st">"AL_008_data.csv"</span>,</span>
-<span>                          package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span>,</span>
-<span>              show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span><span class="va">AL008</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
+<span>                              <span class="st">"AL_008_data.csv"</span>,</span>
+<span>                              package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span>,</span>
+<span>                  show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">side</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/coords_to_ternary.html">coords_to_ternary</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="va">D</span>, grouping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"muscle"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/ggtern.html" class="external-link">ggtern</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, z <span class="op">=</span> <span class="va">z</span>,</span>
-<span>             color <span class="op">=</span> <span class="va">muscle</span>,</span>
-<span>             size <span class="op">=</span> <span class="va">force</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/muscle_color_map.html">muscle_color_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x       <span class="op">=</span> <span class="st">"ML"</span>,</span>
-<span>       xarrow  <span class="op">=</span> <span class="st">"Mediolateral"</span>,</span>
-<span>       y       <span class="op">=</span> <span class="st">"DV"</span>,</span>
-<span>       yarrow  <span class="op">=</span> <span class="st">"Dorsoventral"</span>,</span>
-<span>       z       <span class="op">=</span> <span class="st">"RC"</span>,</span>
-<span>       zarrow  <span class="op">=</span> <span class="st">"Rostrocaudal"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">theme_bw</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/theme_showarrows.html" class="external-link">theme_showarrows</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_size_continuous</span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">15</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"Force (N)"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">guides</span><span class="op">(</span>colour <span class="op">=</span> <span class="fu">guide_legend</span><span class="op">(</span>override.aes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>,</span>
-<span>                               ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ternary_plot_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+<span><span class="va">AL008</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 18 × 8</span></span></span>
+<span><span class="co">#&gt;    muscle x_origin y_origin z_origin x_insertion y_insertion z_insertion  force</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> mAMES      87.6     41.6   -<span style="color: #BB0000;">168.</span>        109.         4.92      -<span style="color: #BB0000;">133.</span>   665. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> mAMES     -<span style="color: #BB0000;">83.8</span>     45.1   -<span style="color: #BB0000;">163.</span>       -<span style="color: #BB0000;">108.</span>         7.69      -<span style="color: #BB0000;">141.</span>   612. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> mAMEM      34.2     42.8   -<span style="color: #BB0000;">140.</span>        103.        -<span style="color: #BB0000;">1.59</span>      -<span style="color: #BB0000;">129.</span>   272. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> mAMEM     -<span style="color: #BB0000;">30.2</span>     43.4   -<span style="color: #BB0000;">139.</span>       -<span style="color: #BB0000;">103.</span>         2.88      -<span style="color: #BB0000;">144.</span>   298. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> mAMEP      27.1     65.4   -<span style="color: #BB0000;">130.</span>         92.2       -<span style="color: #BB0000;">9.95</span>       -<span style="color: #BB0000;">71.7</span>   84.5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> mAMEP     -<span style="color: #BB0000;">19.7</span>     69.6   -<span style="color: #BB0000;">128.</span>        -<span style="color: #BB0000;">90.2</span>       -<span style="color: #BB0000;">2.99</span>       -<span style="color: #BB0000;">79.1</span>   83.2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> mAMP       64.2     35.9   -<span style="color: #BB0000;">172.</span>        110.       -<span style="color: #BB0000;">53.8</span>       -<span style="color: #BB0000;">140.</span>  <span style="text-decoration: underline;">2</span>720. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> mAMP      -<span style="color: #BB0000;">63.6</span>     35.8   -<span style="color: #BB0000;">173.</span>       -<span style="color: #BB0000;">108.</span>       -<span style="color: #BB0000;">51.9</span>       -<span style="color: #BB0000;">138.</span>  <span style="text-decoration: underline;">2</span>713. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> mPSTs      23.3     68.3   -<span style="color: #BB0000;">118.</span>         95.9      -<span style="color: #BB0000;">78.9</span>        -<span style="color: #BB0000;">17.5</span>  698. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> mPSTs     -<span style="color: #BB0000;">16.9</span>     69.0   -<span style="color: #BB0000;">116.</span>        -<span style="color: #BB0000;">88.2</span>      -<span style="color: #BB0000;">78.5</span>        -<span style="color: #BB0000;">11.9</span>  672. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> mPSTp      19.5     48.9   -<span style="color: #BB0000;">119.</span>         97.8      -<span style="color: #BB0000;">59.6</span>       -<span style="color: #BB0000;">143.</span>    10.8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> mPSTp     -<span style="color: #BB0000;">12.5</span>     48.7   -<span style="color: #BB0000;">117.</span>        -<span style="color: #BB0000;">92.9</span>      -<span style="color: #BB0000;">58.1</span>       -<span style="color: #BB0000;">144.</span>    13.3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> mPTd       38.8     21.3    -<span style="color: #BB0000;">68.8</span>        91.0      -<span style="color: #BB0000;">28.5</span>       -<span style="color: #BB0000;">222.</span>  <span style="text-decoration: underline;">3</span>643. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> mPTd      -<span style="color: #BB0000;">34.9</span>     20.6    -<span style="color: #BB0000;">62.6</span>       -<span style="color: #BB0000;">91.5</span>      -<span style="color: #BB0000;">26.2</span>       -<span style="color: #BB0000;">221.</span>  <span style="text-decoration: underline;">3</span>819. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> mPTv       47.8    -<span style="color: #BB0000;">50.5</span>   -<span style="color: #BB0000;">129.</span>        112.       -<span style="color: #BB0000;">21.2</span>       -<span style="color: #BB0000;">246.</span>   701. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> mPTv      -<span style="color: #BB0000;">40.9</span>    -<span style="color: #BB0000;">47.4</span>   -<span style="color: #BB0000;">129.</span>       -<span style="color: #BB0000;">114.</span>       -<span style="color: #BB0000;">22.1</span>       -<span style="color: #BB0000;">239.</span>   694. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> mDM        76.4     56.2   -<span style="color: #BB0000;">206.</span>         86.7        9.90      -<span style="color: #BB0000;">255.</span>   674. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> mDM       -<span style="color: #BB0000;">75.5</span>     58.0   -<span style="color: #BB0000;">201.</span>        -<span style="color: #BB0000;">90.7</span>       13.1       -<span style="color: #BB0000;">251.</span>   729.</span></span></code></pre></div>
+<p>We need to convert the x, y, and z origin and insertion columns into
+relative ternary coordinates using the <code><a href="../reference/coords_to_ternary.html">coords_to_ternary()</a></code>
+function. Here we also use the <code>grouping</code> option to return
+the mean for each muscle.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">D</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
-<span>                          <span class="st">"AL_031_data.csv"</span>,</span>
-<span>                          package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span>,</span>
-<span>              show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">side</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">ternary_coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/coords_to_ternary.html">coords_to_ternary</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="va">AL008</span>, grouping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"muscle"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ternary_coords</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 5</span></span></span>
+<span><span class="co">#&gt;   muscle  force     x     y     z</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> mAMEM   285.  72.6  26.2   1.13</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> mAMEP    83.9 35.6  42.2  22.2 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> mAMES   638.  19.7  50.2  30.2 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> mAMP   <span style="text-decoration: underline;">2</span>717.  18.5  71.3  10.2 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> mDM     701.   3.60 44.3  52.1 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> mPSTp    12.1 34.0  62.5   3.49</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> mPSTs   685.  13.9  58.1  28.1 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> mPTd   <span style="text-decoration: underline;">3</span>731.  10.0   7.92 82.1 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span> mPTv    697.  25.8   4.09 70.1</span></span></code></pre></div>
+<p>The <code>force</code> column contains the estimated force for each
+muscle. Force can be estimated from PCSA, which can be derived from
+attachment areas (see the “Working with stl files” vignette).</p>
+<p>The simplest ternary plot simply maps the <code>x</code>,
+<code>y</code>, and <code>z</code> columns and colors points by
+muscle:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/ggtern.html" class="external-link">ggtern</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ternary_coords</span>,</span>
+<span>       <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, z <span class="op">=</span> <span class="va">z</span>,</span>
+<span>           color <span class="op">=</span> <span class="va">muscle</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="ternary_plot_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p>We can make this a more ready-to-use plot by recoloring using the
+standard palette for muscle colors. <code><a href="../reference/muscle_color_map.html">muscle_color_map()</a></code> is a
+function that returns the mapping of muscle to its hex code.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">muscle_color_map</span></span>
+<span><span class="co">#&gt; function () </span></span>
+<span><span class="co">#&gt; {</span></span>
+<span><span class="co">#&gt;     cmap &lt;- ggplot2::scale_color_manual(name = "Muscle", values = c(mAMES = "#0000FF", </span></span>
+<span><span class="co">#&gt;         mAMEM = "#55FFFF", mAMEP = "#8080FF", mAMP = "#00FF00", </span></span>
+<span><span class="co">#&gt;         mPSTs = "#FF80FF", mPSTp = "#400080", mPTd = "#FF8000", </span></span>
+<span><span class="co">#&gt;         mPTv = "#FF0000", mPPt = "#FFC0CB", mDM = "#FF0080", </span></span>
+<span><span class="co">#&gt;         mLPt = "#09C4A8", mEM = "#FFFF00", mPM = "#7DB7E6"))</span></span>
+<span><span class="co">#&gt;     return(cmap)</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x562e4a7790b0&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: namespace:MuscleTernary&gt;</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/coords_to_ternary.html">coords_to_ternary</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="va">D</span>, grouping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"muscle"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/ggtern.html" class="external-link">ggtern</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, z <span class="op">=</span> <span class="va">z</span>,</span>
-<span>             color <span class="op">=</span> <span class="va">muscle</span>,</span>
-<span>             size <span class="op">=</span> <span class="va">force</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/ggtern.html" class="external-link">ggtern</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ternary_coords</span>,</span>
+<span>       <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, z <span class="op">=</span> <span class="va">z</span>,</span>
+<span>           color <span class="op">=</span> <span class="va">muscle</span>,</span>
+<span>           size <span class="op">=</span> <span class="va">force</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/muscle_color_map.html">muscle_color_map</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="ternary_plot_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<p>And finally we can add labels, change the theme, and update the
+scale, resizing the points according to force.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/ggtern.html" class="external-link">ggtern</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ternary_coords</span>,</span>
+<span>       <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, z <span class="op">=</span> <span class="va">z</span>,</span>
+<span>           color <span class="op">=</span> <span class="va">muscle</span>,</span>
+<span>           size <span class="op">=</span> <span class="va">force</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/muscle_color_map.html">muscle_color_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x       <span class="op">=</span> <span class="st">"ML"</span>,</span>
@@ -128,35 +185,7 @@
 <span>  <span class="fu">scale_size_continuous</span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">15</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"Force (N)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">guides</span><span class="op">(</span>colour <span class="op">=</span> <span class="fu">guide_legend</span><span class="op">(</span>override.aes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>,</span>
 <span>                               ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ternary_plot_files/figure-html/unnamed-chunk-2-2.png" width="700"></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">D</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
-<span>                          <span class="st">"Chicken_data.csv"</span>,</span>
-<span>                          package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span>,</span>
-<span>              show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">side</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/coords_to_ternary.html">coords_to_ternary</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="va">D</span>, grouping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"muscle"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/ggtern.html" class="external-link">ggtern</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, z <span class="op">=</span> <span class="va">z</span>,</span>
-<span>             color <span class="op">=</span> <span class="va">muscle</span>,</span>
-<span>             size <span class="op">=</span> <span class="va">force</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/muscle_color_map.html">muscle_color_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x       <span class="op">=</span> <span class="st">"ML"</span>,</span>
-<span>       xarrow  <span class="op">=</span> <span class="st">"Mediolateral"</span>,</span>
-<span>       y       <span class="op">=</span> <span class="st">"DV"</span>,</span>
-<span>       yarrow  <span class="op">=</span> <span class="st">"Dorsoventral"</span>,</span>
-<span>       z       <span class="op">=</span> <span class="st">"RC"</span>,</span>
-<span>       zarrow  <span class="op">=</span> <span class="st">"Rostrocaudal"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">theme_bw</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/theme_showarrows.html" class="external-link">theme_showarrows</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_size_continuous</span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">15</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"Force (N)"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">guides</span><span class="op">(</span>colour <span class="op">=</span> <span class="fu">guide_legend</span><span class="op">(</span>override.aes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>,</span>
-<span>                               ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>         size <span class="op">=</span> <span class="fu">guide_legend</span><span class="op">(</span>override.aes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>,</span>
-<span>                             ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ternary_plot_files/figure-html/unnamed-chunk-2-3.png" width="700"></p>
+<p><img src="ternary_plot_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
   </main>
 </div>
 
