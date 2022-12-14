@@ -5,3 +5,22 @@ template:
     base_font: {google: "Roboto"}
     heading_font: {google: "Roboto"}
     code_font: {google: "JetBrains Mono"}
+
+reference:
+- title: Working with stl meshes
+
+- subtitle: Reading and centroids
+  desc: >
+    Functions to import meshes and calculate centroids and sizes (areas)
+  contents:
+  - read_stl
+  - centroid_location
+  - centroid_size
+
+- subtitle: PCSA and muscle force estimation
+  desc: >
+    Functions for estimating PCSA from centroid data and muscle force from PCSA
+    estimates
+  contents:
+  - pcsa
+  - muscle_force
