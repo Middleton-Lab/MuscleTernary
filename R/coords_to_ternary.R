@@ -36,7 +36,7 @@ coords_to_ternary <- function(coords, grouping = NULL) {
       }
       more_cols <- as.character(more_cols)
     }
-    cols_to_keep <- coords |> dplyr::select(more_cols)
+    cols_to_keep <- coords |> dplyr::select(all_of(more_cols))
   } else if (!is.null(grouping)) {
     stop("No additional columns detected, but grouping requested.")
   }
