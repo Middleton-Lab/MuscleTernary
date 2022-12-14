@@ -44,7 +44,7 @@ stl[1:10, ]
 
 ## Centroid location and centroid size
 
-The centroid of the mesh is simply the mean of each column. To simply usage, `centroid_location()` take a single argument with the  
+The centroid location (often just the "centroid") of the mesh is simply the mean of each column. To simply usage, `centroid_location()` takes a single argument with the string path to the STL file.
 
 ```{r}
 colMeans(stl)
