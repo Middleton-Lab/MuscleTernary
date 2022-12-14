@@ -102,7 +102,8 @@ make_mel <- function(stl,
   if (shader_file == "default") {
     shader <- readr::read_csv(system.file("extdata",
                                           "muscle_colors.csv",
-                                          package = "MuscleTernary"))
+                                          package = "MuscleTernary"),
+                              show_col_types = FALSE)
   } else {
     if (!endsWith(shader_file, "csv")) stop("shader_file should be csv.")
     shader <- readr::read_csv(shader_file) |>
