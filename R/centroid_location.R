@@ -1,12 +1,12 @@
 #' Calculate centroid location
 #'
-#' @param stl String path to stl file
+#' @param fname String path to stl file
 #'
 #' @return Numeric vector of centroid location
 #' @export
 #'
-centroid_location <- function(stl) {
-  st <- rgl::readSTL(stl, plot = FALSE)
+centroid_location <- function(fname) {
+  st <- read_stl(fname)
   centroid <- colMeans(st)
   return(centroid)
 }

@@ -1,5 +1,5 @@
 ---
-title: "Working with stl centroids"
+title: "Working with stl files"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{centroid}
@@ -8,21 +8,70 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 ```
 
+## Working with `stl` files
+
+Stereolithography (`.stl`) files can be exported from most segmentation software. In our workflow, usually there are two files for each muscle, wherein the origin and insertion attachment areas of the muscle are "mapped" onto the surface of a bone model (see Cost et al., 2020, 2022; Wilken et al., 2019, 2020 for description).
+
+There is no directionality to the calculation of either centroid size or location, so either surface can be the "origin". If you are generating Maya mel code for generating a model + muscle vectors, then the order matters to get the arrowhead on the correct end, however there is a flag in `make_mel()` to reverse the arrows.
+
+The `rgl` package has a function to import stl files: `readSTL()`. **Important**: you should export stl meshes as *binary, with little endian byte encoding*. If not, you will get a cryptic error that will be very difficult to diagnose. `MuscleTernary` has a wrapper function `read_stl()` around the `rgl` function which *should* catch any read errors, but it hasn't been tested for all possible cases (i.e., those I haven't encountered yet).
+
+The package includes a pair of stls for the left m. Pterygoideus dorsalis (mPTm): `L_mPTd_Or.stl` and `L_mPTd_Ins.stl`
+
 ```{r setup, message=FALSE, warning=FALSE}
 library(MuscleTernary)
 
-centroid_location(system.file("extdata",
-                              "L_mAMEM_or.stl",
-                              package = "MuscleTernary"))
+# Save the local path to the stl file.
+stl_path <- system.file("extdata",
+                        "L_mPTd_Ins.stl",
+                        package = "MuscleTernary")
 
-centroid_size(system.file("extdata",
-                          "L_mAMEM_or.stl",
-                          package = "MuscleTernary"))
-
+stl <- read_stl(stl_path)
 ```
+
+`read_stl()` returns a matrix with (x, y, z) coordinates of the vertices of the triangles.
+
+```{r}
+stl[1:10, ]
+```
+
+## Centroid location and centroid size
+
+The centroid of the mesh is simply the mean of each column. To simply usage, `centroid_location()` take a single argument with the  
+
+```{r}
+colMeans(stl)
+
+centroid_location(stl_path)
+```
+
+The size of the centroid is the 3D distance of each vertex from the centroid.
+
+```{r}
+# Calculate the centroid
+centroid <- centroid_location(stl_path)
+
+# Apply the distance formula
+sqrt(sum((centroid[1] - stl[, 1]) ^ 2 +
+           (centroid[2] - stl[, 2]) ^ 2 +
+           (centroid[3] - stl[, 3]) ^ 2))
+
+centroid_size(stl_path)
+```
+
+## References
+
+Cost IN, Middleton KM, Sellers KC, Echols MS, Witmer LM, Davis JL, Holliday CM. 2020. Palatal Biomechanics and Its Significance for Cranial Kinesis in *Tyrannosaurus rex*. Anat Rec 303:999–1017.
+
+Cost IN, Sellers KC, Rozin RE, Spates AT, Middleton KM, Holliday CM. 2022. 2D and 3D visualizations of archosaur jaw muscle mechanics, ontogeny and phylogeny using ternary diagrams and 3D modeling. [J Exp Biol 225](http://dx.doi.org/10.1242/jeb.243216)
+
+Wilken AT, Middleton KM, Sellers KC, Cost IN, Holliday CM. 2019. The roles of joint tissues and jaw muscles in palatal biomechanics of the Savannah monitor (*Varanus exanthematicus*) and their significance for cranial kinesis. J Exp Biol 222:1–14.
+
+Wilken AT, Sellers KC, Cost IN, Rozin RE, Middleton KM, Holliday CM. 2020. Connecting the chondrocranium: Biomechanics of the suspensorium in reptiles. Vertebrate Zoology 70:275–290.

@@ -4,10 +4,10 @@
 \alias{centroid_size}
 \title{Calculate centroid size for an stl file}
 \usage{
-centroid_size(stl)
+centroid_size(fname)
 }
 \arguments{
-\item{stl}{String path to stl file}
+\item{fname}{String path to stl file}
 }
 \value{
 Numeric Centroid size

@@ -4,10 +4,10 @@
 \alias{centroid_location}
 \title{Calculate centroid location}
 \usage{
-centroid_location(stl)
+centroid_location(fname)
 }
 \arguments{
-\item{stl}{String path to stl file}
+\item{fname}{String path to stl file}
 }
 \value{
 Numeric vector of centroid location
