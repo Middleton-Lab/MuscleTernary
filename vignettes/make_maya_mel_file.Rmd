@@ -1,0 +1,28 @@
+---
+title: "Make Maya mel File"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Make Maya mel File}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r, warning=FALSE, message=FALSE}
+library(MuscleTernary)
+
+data <- read_csv(system.file("extdata",
+                             "AL_008_data.csv",
+                             package = "MuscleTernary"))
+
+make_mel(stl = "AL_008.stl",
+         shader_file = "default",
+         data = data)
+
+```

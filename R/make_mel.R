@@ -15,6 +15,8 @@
 #' \code{scale_radius} is \code{TRUE}.
 #' @param rev_arrows boolean (default \code{TRUE}) Should the arrowheads be
 #' reversed (you probably want \code{TRUE})
+#' @param write_file boolean (default \code{TRUE}) Should the mel file be
+#' written out
 #'
 #' @export
 #'
@@ -25,7 +27,8 @@ make_mel <- function(stl,
                      scale_radius = TRUE,
                      use_stl = FALSE,
                      max_radius = 8,
-                     rev_arrows = TRUE) {
+                     rev_arrows = TRUE,
+                     write_file = TRUE) {
 
   # Check column names
   col_needed <- c("x_origin", "y_origin", "z_origin",
@@ -117,19 +120,21 @@ make_mel <- function(stl,
   }
 
   # Import model. Note need full path to stl.
-  write('\n// Import stl model', file = outfile, append = TRUE)
-  write(paste0('file -import -type "STLImport" -ignoreVersion -ra true ',
-               '-mergeNamespacesOnClash false -namespace "',
-               file_prefix, '" -pr "', stl_path, '";'),
-        file = outfile, append = TRUE)
-  write(paste0('select -r ', file_prefix, ';'),
-        file = outfile, append = TRUE)
-  write('sets -e -forceElement BoneSG;',
-        file = outfile, append = TRUE)
-  write('', file = outfile, append = TRUE)
+  if (write_file) {
+    write('\n// Import stl model', file = outfile, append = TRUE)
+    write(paste0('file -import -type "STLImport" -ignoreVersion -ra true ',
+                 '-mergeNamespacesOnClash false -namespace "',
+                 file_prefix, '" -pr "', stl_path, '";'),
+          file = outfile, append = TRUE)
+    write(paste0('select -r ', file_prefix, ';'),
+          file = outfile, append = TRUE)
+    write('sets -e -forceElement BoneSG;',
+          file = outfile, append = TRUE)
+    write('', file = outfile, append = TRUE)
 
-  # Iterate through rows of data and write code for making arrows
-  nul <- pmap(data, write_arrows,
-              outfile = outfile,
-              rev_arrows = rev_arrows)
+    # Iterate through rows of data and write code for making arrows
+    nul <- pmap(data, write_arrows,
+                outfile = outfile,
+                rev_arrows = rev_arrows)
+  }
 }

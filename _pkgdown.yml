@@ -38,7 +38,7 @@ reference:
 - title: Working with Xfiber data
   desc: >
     Functions to read and process data from Avizo Xfiber suitable for passing
-    to `coords_to_ternary()`
+    as the `coords` parameter to `coords_to_ternary()`
   contents:
   - read_xfiber
   - read_xfiber_xml
