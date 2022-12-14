@@ -3,7 +3,7 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   centroid: centroid.html
-last_built: 2022-12-14T17:17Z
+last_built: 2022-12-14T18:07Z
 urls:
   reference: https://middleton-lab.github.io/MuscleTernary/reference
   article: https://middleton-lab.github.io/MuscleTernary/articles
