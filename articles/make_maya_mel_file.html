@@ -79,13 +79,55 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">MuscleTernary</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
+<span><span class="va">AL008</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
 <span>                             <span class="st">"AL_008_data.csv"</span>,</span>
-<span>                             package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/make_mel.html">make_mel</a></span><span class="op">(</span>stl <span class="op">=</span> <span class="st">"AL_008.stl"</span>,</span>
+<span>                             package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span>,</span>
+<span>                 show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">AL008</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 18 × 9</span></span></span>
+<span><span class="co">#&gt;    muscle side  x_origin y_origin z_origin x_insertion y_insert…¹ z_ins…²  force</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> mAMES  L         87.6     41.6   -<span style="color: #BB0000;">168.</span>        109.        4.92  -<span style="color: #BB0000;">133.</span>   665. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> mAMES  R        -<span style="color: #BB0000;">83.8</span>     45.1   -<span style="color: #BB0000;">163.</span>       -<span style="color: #BB0000;">108.</span>        7.69  -<span style="color: #BB0000;">141.</span>   612. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> mAMEM  L         34.2     42.8   -<span style="color: #BB0000;">140.</span>        103.       -<span style="color: #BB0000;">1.59</span>  -<span style="color: #BB0000;">129.</span>   272. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> mAMEM  R        -<span style="color: #BB0000;">30.2</span>     43.4   -<span style="color: #BB0000;">139.</span>       -<span style="color: #BB0000;">103.</span>        2.88  -<span style="color: #BB0000;">144.</span>   298. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> mAMEP  L         27.1     65.4   -<span style="color: #BB0000;">130.</span>         92.2      -<span style="color: #BB0000;">9.95</span>   -<span style="color: #BB0000;">71.7</span>   84.5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> mAMEP  R        -<span style="color: #BB0000;">19.7</span>     69.6   -<span style="color: #BB0000;">128.</span>        -<span style="color: #BB0000;">90.2</span>      -<span style="color: #BB0000;">2.99</span>   -<span style="color: #BB0000;">79.1</span>   83.2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> mAMP   L         64.2     35.9   -<span style="color: #BB0000;">172.</span>        110.      -<span style="color: #BB0000;">53.8</span>   -<span style="color: #BB0000;">140.</span>  <span style="text-decoration: underline;">2</span>720. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> mAMP   R        -<span style="color: #BB0000;">63.6</span>     35.8   -<span style="color: #BB0000;">173.</span>       -<span style="color: #BB0000;">108.</span>      -<span style="color: #BB0000;">51.9</span>   -<span style="color: #BB0000;">138.</span>  <span style="text-decoration: underline;">2</span>713. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> mPSTs  L         23.3     68.3   -<span style="color: #BB0000;">118.</span>         95.9     -<span style="color: #BB0000;">78.9</span>    -<span style="color: #BB0000;">17.5</span>  698. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> mPSTs  R        -<span style="color: #BB0000;">16.9</span>     69.0   -<span style="color: #BB0000;">116.</span>        -<span style="color: #BB0000;">88.2</span>     -<span style="color: #BB0000;">78.5</span>    -<span style="color: #BB0000;">11.9</span>  672. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> mPSTp  L         19.5     48.9   -<span style="color: #BB0000;">119.</span>         97.8     -<span style="color: #BB0000;">59.6</span>   -<span style="color: #BB0000;">143.</span>    10.8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> mPSTp  R        -<span style="color: #BB0000;">12.5</span>     48.7   -<span style="color: #BB0000;">117.</span>        -<span style="color: #BB0000;">92.9</span>     -<span style="color: #BB0000;">58.1</span>   -<span style="color: #BB0000;">144.</span>    13.3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> mPTd   L         38.8     21.3    -<span style="color: #BB0000;">68.8</span>        91.0     -<span style="color: #BB0000;">28.5</span>   -<span style="color: #BB0000;">222.</span>  <span style="text-decoration: underline;">3</span>643. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> mPTd   R        -<span style="color: #BB0000;">34.9</span>     20.6    -<span style="color: #BB0000;">62.6</span>       -<span style="color: #BB0000;">91.5</span>     -<span style="color: #BB0000;">26.2</span>   -<span style="color: #BB0000;">221.</span>  <span style="text-decoration: underline;">3</span>819. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> mPTv   L         47.8    -<span style="color: #BB0000;">50.5</span>   -<span style="color: #BB0000;">129.</span>        112.      -<span style="color: #BB0000;">21.2</span>   -<span style="color: #BB0000;">246.</span>   701. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> mPTv   R        -<span style="color: #BB0000;">40.9</span>    -<span style="color: #BB0000;">47.4</span>   -<span style="color: #BB0000;">129.</span>       -<span style="color: #BB0000;">114.</span>      -<span style="color: #BB0000;">22.1</span>   -<span style="color: #BB0000;">239.</span>   694. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> mDM    L         76.4     56.2   -<span style="color: #BB0000;">206.</span>         86.7       9.90  -<span style="color: #BB0000;">255.</span>   674. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> mDM    R        -<span style="color: #BB0000;">75.5</span>     58.0   -<span style="color: #BB0000;">201.</span>        -<span style="color: #BB0000;">90.7</span>      13.1   -<span style="color: #BB0000;">251.</span>   729. </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable names ¹​y_insertion, ²​z_insertion</span></span></span></code></pre></div>
+<p>We’ll pass the parameter <code>write_file = FALSE</code> so that the
+<code>.mel</code> file is not written to disk. In normal practice, you
+would set <code>write_file = TRUE</code> (or leave out because this is
+the default behavior).</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/make_mel.html">make_mel</a></span><span class="op">(</span>stl <span class="op">=</span> <span class="st">"AL_008.stl"</span>,</span>
 <span>         shader_file <span class="op">=</span> <span class="st">"default"</span>,</span>
-<span>         data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></span></code></pre></div>
+<span>         data <span class="op">=</span> <span class="va">AL008</span>,</span>
+<span>         write_file <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Assuming that the stl file is found at /home/runner/work/MuscleTernary/MuscleTernary/vignettes/AL_008.stl</span></span>
+<span><span class="co">#&gt; Writing .mel file to AL_008.mel</span></span>
+<span><span class="co">#&gt; Reversing the arrowheads. If they point the wrong direction, change rev_arrows to FALSE.</span></span>
+<span><span class="co">#&gt; Note: the ratio of max to min forces is 352.27</span></span>
+<span><span class="co">#&gt; The maximum cylinder width is 8. Adjust this based on the size of yourmodel.</span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">13</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">8</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">Delimiter:</span> ","</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">chr</span> (2): muscle, Hex</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">dbl</span> (6): R, G, B, R1, G1, B1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre></div>
   </main>
 </div>
 
