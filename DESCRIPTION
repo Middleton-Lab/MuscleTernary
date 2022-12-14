@@ -3,7 +3,8 @@ Type: Package
 Title: Plot Muscle Resultants in Ternary Space
 Version: 0.22
 Authors@R: person("Kevin", "Middleton", email = "middletonk@missouri.edu",
-    role = c("aut", "cre"))
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0003-4704-1064"))
 Description: This package is designed for visualizing 3D muscle
     vectors in ternary space. Functions are available to read in origin and
     insertion data from files, with force or moment data and an arbitrary
