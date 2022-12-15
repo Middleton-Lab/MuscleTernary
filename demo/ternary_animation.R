@@ -36,7 +36,7 @@ P <- list()
 for (i in 1:length_out) {
   d <- D |> filter(.frame == i)
   P[[i]] <- ggtern(d, aes(x = x, y = y, z = z,
-                          color = muscle_1)) +
+                          color = muscle)) +
     geom_point(size = 5) +
     muscle_color_map() +
     labs( x       = "ML",

@@ -14,6 +14,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+Generating a Maya `.mel` script from a dataset is fairly straightforward. If the data is already in the format for making a ternary plot (including `muscle` and the `orogin` and `insertion` columns), then it is as simple as calling `make_mel()`. If the data are coming from stl mesh files, then follow the steps in "Working with stl files" to make a tibble ready for ternary plotting. This would replace `AL_008` int he code below.
+
 ```{r, warning=FALSE, message=FALSE}
 library(MuscleTernary)
 
@@ -24,11 +26,13 @@ AL008 <- read_csv(system.file("extdata",
 AL008
 ```
 
-We'll pass the parameter `write_file = FALSE` so that the `.mel` file is not written to disk. In normal practice, you would set `write_file = TRUE` (or leave out because this is the default behavior).
+We'll pass the parameter `write_file = FALSE` so that the `.mel` file is not written to disk. In normal practice, you would set `write_file = TRUE` (or leave out this option because this is the default behavior).
 
-```{r}
+```{r, eval=FALSE}
 make_mel(stl = "AL_008.stl",
          shader_file = "default",
          data = AL008,
          write_file = FALSE)
 ```
+
+Once the file is written, move it to the same folder as your stl mesh (if it is not already) and execute in Maya. This script contains all the information that Maya needs to import the stl, create the arrows, scale and color them.

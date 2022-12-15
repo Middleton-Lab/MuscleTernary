@@ -14,11 +14,12 @@ knitr::opts_chunk$set(
 )
 ```
 
+To animate a ternary plot, you need two sets of points to interpolate between (the start and end points). Here we use the *Alligator* data for the adult AL_008 specimen and the juvenile AL_031 specimen.
+
+Load AL008 and AL031 data, calculate means, and merge into one data.frame.
+
 ```{r, warning=FALSE, message=FALSE}
 library(MuscleTernary)
-
-## Load AL008 and AL031 data, calculate means, and merge into one
-## data.frame.
 
 AL_008 <- read_csv(system.file("extdata",
                                "AL_008_data.csv",
@@ -36,8 +37,14 @@ AL_031 <- read_csv(system.file("extdata",
 
 M <- left_join(AL_031, AL_008, by = "muscle", suffix = c("_1", "_2")) |>
   as.data.frame()
+M
+```
 
-## Interpolate each row into length_out new rows.
+`x_1`, `y_1`, and `z_1` are the starting locations in ternary space. `x_2`, `y_2`, and `z_2` are the ending locations.
+
+We then interpolate each row into `length_out` new rows. Here we make 100 steps in between.
+
+```{r}
 length_out <- 100
 D <- list()
 
@@ -46,15 +53,19 @@ for (i in 1:nrow(M)) {
                                 length_out = length_out)
 }
 D <- do.call(rbind, D)
+```
 
-## Iterate through .frame and make a plot for each. Add to a list
-## of plots.
+Basically we are making a list of data.frames and then binding them all together at the end with `do.call()`.
+
+To make the animation, first we make a set of all the plots. Here we iterate through `.frame` and make a plot for each. Add to a list of plots.
+
+```{r}
 P <- list()
 
 for (i in 1:length_out) {
   d <- D |> filter(.frame == i)
   P[[i]] <- ggtern(d, aes(x = x, y = y, z = z,
-                          color = muscle_1)) +
+                          color = muscle)) +
     geom_point(size = 5) +
     muscle_color_map() +
     labs( x       = "ML",
@@ -68,22 +79,39 @@ for (i in 1:length_out) {
     guides(colour = guide_legend(override.aes = list(size = 5),
                                  ncol = 2, byrow = TRUE))
 }
+```
 
+`P` now is a list of plots (here with a length of 100, because we used 100 steps). We can plot a few as examples:
+
+```{r}
+P[[1]]
+P[[50]]
+P[[100]]
+```
+
+
+## Saving the animation
+
+To save the animation to a `.gif` file, we have to use additional software: ImageMagick. Installation of ImageMagick is beyond the scope of this article, but it's not too difficult.
+
+You have to set options with `ani.options` differently for MacOS vs. Windows. Then call `saveGIF()`.
+
+```{r, eval=FALSE}
 # Set interval to 1/24 s.
 ani.options(interval = 1/24)
 
 # For OS X with ImageMagick installed somewhere on the path
 # e.g., using homebrew.
+
 # ani.options(convert = "convert")
 
 # For Windows, install the ImageMagick standalone release:
 # (http://www.imagemagick.org/script/binary-releases.php). Use a
 # variation of the next line to set the absolute path to convert.exe.
-#
+
 # ani.options(convert = 'C:\\Program Files\\ImageMagick\\convert.exe')
 
-# saveGIF({for (i in 1:length_out) print(P[[i]])},
-#         movie.name = "ternary_animation.gif",
-#         ani.width = 800, ani.height = 600)
-
+saveGIF({for (i in 1:length_out) print(P[[i]])},
+        movie.name = "ternary_animation.gif",
+        ani.width = 800, ani.height = 600)
 ```

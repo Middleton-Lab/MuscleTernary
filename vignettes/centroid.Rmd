@@ -19,9 +19,7 @@ Stereolithography (`.stl`) mesh files can be exported from most segmentation sof
 
 There is no directionality to the calculation of either centroid size (area) or location from a mesh, so either surface can be the "origin". If you are generating Maya mel code for generating a model + muscle vectors, then the order matters to get the arrowhead on the correct end, however there is a flag in `make_mel()` to reverse the arrows.
 
-The `rgl` package has a function to import stl files: `readSTL()`. 
-
-**Important**: you should export stl meshes as *binary, with little endian byte encoding*. If not, you will get a cryptic error that will be very difficult to diagnose. `MuscleTernary` has a wrapper function `read_stl()` around the `rgl` function which *should* catch any read errors, but it hasn't been tested for all possible cases (i.e., those I haven't encountered yet). If you are reading stl files in directly, use `read_stl()`.
+**Important**: you should export stl meshes as *binary, with little endian byte encoding* (not ASCII or binary with big endian). If not, you will get a cryptic error that will be very difficult to diagnose. `MuscleTernary` has a wrapper function `read_stl()` around the `rgl` pachage `readSTL()` function which *should* catch any read errors, but it hasn't been tested for all possible cases (i.e., those I haven't encountered yet). If you are reading stl files in directly, use `read_stl()`.
 
 The package includes a pair of files that map the origin and insertion areas of the left m. Pterygoideus dorsalis (mPTd): `L_mPTd_Or.stl` and `L_mPTd_Ins.stl`. The right mPTd are also included and will be used later in this tutorial.
 
@@ -75,6 +73,8 @@ centroid_size(stl_path)
 
 ## Deriving ternary coordinates from a pair of stl meshes
 
+To get to ternary coordinated from stl mesh files, first we need the locations of the centroids. Here we use the left mPTd:
+
 ```{r}
 L_mPTd_Or <- centroid_location(system.file("extdata",
                                             "L_mPTd_Or.stl",
@@ -83,6 +83,8 @@ L_mPTd_Ins <- centroid_location(system.file("extdata",
                                             "L_mPTd_Ins.stl",
                                             package = "MuscleTernary"))
 ```
+
+`centroid_location()` returns a 3-element vector, which we can extract into a tibble. There are other ways to do this step, but this is the most straightforward, if more verbose.
 
 ```{r}
 mPTd_L <- tibble(
@@ -99,6 +101,7 @@ mPTd_L <- tibble(
 mPTd_L
 ```
 
+We then repeat the same for the right mPTd and bind the left and right together to have some comparative data:
 
 ```{r}
 R_mPTd_Or <- centroid_location(system.file("extdata",
@@ -123,6 +126,7 @@ mPTd <- bind_rows(mPTd_L, mPTd_R)
 mPTd
 ```
 
+Passing that tibble to `coords_to_ternary()` produces ternary coordinates. By not using the `grouping` argument, we get coordinates for both left and right (not the average of the two). We can then make a simple ternary plot comparing the muscles' orientations.
 
 ```{r}
 coords_to_ternary(mPTd)
@@ -135,7 +139,7 @@ coords_to_ternary(mPTd) |>
 
 ## Estimating PCSA
 
-The origina and insertion meshes can be used to estimate physiological cross-sectional area (PCSA; see Sellers, et al., 2017 for additional discussion). PSCA is calculated as the volume of a frustum with areas equal to the attachments ($\V_m$) divided by fascicle length ($l_f$) and multiplied by the cosine of the angle of pennation ($\theta$).
+The origin and insertion meshes can be used to estimate physiological cross-sectional area (PCSA; see Sellers, et al., 2017 for additional discussion). PSCA is calculated as the volume of a frustum with areas equal to the attachments ($V_m$) divided by fascicle length ($l_f$) and multiplied by the cosine of the angle of pennation ($\theta$).
 
 $$PCSA = \frac{V_m}{l_f} \cdot \cos(\theta)$$
 
@@ -145,7 +149,7 @@ $$V_m = \frac{l_m}{3} \cdot (A_{or} \cdot A_{ins} + \sqrt{A_{or} \cdot A_{ins}})
 
 $l_m$ is the distance from the centroid of the origin to the centroid of the insertion and $A_{or}$ and $A_{ins}$ are the origin and insertion areas, respectively.
 
-For a pair of stl meshes and values for $\l_f$ (`fascicle_length` which defaults to 1) and $\theta$ (`theta` which defaults to 0, no pennation), `pcsa()` calculates PCSA.
+For a pair of stl meshes and values for $l_f$ (`fascicle_length` which defaults to 1) and $\theta$ (`theta` which defaults to 0, no pennation), `pcsa()` calculates PCSA.
 
 ```{r}
 PCSA <- pcsa(system.file("extdata",
@@ -162,7 +166,7 @@ By default, `pcsa()` assumes that $\theta$ is measured in radians and that the u
 
 ## Estimating muscle force
 
-PCSA multiplied by the specific tension of the muscle tissue, $T_{spec}$, yields an estimate of muscle force output (Porro et al., 2011; Holmes and Taylor, 2021). $T_{spec}$ (`Tspec`) defaults to 0.3, which is a reasonable value for reptile muscle.
+PCSA multiplied by the specific tension of the muscle tissue, $T_{specific}$, yields an estimate of muscle force output (Porro et al., 2011; Holmes and Taylor, 2021). $T_{specific}$ (`Tspec`) defaults to 0.3 $N / mm^2$, which is a reasonable value for reptile muscle.
 
 ```{r}
 muscle_force(PCSA)
@@ -202,7 +206,7 @@ coords_to_ternary(mPTd) |>
   geom_point()
 ```
 
-By default, ggplot scales the point range to maximize difference, so the relatively small difference between left and right is exaggerated. See the vignette "Make a ternary plot" for details on modifying the size scale range.
+By default, ggplot scales the point range to maximize difference, so the relatively small difference between left and right is exaggerated. See the article "Make a ternary plot" for details on modifying the size scale range.
 
 
 ## References

@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-To create a ternary plot from origin and insertion data, first we need data. Attachment centroid data are available for the AL_008 specimen of *Alligator mississippiensis* (although similar data can be extracted directly from stl files; see the "Working with stl files" vignette).
+To create a ternary plot from origin and insertion data, first we need data. Attachment centroid data are available for the AL_008 specimen of *Alligator mississippiensis* (although similar data can be extracted directly from stl files; see the "Working with stl files" article).
 
 ```{r, warning=FALSE, message=FALSE}
 library(MuscleTernary)

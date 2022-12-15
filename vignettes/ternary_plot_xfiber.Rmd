@@ -14,6 +14,13 @@ knitr::opts_chunk$set(
 )
 ```
 
+The package has two functions for importing data from Avizo Xfiber. The native "Save as" format from Xfiber is an excel file encoded in XML. This file can be opened in Excel and resaved as a `.xlsx` file. Or simply kept as `.xml`. The two functions are:
+
+1. `read_xfiber_xml()`: read the raw `.xml`
+2. `read_xfiber()`: read a resaved Excel file
+
+The easiest option is to just keep the original file. Here we load the starling supracoracoideus data from Sullivan et al., 2019:
+
 ```{r, warning=FALSE, message=FALSE}
 library(MuscleTernary)
 
@@ -21,7 +28,14 @@ D <- read_xfiber_xml(system.file("extdata",
                                  "AV069_SC.xml",
                                  package = "MuscleTernary")) |>
   mutate(muscle = "SC")
+D
+```
 
+There are almost 9,000 points. We also add a column `muscle`, which is required by `coords_to_ternary()`. For a single muscle, it does not matter what the value of `muscle` is, just that the column is present.
+
+Making ternary plots from Xfiber data is similar from here on. Convert the coordinates to ternary space and plot with `ggtern()`.
+
+```{r}
 coords_to_ternary(D) |>
   ggtern(aes(x = x, y = y, z = z)) +
   geom_point(size = 1, alpha = 0.25, pch = 16) +
@@ -34,3 +48,27 @@ coords_to_ternary(D) |>
   theme_bw(base_size = 16) +
   theme_showarrows()
 ```
+
+We might be interested in color coding the points by angle. We will also randomly select 10% of the points:
+
+```{r}
+D |> 
+  slice_sample(prop = 0.1) |> 
+  coords_to_ternary() |>
+  ggtern(aes(x = x, y = y, z = z, color = OrientationTheta)) +
+  geom_point(size = 2, alpha = 0.25, pch = 16) +
+  labs(x       = "ML",
+       xarrow  = "Mediolateral",
+       y       = "DV",
+       yarrow  = "Dorsoventral",
+       z       = "RC",
+       zarrow  = "Rostrocaudal") +
+  theme_bw(base_size = 16) +
+  theme_showarrows()
+
+```
+
+
+## Reference
+
+Sullivan, S. P., F. R. McGechie, K. M. Middleton, and C. M. Holliday. 2019. 3D Muscle Architecture of the Pectoral Muscles of European Starling (*Sturnus vulgaris*). [Integr Org Biol 1:oby010](http://dx.doi.org/10.1093/iob/oby010)
