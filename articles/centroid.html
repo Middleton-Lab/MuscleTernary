@@ -99,9 +99,14 @@ possible cases (i.e., those I haven’t encountered yet). If you are
 reading stl files in directly, use <code><a href="../reference/read_stl.html">read_stl()</a></code>.</p>
 <p>The package includes a pair of files that map the origin and
 insertion areas of the left m. Pterygoideus dorsalis (mPTd):
-<code>L_mPTd_Or.stl</code> and <code>L_mPTd_Ins.stl</code></p>
+<code>L_mPTd_Or.stl</code> and <code>L_mPTd_Ins.stl</code>. The right
+mPTd are also included and will be used later in this tutorial.</p>
+<p><code>system.file(...)</code> allows us to open a file that was
+installed with the package. In most cases, you would use a path to your
+mesh file in its place.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">MuscleTernary</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">MuscleTernary</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Save the local path to the stl file.</span></span>
 <span><span class="va">stl_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
@@ -159,14 +164,154 @@ centroid.</p>
 <div class="section level2">
 <h2 id="deriving-ternary-coordinates-from-a-pair-of-stl-meshes">Deriving ternary coordinates from a pair of stl meshes<a class="anchor" aria-label="anchor" href="#deriving-ternary-coordinates-from-a-pair-of-stl-meshes"></a>
 </h2>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">L_mPTd_Or</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/centroid_location.html">centroid_location</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
+<span>                                            <span class="st">"L_mPTd_Or.stl"</span>,</span>
+<span>                                            package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">L_mPTd_Ins</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/centroid_location.html">centroid_location</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
+<span>                                            <span class="st">"L_mPTd_Ins.stl"</span>,</span>
+<span>                                            package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mPTd_L</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
+<span>  muscle <span class="op">=</span> <span class="st">"mPTd"</span>,</span>
+<span>  side <span class="op">=</span> <span class="st">"left"</span>,</span>
+<span>  x_origin <span class="op">=</span> <span class="va">L_mPTd_Or</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>  y_origin <span class="op">=</span> <span class="va">L_mPTd_Or</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
+<span>  z_origin <span class="op">=</span> <span class="va">L_mPTd_Or</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>,</span>
+<span>  x_insertion <span class="op">=</span> <span class="va">L_mPTd_Ins</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>  y_insertion <span class="op">=</span> <span class="va">L_mPTd_Ins</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
+<span>  z_insertion <span class="op">=</span> <span class="va">L_mPTd_Ins</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mPTd_L</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 8</span></span></span>
+<span><span class="co">#&gt;   muscle side  x_origin y_origin z_origin x_insertion y_insertion z_insertion</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> mPTd   left      26.7     21.4    -<span style="color: #BB0000;">456.</span>        64.8        8.53       -<span style="color: #BB0000;">568.</span></span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">R_mPTd_Or</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/centroid_location.html">centroid_location</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
+<span>                                            <span class="st">"R_mPTd_Or.stl"</span>,</span>
+<span>                                            package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">R_mPTd_Ins</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/centroid_location.html">centroid_location</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
+<span>                                            <span class="st">"R_mPTd_Ins.stl"</span>,</span>
+<span>                                            package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mPTd_R</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
+<span>  muscle <span class="op">=</span> <span class="st">"mPTd"</span>,</span>
+<span>  side <span class="op">=</span> <span class="st">"right"</span>,</span>
+<span>  x_origin <span class="op">=</span> <span class="va">R_mPTd_Or</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>  y_origin <span class="op">=</span> <span class="va">R_mPTd_Or</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
+<span>  z_origin <span class="op">=</span> <span class="va">R_mPTd_Or</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>,</span>
+<span>  x_insertion <span class="op">=</span> <span class="va">R_mPTd_Ins</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>  y_insertion <span class="op">=</span> <span class="va">R_mPTd_Ins</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
+<span>  z_insertion <span class="op">=</span> <span class="va">R_mPTd_Ins</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mPTd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">mPTd_L</span>, <span class="va">mPTd_R</span><span class="op">)</span></span>
+<span><span class="va">mPTd</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 8</span></span></span>
+<span><span class="co">#&gt;   muscle side  x_origin y_origin z_origin x_insertion y_insertion z_insertion</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> mPTd   left      26.7     21.4    -<span style="color: #BB0000;">456.</span>        64.8       8.53        -<span style="color: #BB0000;">568.</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> mPTd   right    -<span style="color: #BB0000;">23.4</span>     18.7    -<span style="color: #BB0000;">460.</span>       -<span style="color: #BB0000;">67.2</span>      -<span style="color: #BB0000;">0.988</span>       -<span style="color: #BB0000;">560.</span></span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/coords_to_ternary.html">coords_to_ternary</a></span><span class="op">(</span><span class="va">mPTd</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 5</span></span></span>
+<span><span class="co">#&gt;   muscle side      x     y     z</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> mPTd   left   10.2  1.16  88.6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> mPTd   right  15.4  3.09  81.5</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/coords_to_ternary.html">coords_to_ternary</a></span><span class="op">(</span><span class="va">mPTd</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/ggtern.html" class="external-link">ggtern</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">z</span>, color <span class="op">=</span> <span class="va">side</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<p><img src="centroid_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="estimating-pcsa">Estimating PCSA<a class="anchor" aria-label="anchor" href="#estimating-pcsa"></a>
 </h2>
+<p>The origina and insertion meshes can be used to estimate
+physiological cross-sectional area (PCSA; see Sellers, et al., 2017 for
+additional discussion). PSCA is calculated as the volume of a frustum
+with areas equal to the attachments (<span class="math inline">\(\V_m\)</span>) divided by fascicle length (<span class="math inline">\(l_f\)</span>) and multiplied by the cosine of the
+angle of pennation (<span class="math inline">\(\theta\)</span>).</p>
+<p><span class="math display">\[PCSA = \frac{V_m}{l_f} \cdot
+\cos(\theta)\]</span></p>
+<p>where</p>
+<p><span class="math display">\[V_m = \frac{l_m}{3} \cdot (A_{or} \cdot
+A_{ins} + \sqrt{A_{or} \cdot A_{ins}})\]</span></p>
+<p><span class="math inline">\(l_m\)</span> is the distance from the
+centroid of the origin to the centroid of the insertion and <span class="math inline">\(A_{or}\)</span> and <span class="math inline">\(A_{ins}\)</span> are the origin and insertion
+areas, respectively.</p>
+<p>For a pair of stl meshes and values for <span class="math inline">\(\l_f\)</span> (<code>fascicle_length</code> which
+defaults to 1) and <span class="math inline">\(\theta\)</span>
+(<code>theta</code> which defaults to 0, no pennation),
+<code><a href="../reference/PCSA.html">pcsa()</a></code> calculates PCSA.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">PCSA</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/PCSA.html">pcsa</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
+<span>                         <span class="st">"L_mPTd_Or.stl"</span>,</span>
+<span>                         package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span>,</span>
+<span>             <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
+<span>                         <span class="st">"L_mPTd_Ins.stl"</span>,</span>
+<span>                         package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Assuming theta is measured in radians.</span></span>
+<span><span class="co">#&gt; Assuming units are mm.</span></span>
+<span><span class="va">PCSA</span></span>
+<span><span class="co">#&gt; [1] 2029.069</span></span></code></pre></div>
+<p>By default, <code><a href="../reference/PCSA.html">pcsa()</a></code> assumes that <span class="math inline">\(\theta\)</span> is measured in radians and that
+the units of length and area are in millimeters. This is important in
+order to scale muscle force properly.</p>
 </div>
 <div class="section level2">
 <h2 id="estimating-muscle-force">Estimating muscle force<a class="anchor" aria-label="anchor" href="#estimating-muscle-force"></a>
 </h2>
+<p>PCSA multiplied by the specific tension of the muscle tissue, <span class="math inline">\(T_{spec}\)</span>, yields an estimate of muscle
+force output (Porro et al., 2011; Holmes and Taylor, 2021). <span class="math inline">\(T_{spec}\)</span> (<code>Tspec</code>) defaults to
+0.3, which is a reasonable value for reptile muscle.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/Muscle_Force.html">muscle_force</a></span><span class="op">(</span><span class="va">PCSA</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 608.7208</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="putting-it-together">Putting it together<a class="anchor" aria-label="anchor" href="#putting-it-together"></a>
+</h2>
+<p>We can now estimate muscle force for mPTd and scale the ternary plot
+points according to size.</p>
+<p>We will add a column to <code>mPTd</code> with the force
+estimates:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mPTd</span> <span class="op">&lt;-</span> <span class="va">mPTd</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    Force <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/Muscle_Force.html">muscle_force</a></span><span class="op">(</span><span class="fu"><a href="../reference/PCSA.html">pcsa</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
+<span>                                            <span class="st">"L_mPTd_Or.stl"</span>,</span>
+<span>                                            package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span>,</span>
+<span>                                <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
+<span>                                            <span class="st">"L_mPTd_Ins.stl"</span>,</span>
+<span>                                            package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>              <span class="fu"><a href="../reference/Muscle_Force.html">muscle_force</a></span><span class="op">(</span><span class="fu"><a href="../reference/PCSA.html">pcsa</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
+<span>                                            <span class="st">"R_mPTd_Or.stl"</span>,</span>
+<span>                                            package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span>,</span>
+<span>                                <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
+<span>                                            <span class="st">"R_mPTd_Ins.stl"</span>,</span>
+<span>                                            package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="va">mPTd</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 9</span></span></span>
+<span><span class="co">#&gt;   muscle side  x_origin y_origin z_origin x_insertion y_insertion z_inse…¹ Force</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> mPTd   left      26.7     21.4    -<span style="color: #BB0000;">456.</span>        64.8       8.53     -<span style="color: #BB0000;">568.</span>  609.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> mPTd   right    -<span style="color: #BB0000;">23.4</span>     18.7    -<span style="color: #BB0000;">460.</span>       -<span style="color: #BB0000;">67.2</span>      -<span style="color: #BB0000;">0.988</span>    -<span style="color: #BB0000;">560.</span>  621.</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable name ¹​z_insertion</span></span></span></code></pre></div>
+<p>And make a ternary plot</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/coords_to_ternary.html">coords_to_ternary</a></span><span class="op">(</span><span class="va">mPTd</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/ggtern.html" class="external-link">ggtern</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">z</span>, color <span class="op">=</span> <span class="va">side</span>, size <span class="op">=</span> <span class="va">Force</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="centroid_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<p>By default, ggplot scales the point range to maximize difference, so
+the relatively small difference between left and right is exaggerated.
+See the vignette “Make a ternary plot” for details on modifying the size
+scale range.</p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
@@ -177,6 +322,18 @@ Kinesis in <em>Tyrannosaurus rex</em>. <a href="http://dx.doi.org/10.1002/ar.242
 <p>Cost IN, Sellers KC, Rozin RE, Spates AT, Middleton KM, Holliday CM.
 2022. 2D and 3D visualizations of archosaur jaw muscle mechanics,
 ontogeny and phylogeny using ternary diagrams and 3D modeling. <a href="http://dx.doi.org/10.1242/jeb.243216" class="external-link">J Exp Biol 225</a></p>
+<p>Holmes, M., and A. B. Taylor. 2021. The influence of jaw-muscle
+fibre-type phenotypes on estimating maximum muscle and bite forces in
+primates. Interface Focus 11:20210009.</p>
+<p>Porro, L. B., C. M. Holliday, F. Anapol, L. C. Ontiveros, L. T.
+Ontiveros, and C. F. Ross. 2011. Free body analysis, beam mechanics, and
+finite element modeling of the mandible of <em>Alligator
+mississippiensis</em>. <a href="http://dx.doi.org/10.1002/jmor.10957" class="external-link">J.
+Morphol. 272:910-937.</a></p>
+<p>Sellers, K. C., K. M. Middleton, J. L. Davis, and C. M. Holliday.
+2017. Ontogeny of bite force in a validated biomechanical model of the
+American alligator. <a href="http://dx.doi.org/10.1242/jeb.156281" class="external-link">J.
+Exp. Biol. 220:2036-2046.</a></p>
 <p>Wilken AT, Middleton KM, Sellers KC, Cost IN, Holliday CM. 2019. The
 roles of joint tissues and jaw muscles in palatal biomechanics of the
 Savannah monitor (<em>Varanus exanthematicus</em>) and their

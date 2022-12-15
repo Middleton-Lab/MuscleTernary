@@ -82,12 +82,12 @@
 <span><span class="va">D</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_xfiber_xml.html">read_xfiber_xml</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
 <span>                                 <span class="st">"AV069_SC.xml"</span>,</span>
 <span>                                 package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>muscle <span class="op">=</span> <span class="st">"SC"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>muscle <span class="op">=</span> <span class="st">"SC"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/coords_to_ternary.html">coords_to_ternary</a></span><span class="op">(</span><span class="va">D</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/ggtern.html" class="external-link">ggtern</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, z <span class="op">=</span> <span class="va">z</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.25</span>, pch <span class="op">=</span> <span class="fl">16</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x       <span class="op">=</span> <span class="st">"ML"</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.25</span>, pch <span class="op">=</span> <span class="fl">16</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x       <span class="op">=</span> <span class="st">"ML"</span>,</span>
 <span>       xarrow  <span class="op">=</span> <span class="st">"Mediolateral"</span>,</span>
 <span>       y       <span class="op">=</span> <span class="st">"DV"</span>,</span>
 <span>       yarrow  <span class="op">=</span> <span class="st">"Dorsoventral"</span>,</span>
