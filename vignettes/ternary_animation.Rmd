@@ -100,7 +100,7 @@ You have to set options with `ani.options` differently for MacOS vs. Windows. Th
 # Set interval to 1/24 s.
 ani.options(interval = 1/24)
 
-# For OS X with ImageMagick installed somewhere on the path
+# For MacOS with ImageMagick installed somewhere on the path
 # e.g., using homebrew.
 
 # ani.options(convert = "convert")
