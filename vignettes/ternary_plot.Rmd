@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-To create a ternary plot from origin and insertion data, first we need data. Attachment centroid data are available for the AL_008 specimen (although similar data can be extracted directly from stl files; see the "Working with stl files" vignette).
+To create a ternary plot from origin and insertion data, first we need data. Attachment centroid data are available for the AL_008 specimen of *Alligator mississippiensis* (although similar data can be extracted directly from stl files; see the "Working with stl files" vignette).
 
 ```{r, warning=FALSE, message=FALSE}
 library(MuscleTernary)
@@ -27,12 +27,14 @@ AL008 <- read_csv(system.file("extdata",
 AL008
 ```
 
-We need to convert the x, y, and z origin and insertion columns into relative ternary coordinates using the `coords_to_ternary()` function. Here we also use the `grouping` option to return the mean for each muscle.
+We need to convert the x, y, and z origin and insertion columns into relative ternary coordinates using the `coords_to_ternary()` function. Here we also use the `grouping` option to return the mean for each muscle, because the original data have both left and right (two rows per muscle; note that the `side` column was dropped above).
 
 ```{r}
 ternary_coords <- coords_to_ternary(coords = AL008, grouping = c("muscle"))
 ternary_coords
 ```
+
+The `x`, `y`, and `z` columns sum to 100 for each row: these represent the percent contributions of each orthogonal direction to the muscle's overall orientation.
 
 The `force` column contains the estimated force for each muscle. Force can be estimated from PCSA, which can be derived from attachment areas (see the "Working with stl files" vignette).
 
@@ -52,13 +54,12 @@ muscle_color_map
 
 ggtern(data = ternary_coords,
        aes(x = x, y = y, z = z,
-           color = muscle,
-           size = force)) +
+           color = muscle)) +
   geom_point() +
   muscle_color_map()
 ```
 
-And finally we can add labels, change the theme, and update the scale, resizing the points according to force.
+And finally we can add labels, change the theme, fix up the legend, and update the scale, resizing the points according to `force`. Points don't have to be scaled to force, any proxy for body size (SVL, head width, etc. would work as well).
 
 ```{r}
 ggtern(data = ternary_coords,
