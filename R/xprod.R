@@ -10,6 +10,8 @@
 #'
 #' @export
 #'
+#' @keywords internal
+#'
 #' @examples
 #' xprod(c(0, 1, 2), c(1, 1, 1))
 #'

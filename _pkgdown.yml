@@ -16,6 +16,7 @@ reference:
   - read_stl
   - centroid_location
   - centroid_size
+  - stl_area
 
 - subtitle: PCSA and muscle force estimation
   desc: >
