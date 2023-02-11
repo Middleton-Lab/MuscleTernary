@@ -7,7 +7,7 @@
 centroid_location(fname)
 }
 \arguments{
-\item{fname}{String path to stl file}
+\item{fname}{String: Path to stl file}
 }
 \value{
 Numeric vector of centroid location

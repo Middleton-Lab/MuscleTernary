@@ -71,6 +71,16 @@ sqrt(sum((centroid[1] - stl[, 1]) ^ 2 +
 centroid_size(stl_path)
 ```
 
+## Area of an `stl` mesh
+
+The area of an stl mesh is the summed area of all the triangles making up the mesh.
+
+```{r}
+area <- stl_area(stl_path)
+area
+```
+
+
 ## Deriving ternary coordinates from a pair of stl meshes
 
 To get to ternary coordinated from stl mesh files, first we need the locations of the centroids. Here we use the left mPTd:
@@ -150,6 +160,8 @@ $$V_m = \frac{l_m}{3} \cdot (A_{or} \cdot A_{ins} + \sqrt{A_{or} \cdot A_{ins}})
 $l_m$ is the distance from the centroid of the origin to the centroid of the insertion and $A_{or}$ and $A_{ins}$ are the origin and insertion areas, respectively.
 
 For a pair of stl meshes and values for $l_f$ (`fascicle_length` which defaults to 1) and $\theta$ (`theta` which defaults to 0, no pennation), `pcsa()` calculates PCSA.
+
+Note that by default `pcsa()` uses the areas of the stl meshes. The Boolean flag `stl_area` will use centroid size if set to `FALSE`.
 
 ```{r}
 PCSA <- pcsa(system.file("extdata",

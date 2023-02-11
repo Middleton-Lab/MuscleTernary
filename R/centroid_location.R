@@ -1,6 +1,6 @@
 #' Calculate centroid location
 #'
-#' @param fname String path to stl file
+#' @param fname String: Path to stl file
 #'
 #' @return Numeric vector of centroid location
 #' @export

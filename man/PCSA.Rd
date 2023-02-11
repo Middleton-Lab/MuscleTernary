@@ -2,25 +2,35 @@
 % Please edit documentation in R/pcsa.R
 \name{pcsa}
 \alias{pcsa}
-\title{Estimate PCSA from from a pair of muscle attachment stls.}
+\title{Estimate PCSA from from a pair of muscle attachment stl meshes.}
 \usage{
-pcsa(stl1, stl2, fascicle_length = 1, theta = 0, units_adjust = 1)
+pcsa(
+  stl1,
+  stl2,
+  fascicle_length = 1,
+  theta = 0,
+  units_adjust = 1,
+  stl_area = TRUE
+)
 }
 \arguments{
-\item{stl1}{string: Path to stl.}
+\item{stl1}{String: Path to stl.}
 
-\item{stl2}{string: Path to stl.}
+\item{stl2}{String: Path to stl.}
 
-\item{fascicle_length}{numeric: Fascicle length}
+\item{fascicle_length}{Numeric: Fascicle length}
 
-\item{theta}{numeric: Fascicle angle (radians)}
+\item{theta}{Numeric: Fascicle angle (radians)}
 
-\item{units_adjust}{numeric: Multiplier adjustment if units are not in mm.}
+\item{units_adjust}{Numeric: Multiplier adjustment if units are not in mm.}
+
+\item{stl_area}{Boolean: Use the area of the stl mesh (default) or use the
+centroid size.}
 }
 \value{
 numeric: Estimate of PCSA for the muscle defined by the two
 attachments of `stl1` and `stl2`.
 }
 \description{
-Estimate PCSA from from a pair of muscle attachment stls.
+Estimate PCSA from from a pair of muscle attachment stl meshes.
 }

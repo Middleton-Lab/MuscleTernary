@@ -1,8 +1,8 @@
 #' Calculate centroid size for an stl file
 #'
-#' @param fname String path to stl file
+#' @param fname String: Path to stl file
 #'
-#' @return Numeric Centroid size
+#' @return Numeric: Centroid size
 #' @export
 #'
 centroid_size <- function(fname) {

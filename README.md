@@ -8,6 +8,6 @@
 ## For initial installation or updates
 
 - Install MuscleTernary from github:
-	- `remotes::install_github("Middleton-Lab/MuscleTernary")`
+	- `remotes::install_github(dependencies = TRUE, build_vignettes = TRUE)`
 
 View `?MuscleTernary` or `demo(ternary_plot)` for a demo.

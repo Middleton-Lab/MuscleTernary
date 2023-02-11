@@ -7,10 +7,10 @@
 centroid_size(fname)
 }
 \arguments{
-\item{fname}{String path to stl file}
+\item{fname}{String: Path to stl file}
 }
 \value{
-Numeric Centroid size
+Numeric: Centroid size
 }
 \description{
 Calculate centroid size for an stl file
