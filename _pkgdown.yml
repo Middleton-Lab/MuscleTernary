@@ -17,7 +17,6 @@ reference:
   - centroid_location
   - centroid_size
   - stl_area
-  - xprod
 
 - subtitle: PCSA and muscle force estimation
   desc: >
@@ -60,6 +59,7 @@ reference:
     Functions that are not normally called directly, but which may be useful
     and are thus documented and exported.
   contents:
+  - xprod
   - make_unit_vector
   - relative_proportion
   - write_arrows
