@@ -1,7 +1,7 @@
 Package: MuscleTernary
 Type: Package
 Title: Plot Muscle Resultants in Ternary Space
-Version: 0.23
+Version: 0.24
 Authors@R: person("Kevin", "Middleton", email = "middletonk@missouri.edu",
     role = c("aut", "cre"),
     comment = c(ORCID = "0000-0003-4704-1064"))
@@ -26,6 +26,7 @@ Imports:
     rgl,
     readr,
     rlang,
+    tibble,
     tidyr,
     xml2
 Encoding: UTF-8

@@ -4,8 +4,8 @@
 #'
 #' \tabular{ll}{ Package: \tab MuscleTernary\cr
 #'               Type: \tab Package\cr
-#'               Version: \tab 0.23\cr
-#'               Date: \tab 2023-02-11\cr
+#'               Version: \tab 0.24\cr
+#'               Date: \tab 2023-03-17\cr
 #'               License: \tab GPL\cr
 #'               LazyLoad: \tab yes\cr
 #'               LazyData: \tab yes\cr }
@@ -21,6 +21,7 @@
 ## usethis namespace: start
 #' @import ggtern readxl tidyverse animation rlist dplyr
 #' @importFrom ggplot2 ggproto
+#' @importFrom tibble tibble
 #' @importFrom purrr pmap
 #' @importFrom stats complete.cases
 #' @importFrom stringr str_detect

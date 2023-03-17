@@ -31,7 +31,7 @@ D <- read_xfiber_xml(system.file("extdata",
 D
 ```
 
-There are almost 9,000 points. We also add a column `muscle`, which is required by `coords_to_ternary()`. For a single muscle, it does not matter what the value of `muscle` is, just that the column is present.
+There are almost 9,000 points, because each individual track is made of many sub-segments, which are all returned separately. We also add a column `muscle`, which is required by `coords_to_ternary()`. For a single muscle, it does not matter what the value of `muscle` is, just that the column is present.
 
 Making ternary plots from Xfiber data is similar from here on. Convert the coordinates to ternary space and plot with `ggtern()`.
 
@@ -65,7 +65,34 @@ D |>
        zarrow  = "Rostrocaudal") +
   theme_bw(base_size = 16) +
   theme_showarrows()
+```
 
+## Plotting only the endpoints of tracks
+
+You may not want to plot all 9,000 of the individual track segments. One approach is to draw a 3D vector from the starting point to the ending point and reconstruct the orientation of that vector. `find_track_ends()` reduces the raw output of `read_xfiber_xml()` to a set of vectors where each represents the endpoints of each track.
+
+```{r}
+Ends <- D |> 
+  find_track_ends()
+Ends
+max(Ends$track_num)
+```
+
+And passing through `coords_to_ternary()` and plotting:
+
+```{r}
+Ends |> 
+  coords_to_ternary() |>
+  ggtern(aes(x = x, y = y, z = z)) +
+  geom_point(size = 2, alpha = 0.25, pch = 16) +
+  labs(x       = "ML",
+       xarrow  = "Mediolateral",
+       y       = "DV",
+       yarrow  = "Dorsoventral",
+       z       = "RC",
+       zarrow  = "Rostrocaudal") +
+  theme_bw(base_size = 16) +
+  theme_showarrows()
 ```
 
 
