@@ -3,7 +3,7 @@
 ## Preliminaries
 
 - If using Windows, install Rtools: https://cran.r-project.org/bin/windows/Rtools/
-- Install `remotes` (if you haven't already): `install.packages("devtools")`
+- Install `remotes` (if you haven't already): `install.packages("remotes")`
 
 ## For initial installation or updates
 
