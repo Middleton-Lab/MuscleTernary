@@ -9,6 +9,6 @@ You might also need to install Rtools (https://cran.r-project.org/bin/windows/Rt
 ## For initial installation or updates
 
 - Install MuscleTernary from github:
-	- `remotes::install_github(dependencies = TRUE, build_vignettes = TRUE)`
+	- `remotes::install_github("Middleton-Lab/MuscleTernary", dependencies = TRUE, build_vignettes = TRUE)`
 
 View `?MuscleTernary` or `demo(ternary_plot)` for a demo.
