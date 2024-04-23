@@ -32,7 +32,7 @@
 #' @importFrom xml2 xml_text
 ## usethis namespace: end
 "_PACKAGE"
-NULL
+
 
 # Ignore some global variables
 utils::globalVariables(c("matches",

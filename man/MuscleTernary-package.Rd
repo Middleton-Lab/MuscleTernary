@@ -3,7 +3,6 @@
 \docType{package}
 \name{MuscleTernary-package}
 \alias{MuscleTernary-package}
-\alias{_PACKAGE}
 \alias{MuscleTernary}
 \title{Muscle Ternary}
 \description{
