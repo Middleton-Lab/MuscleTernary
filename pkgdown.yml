@@ -1,13 +1,13 @@
-pandoc: 2.19.2
-pkgdown: 2.0.7
+pandoc: 3.1.11
+pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   centroid: centroid.html
   make_maya_mel_file: make_maya_mel_file.html
   ternary_animation: ternary_animation.html
-  ternary_plot: ternary_plot.html
   ternary_plot_xfiber: ternary_plot_xfiber.html
-last_built: 2023-11-16T20:31Z
+  ternary_plot: ternary_plot.html
+last_built: 2024-04-23T01:35Z
 urls:
   reference: https://middleton-lab.github.io/MuscleTernary/reference
   article: https://middleton-lab.github.io/MuscleTernary/articles
