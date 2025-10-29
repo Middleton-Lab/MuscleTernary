@@ -14,6 +14,13 @@ column for `muscle`, which is required by `coords_to_ternary()`.}
 tibble: `Tracks` but reduced to one row per track.
 }
 \description{
-This function finds the (x, y, z) coordinates of the starting and endsing
+This function finds the (x, y, z) coordinates of the starting and ending
 points of an Xfiber tracks object read by `read_xfiber_xml()`.
+}
+\examples{
+D <- read_xfiber_xml(system.file("extdata",
+                     "AV069_SC.xml",
+                     package = "MuscleTernary")) |>
+                     mutate(muscle = "SC")
+ends <- find_track_ends(D)
 }

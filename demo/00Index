@@ -3,3 +3,4 @@ ternary_animation	Demo of animated ternary plot.
 ternary_plot Demo of ternary plot.
 ternary_plot_xfiber Demo of ternary plot from xfiber data.
 centroid Calculate centroid location and size
+pennation_demo Demo of calculating pennation angle
