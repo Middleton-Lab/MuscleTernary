@@ -2,7 +2,7 @@
 
 library(MuscleTernary)
 
-#Import Dataset
+# Import Dataset
 Varanus_mPPT <- read_xfiber_xml(
   system.file(
     "extdata",
@@ -12,10 +12,11 @@ Varanus_mPPT <- read_xfiber_xml(
 ) |>
   mutate(muscle = "Varanus_mPPT")
 
-#Find track ends
+# Find track ends
 Varanus_Ends <- Varanus_mPPT |> find_track_ends()
 
-#Import origin and insertion attachment surfaces for central force axis and find centroids
+# Import origin and insertion attachment surfaces for central force axis and
+# find centroids
 Varanus_mPPT_O <- centroid_location(
   read_xfiber_xml(
     system.file(
@@ -46,13 +47,13 @@ Varanus_mPPT <- tibble(
   z_insertion = Varanus_mPPT_I[3]
 )
 
-#Calculate central force axis from attachment centroids
-Varanus_mPPT_Axis <- get_Central_Axis(Varanus_mPPT_O, Varanus_mPPT_I)
+# Calculate central force axis from attachment centroids
+Varanus_mPPT_Axis <- central_axis(Varanus_mPPT_O, Varanus_mPPT_I)
 
-#Convert fiber track ends to unit vectors
+# Convert fiber track ends to unit vectors
 Varanus_mPPT_Vectors <- ends_to_vectors(Varanus_Ends)
 
-#Measure pennaåΩtion angles around central axis
+# Measure pennation angles around central axis
 Varanus_mPPT_Pennation <- pennation_angle(
   Varanus_mPPT_Vectors,
   Varanus_mPPT_Axis
