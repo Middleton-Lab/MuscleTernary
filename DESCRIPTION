@@ -1,10 +1,23 @@
 Package: MuscleTernary
 Type: Package
-Title: Plot Muscle Resultants in Ternary Space
+Title: Work with Muscle Resultants and XFiber Data in Ternary Space
 Version: 0.24
-Authors@R: person("Kevin", "Middleton", email = "middletonk@missouri.edu",
-    role = c("aut", "cre"),
-    comment = c(ORCID = "0000-0003-4704-1064"))
+Authors@R: c(
+    person(given = "Kevin M.",
+           family = "Middleton",
+           comment = c(ORCID = "0000-0003-4704-1064"),
+           role = c("aut", "cre")),
+    person(given = "Evan",
+           family = "Alger-Meyer",
+           role = "ctb"),
+    person(given = "Kaleb C.",
+           family = "Sellers",
+           comment = c(ORCID = "0000-0002-3588-9562"),
+           role = "ctb"),
+    person(given = "Christopher M.",
+           family = "Zobek",
+           comment = c(ORCID = "0000-0002-1482-0726"),
+           role = "ctb"))
 Description: This package is designed for visualizing 3D muscle
     vectors in ternary space. Functions are available to read in origin and
     insertion data from files, with force or moment data and an arbitrary
@@ -31,7 +44,7 @@ Imports:
     xml2
 Encoding: UTF-8
 RoxygenNote: 7.3.3
-Suggests: 
+Suggests:
     knitr,
     rmarkdown,
     testthat
