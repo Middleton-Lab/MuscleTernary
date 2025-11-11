@@ -1,7 +1,7 @@
 Package: MuscleTernary
 Type: Package
 Title: Work with Muscle Resultants and XFiber Data in Ternary Space
-Version: 0.24
+Version: 0.25
 Author: Kevin M. Middleton [aut, cre] (<https://orcid.org/0000-0003-4704-1064>),
     Evan Alger-Meyer [ctb],
     Kaleb C. Sellers [ctb] (<https://orcid.org/0000-0002-3588-9562>),

@@ -4,8 +4,8 @@
 #'
 #' \tabular{ll}{ Package: \tab MuscleTernary\cr
 #'               Type: \tab Package\cr
-#'               Version: \tab 0.24\cr
-#'               Date: \tab 2023-03-17\cr
+#'               Version: \tab 0.25\cr
+#'               Date: \tab 2025-11-11\cr
 #'               License: \tab GPL\cr
 #'               LazyLoad: \tab yes\cr
 #'               LazyData: \tab yes\cr }
@@ -35,17 +35,18 @@
 
 
 # Ignore some global variables
-utils::globalVariables(c("matches",
-                         "muscle",
-                         ".",
-                         "coord_transform",
-                         "scale_color_manual",
-                         "scale_fill_manual",
-                         "x",
-                         "y",
-                         "z",
-                         "OrientationPhi",
-                         "OrientationTheta",
-                         "pt_pair",
-                         "track_num"))
-
+utils::globalVariables(c(
+    "matches",
+    "muscle",
+    ".",
+    "coord_transform",
+    "scale_color_manual",
+    "scale_fill_manual",
+    "x",
+    "y",
+    "z",
+    "OrientationPhi",
+    "OrientationTheta",
+    "pt_pair",
+    "track_num"
+))
