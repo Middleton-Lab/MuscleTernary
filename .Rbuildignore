@@ -1,9 +1,13 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.DS_Store$
+\.DS_Store$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
 ^\.github$
 ^doc$
 ^Meta$
+^\.vscode$
+^\.git$
+^\.gitignore$
+\.gitignore$
