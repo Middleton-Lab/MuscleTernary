@@ -19,6 +19,7 @@ pennation_angle <- function(vector_table, central_axis) {
 
   for (ii in 0:(length(vector_table$track_num) - 1)) {
     fiber_vector <- subset(vector_table, track_num == ii, select = c(x, y, z))
+    as.numeric(fiber_vector)
     angle <- theta(fiber_vector, central_axis)
 
     angle <- angle * (180 / pi) #Conversion to degrees from radians
