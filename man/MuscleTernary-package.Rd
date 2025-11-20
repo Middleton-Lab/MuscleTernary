@@ -11,8 +11,8 @@ More description
 \details{
 \tabular{ll}{ Package: \tab MuscleTernary\cr
               Type: \tab Package\cr
-              Version: \tab 0.24\cr
-              Date: \tab 2023-03-17\cr
+              Version: \tab 0.25\cr
+              Date: \tab 2025-11-11\cr
               License: \tab GPL\cr
               LazyLoad: \tab yes\cr
               LazyData: \tab yes\cr }
