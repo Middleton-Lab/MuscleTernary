@@ -20,11 +20,12 @@ reference:
 
 - subtitle: PCSA and muscle force estimation
   desc: >
-    Functions for estimating PCSA from centroid data and muscle force from PCSA
-    estimates
+    Functions for estimating PCSA and muscle architecture from centroid data
+    and muscle force from PCSA estimates
   contents:
-  - pcsa
   - muscle_force
+  - pennation_angle
+  - pcsa
 
 - title: Making ternary plots
   desc: >
@@ -43,7 +44,9 @@ reference:
   contents:
   - read_xfiber
   - read_xfiber_xml
+  - ends_to_vectors
   - find_track_ends
+  - central_axis
 
 - title: Generating Maya mel scripts
   desc: >
