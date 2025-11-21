@@ -1,19 +1,25 @@
 {
   "cSpell.words": [
     "Avizo",
+    "bslib",
     "extdata",
+    "ggproto",
     "ggtern",
     "Kaleb",
     "knitr",
     "ORCID",
+    "pcsa",
     "pennation",
+    "pmap",
     "purrr",
     "readr",
     "readxl",
     "rlang",
     "rlist",
     "rmarkdown",
+    "Roboto",
     "Roxygen",
+    "shiftedtext",
     "stringr",
     "testthat",
     "tibble",
@@ -21,6 +27,7 @@
     "tidytemplate",
     "Varanus",
     "xfiber",
+    "xprod",
     "Zobek"
   ]
 }
