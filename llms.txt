@@ -1,0 +1,122 @@
+# Installation
+
+## Preliminaries
+
+- Install `remotes` (if you haven’t already):
+  `install.packages("remotes")`
+
+You might also need to install Rtools
+(<https://cran.r-project.org/bin/windows/Rtools/>) if the installation
+step below does not work correctly.
+
+## For initial installation or updates
+
+- Install MuscleTernary from github:
+  - `remotes::install_github("Middleton-Lab/MuscleTernary", dependencies = TRUE, build_vignettes = TRUE)`
+
+View
+[`?MuscleTernary`](https://middleton-lab.github.io/MuscleTernary/reference/MuscleTernary-package.md)
+or `demo(ternary_plot)` for a demo.
+
+# Package index
+
+## Working with stl meshes
+
+### Reading meshes and working with centroids
+
+Functions to import meshes and calculate centroids and sizes (areas)
+
+- [`read_stl()`](https://middleton-lab.github.io/MuscleTernary/reference/read_stl.md)
+  : Import STL mesh
+- [`centroid_location()`](https://middleton-lab.github.io/MuscleTernary/reference/centroid_location.md)
+  : Calculate centroid location
+- [`centroid_size()`](https://middleton-lab.github.io/MuscleTernary/reference/centroid_size.md)
+  : Calculate centroid size for an stl file
+- [`stl_area()`](https://middleton-lab.github.io/MuscleTernary/reference/stl_area.md)
+  : Calculate area of an stl mesh
+
+### PCSA and muscle force estimation
+
+Functions for estimating PCSA and muscle architecture from centroid data
+and muscle force from PCSA estimates
+
+- [`muscle_force()`](https://middleton-lab.github.io/MuscleTernary/reference/Muscle_Force.md)
+  : Estimate muscle force
+- [`pennation_angle()`](https://middleton-lab.github.io/MuscleTernary/reference/pennation_angle.md)
+  : Find pennation angle
+- [`pcsa()`](https://middleton-lab.github.io/MuscleTernary/reference/PCSA.md)
+  : Estimate PCSA from from a pair of muscle attachment stl meshes.
+
+## Making ternary plots
+
+Functions used to generate ternary plots
+
+- [`coords_to_ternary()`](https://middleton-lab.github.io/MuscleTernary/reference/coords_to_ternary.md)
+  : Process coordinates data.frame
+- [`interpolate_ternary()`](https://middleton-lab.github.io/MuscleTernary/reference/interpolate_ternary.md)
+  : Interpolate between two point in a coordinates object.
+- [`muscle_color_map()`](https://middleton-lab.github.io/MuscleTernary/reference/muscle_color_map.md)
+  : Holliday Lab Muscle Color Map
+- [`muscle_fill_map()`](https://middleton-lab.github.io/MuscleTernary/reference/muscle_fill_map.md)
+  : Holliday Lab Muscle Color Map
+- [`means_by_muscle()`](https://middleton-lab.github.io/MuscleTernary/reference/means_by_muscle.md)
+  : Means by Muscle
+
+## Working with Xfiber data
+
+Functions to read and process data from Avizo Xfiber suitable for
+passing as the `coords` parameter to
+[`coords_to_ternary()`](https://middleton-lab.github.io/MuscleTernary/reference/coords_to_ternary.md)
+
+- [`read_xfiber()`](https://middleton-lab.github.io/MuscleTernary/reference/read_xfiber.md)
+  : Import from Avizo xfiber Excel
+- [`read_xfiber_xml()`](https://middleton-lab.github.io/MuscleTernary/reference/read_xfiber_xml.md)
+  : Import from Avizo xfiber XML
+- [`ends_to_vectors()`](https://middleton-lab.github.io/MuscleTernary/reference/ends_to_vectors.md)
+  : Function turning xfiber endpoint vectors into unit vectors Should be
+  used following 'find_track_ends'
+- [`find_track_ends()`](https://middleton-lab.github.io/MuscleTernary/reference/find_track_ends.md)
+  : Reduce Xfiber tracks to vectors connecting the two endpoints
+- [`central_axis()`](https://middleton-lab.github.io/MuscleTernary/reference/central_axis.md)
+  : Define muscle force axis vector
+
+## Generating Maya mel scripts
+
+Functions for outputting mel scripts to create model + vector arrows in
+Maya.
+
+- [`make_mel()`](https://middleton-lab.github.io/MuscleTernary/reference/make_mel.md)
+  : Write mel file
+- [`xfiber_to_maya()`](https://middleton-lab.github.io/MuscleTernary/reference/xfiber_to_maya.md)
+  : Generate Maya mel file from xfiber tracing
+- [`geom_shiftedtext()`](https://middleton-lab.github.io/MuscleTernary/reference/geom_shiftedtext.md)
+  : geom for labeling geom_points
+
+## Utility functions
+
+Functions that are not normally called directly, but which may be useful
+and are thus documented and exported.
+
+- [`xprod()`](https://middleton-lab.github.io/MuscleTernary/reference/xprod.md)
+  : Cross-product of two 3d vectors
+- [`make_unit_vector()`](https://middleton-lab.github.io/MuscleTernary/reference/make_unit_vector.md)
+  : Create a unit vector from a given vector
+- [`relative_proportion()`](https://middleton-lab.github.io/MuscleTernary/reference/relative_proportion.md)
+  : Calculate the relative proportion of the items of a given vector
+- [`write_arrows()`](https://middleton-lab.github.io/MuscleTernary/reference/write_arrows.md)
+  : Write Maya arrows code
+
+# Articles
+
+### Functions
+
+- [Working with stl
+  files](https://middleton-lab.github.io/MuscleTernary/articles/centroid.md):
+- [Make a ternary
+  plot](https://middleton-lab.github.io/MuscleTernary/articles/ternary_plot.md):
+- [Make a ternary plot from Xfiber
+  data](https://middleton-lab.github.io/MuscleTernary/articles/ternary_plot_xfiber.md):
+- [Animate a ternary
+  plot](https://middleton-lab.github.io/MuscleTernary/articles/ternary_animation.md):
+- [Make Maya mel
+  File](https://middleton-lab.github.io/MuscleTernary/articles/make_maya_mel_file.md):

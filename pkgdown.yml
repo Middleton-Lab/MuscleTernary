@@ -1,5 +1,5 @@
-pandoc: 3.1.11
-pkgdown: 2.0.9
+pandoc: 3.8.3
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   centroid: centroid.html
@@ -7,8 +7,7 @@ articles:
   ternary_animation: ternary_animation.html
   ternary_plot_xfiber: ternary_plot_xfiber.html
   ternary_plot: ternary_plot.html
-last_built: 2024-04-23T01:35Z
+last_built: 2026-06-07T22:43Z
 urls:
   reference: https://middleton-lab.github.io/MuscleTernary/reference
   article: https://middleton-lab.github.io/MuscleTernary/articles
-
