@@ -10,6 +10,9 @@ geom_shiftedtext(
   stat = "identity",
   position = "identity",
   parse = FALSE,
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE,
   ...
 )
 }
@@ -23,6 +26,12 @@ geom_shiftedtext(
 \item{position}{The position}
 
 \item{parse}{Parse or not}
+
+\item{na.rm}{Remove NAs silently if TRUE}
+
+\item{show.legend}{Whether to show in legend}
+
+\item{inherit.aes}{Whether to inherit aesthetics}
 
 \item{...}{Additional options passed on}
 }

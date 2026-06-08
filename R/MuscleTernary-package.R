@@ -25,6 +25,7 @@
 #' @importFrom dplyr select slice slice_head slice_tail summarise
 #' @importFrom dplyr summarise_all
 #' @importFrom ggplot2 ggproto
+#' @importFrom grid gpar nullGrob textGrob unit
 #' @importFrom tibble tibble
 #' @importFrom purrr pmap
 #' @importFrom stats complete.cases
