@@ -1,42 +1,44 @@
 Package: MuscleTernary
 Type: Package
 Title: Work with Muscle Resultants and XFiber Data in Ternary Space
-Version: 0.25
+Version: 0.26
 Author: Kevin M. Middleton [aut, cre] (<https://orcid.org/0000-0003-4704-1064>),
     Evan Alger-Meyer [ctb],
     Kaleb C. Sellers [ctb] (<https://orcid.org/0000-0002-3588-9562>),
     Christopher M. Zobek [ctb] (<https://orcid.org/0000-0002-1482-0726>)
 Maintainer: Kevin M. Middleton <middletonk@missouri.edu>
-Description: This package is designed for visualizing 3D muscle
-    vectors in ternary space. Functions are available to read in origin and
-    insertion data from files, with force or moment data and an arbitrary
-    number of categorical or continuous variables. Plotting is
-    accomplished via extensions of the ggtern package.
+Description: Provides tools for visualizing 3D muscle vectors in ternary
+    space. Functions are available to read in origin and insertion data
+    from files, with force or moment data and an arbitrary number of
+    categorical or continuous variables. Plotting is accomplished via
+    extensions of the 'ggtern' package.
 License: GPL-2
+URL: https://github.com/Middleton-Lab/MuscleTernary
+BugReports: https://github.com/Middleton-Lab/MuscleTernary/issues
 LazyData: TRUE
 Depends:
-    R (>= 4.1.0),
-    ggtern,
-    readxl,
-    tidyverse,
-    animation
+    R (>= 4.1.0)
 Imports:
-    ggplot2,
     dplyr,
-    rlist,
-    stringr,
+    ggplot2,
+    ggtern,
     purrr,
-    rgl,
     readr,
+    readxl,
+    rgl,
     rlang,
+    stringr,
     tibble,
     tidyr,
     xml2
 Encoding: UTF-8
 Suggests:
+    animation,
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    tidyverse,
+    writexl
 VignetteBuilder: knitr
 Config/Needs/website: tidyverse/tidytemplate
 Config/roxygen2/version: 8.0.0
