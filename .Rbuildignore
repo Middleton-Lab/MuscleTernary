@@ -12,3 +12,5 @@
 ^\.gitignore$
 \.gitignore$
 ^MuscleTernary\.code-workspace$
+^\.claude$
+^PLAN\.md$
