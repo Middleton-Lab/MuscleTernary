@@ -11,6 +11,9 @@ geom_shiftedtext(
   stat = "identity",
   position = "identity",
   parse = FALSE,
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE,
   ...
 )
 ```
@@ -36,6 +39,18 @@ geom_shiftedtext(
 - parse:
 
   Parse or not
+
+- na.rm:
+
+  Remove NAs silently if TRUE
+
+- show.legend:
+
+  Whether to show in legend
+
+- inherit.aes:
+
+  Whether to inherit aesthetics
 
 - ...:
 
