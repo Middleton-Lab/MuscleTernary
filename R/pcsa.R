@@ -13,6 +13,12 @@
 #'
 #' @export
 #'
+#' @examples
+#' or_stl <- system.file("extdata", "L_mPTd_Or.stl",
+#'                        package = "MuscleTernary")
+#' ins_stl <- system.file("extdata", "L_mPTd_Ins.stl",
+#'                         package = "MuscleTernary")
+#' pcsa(or_stl, ins_stl)
 pcsa <- function(stl1, stl2,
                  fascicle_length = 1,
                  theta = 0,

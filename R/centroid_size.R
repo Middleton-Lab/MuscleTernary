@@ -5,6 +5,10 @@
 #' @return Numeric: Centroid size
 #' @export
 #'
+#' @examples
+#' f <- system.file("extdata", "L_mPTd_Or.stl",
+#'                  package = "MuscleTernary")
+#' centroid_size(f)
 centroid_size <- function(fname) {
   st <- read_stl(fname)
   centroid <- centroid_location(fname)

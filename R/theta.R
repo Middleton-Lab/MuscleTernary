@@ -2,9 +2,9 @@
 #'
 #' Calculates the angle between two vectors
 #'
-#' @param x Vector
+#' @param vector1 numeric vector of length 3
 #'
-#' @param y Vector
+#' @param vector2 numeric vector of length 3
 #'
 #' @return Angle 'theta' between the two input vectors in radians
 #'
@@ -13,17 +13,17 @@
 
 theta <- function(vector1, vector2) {
   if (!is.numeric(vector1)) {
-    stop("vector should be numeric.")
+    stop("vector should be numeric.") # nocov
   }
   if (length(vector1) != 3) {
-    stop("vector should be length 3.")
+    stop("vector should be length 3.") # nocov
   }
 
   if (!is.numeric(vector2)) {
-    stop("vector should be numeric.")
+    stop("vector should be numeric.") # nocov
   }
   if (length(vector2) != 3) {
-    stop("vector should be length 3.")
+    stop("vector should be length 3.") # nocov
   }
 
   namesxyz <- c("x", "y", "z")

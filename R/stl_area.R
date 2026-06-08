@@ -6,6 +6,10 @@
 #'
 #' @export
 #'
+#' @examples
+#' f <- system.file("extdata", "L_mPTd_Or.stl",
+#'                  package = "MuscleTernary")
+#' stl_area(f)
 stl_area <- function(fname) {
   # Read stl
   st <- read_stl(fname)
@@ -29,7 +33,7 @@ stl_area <- function(fname) {
   # Half the area of the parallelogram defined by PQ and PR
   # Could probably not do this in a loop, but it's fast.
   aa <- numeric(length = nrow(PQ))
-  for (ii in 1:nrow(PQ)) {
+  for (ii in seq_len(nrow(PQ))) {
     xp <- xprod(PQ[ii, ], PR[ii, ])
     aa[ii] <- 0.5 * sqrt(dot(xp, xp))
   }

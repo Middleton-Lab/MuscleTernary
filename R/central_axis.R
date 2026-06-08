@@ -4,10 +4,10 @@
 #' Points are assumed to be the centroids of origin and insertion,
 #' but can be other points as needed.
 #'
-#' @param origin_centroid: numeric vector of origin centroid, or equivalent
+#' @param origin_centroid numeric vector of origin centroid, or equivalent
 #' point
 #'
-#' @param insertion_centroid: numeric vector of insertion centroid, or
+#' @param insertion_centroid numeric vector of insertion centroid, or
 #' equivalent point
 #'
 #' @return Named numeric vector of the axis between the origin and insertion

@@ -14,7 +14,7 @@
 #' D <- read_xfiber_xml(system.file("extdata",
 #'                      "AV069_SC.xml",
 #'                      package = "MuscleTernary")) |>
-#'                      mutate(muscle = "SC")
+#'   dplyr::mutate(muscle = "SC")
 #' ends <- find_track_ends(D)
 
 find_track_ends <- function(Tracks) {

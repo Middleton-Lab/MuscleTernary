@@ -10,9 +10,11 @@ generate_shader <- function(shader, outfile) {
   # Bone shader
   write('\n// Bone shader', file = outfile, append = TRUE)
   write('shadingNode -asShader lambert;', file = outfile, append = TRUE)
-  write(paste0('sets -renderable true -noSurfaceShader true -empty -name lambert', l, 'SG;'),
+  write(paste0('sets -renderable true -noSurfaceShader true ',
+               '-empty -name lambert', l, 'SG;'),
         file = outfile, append = TRUE)
-  write(paste0('connectAttr -f lambert', l, '.outColor lambert', l, 'SG.surfaceShader;'),
+  write(paste0('connectAttr -f lambert', l, '.outColor lambert',
+               l, 'SG.surfaceShader;'),
         file = outfile, append = TRUE)
   write(paste0('rename lambert', l, ' "Bone" ;'),
         file = outfile, append = TRUE)
@@ -23,19 +25,21 @@ generate_shader <- function(shader, outfile) {
   write('rename lambert2SG "BoneSG" ;', file = outfile, append = TRUE)
 
   # Iterate through shader file
-  nul <- purrr::map(.x = 1:nrow(shader),
+  nul <- purrr::map(.x = seq_len(nrow(shader)),
                     .f = function(ii, shader, outfile) {
     r <- shader |> slice(ii) |> as.data.frame()
     write(paste0('\n// ', r$muscle, ' shader'),
           file = outfile, append = TRUE)
     write('shadingNode -asShader lambert;', file = outfile, append = TRUE)
-    write('sets -renderable true -noSurfaceShader true -empty -name lambert2SG;',
-          file = outfile, append = TRUE)
+    write(
+      'sets -renderable true -noSurfaceShader true -empty -name lambert2SG;',
+      file = outfile, append = TRUE)
     write('connectAttr -f lambert2.outColor lambert2SG.surfaceShader;',
           file = outfile, append = TRUE)
     write(paste0('rename lambert2 ', r$muscle, ' ;'),
           file = outfile, append = TRUE)
-    write(paste0('setAttr "', r$muscle, '.color" -type double3 ', r$R1, ' ', r$G1, ' ',  r$B1, ' ;'),
+    write(paste0('setAttr "', r$muscle, '.color"',
+                 ' -type double3 ', r$R1, ' ', r$G1, ' ', r$B1, ' ;'),
           file = outfile, append = TRUE)
     write(paste0('rename lambert2SG ', r$muscle, 'SG ;'),
           file = outfile, append = TRUE)

@@ -17,10 +17,10 @@ interpolate_xyz <- function(start, end, length_out){
 
   # Checks
   if (length(start) != 3) {
-    stop("start does not have length of 3")
+    stop("start does not have length of 3") # nocov
   }
   if (length(end) != 3) {
-    stop("end does not have length of 3")
+    stop("end does not have length of 3") # nocov
   }
 
   out <- matrix(NA, ncol = 3, nrow = length_out)
@@ -29,7 +29,7 @@ interpolate_xyz <- function(start, end, length_out){
   out[, 3] <- seq(start[1, 3], end[1, 3], length.out = length_out)
   out <- as.data.frame(out)
   names(out) <- c("x", "y", "z")
-  out$.frame <- 1:length_out
+  out$.frame <- seq_len(length_out)
 
   return(out)
 }

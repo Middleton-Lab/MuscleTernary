@@ -9,6 +9,13 @@
 #'
 #' @export
 #'
+#' @examples
+#' \dontrun{
+#' # Requires an xlsx file produced by Avizo xfiber
+#' f <- system.file("extdata", "myfibers.xlsx",
+#'                  package = "MuscleTernary")
+#' read_xfiber(f)
+#' }
 read_xfiber <- function(filename) {
   Nodes <- readxl::read_excel(filename, sheet = 1)
   Points <- readxl::read_excel(filename, sheet = 2)
@@ -31,13 +38,14 @@ read_xfiber <- function(filename) {
 
   ctr <- 1L
 
-  for (ii in 1:nrow(Segments)) {
+  for (ii in seq_len(nrow(Segments))) {
     x <- Segments[ii, ]
-    pts <- stringr::str_split(x$`Point IDs`, ",")[[1]] |>
+    pts <- stringr::str_split(x$`Point IDs`,
+                              stringr::fixed(","))[[1]] |>
       as.numeric()
     P <- tibble(p1 = pts[1:(length(pts) - 1)],
                 p2 = pts[2:(length(pts))])
-    for (jj in 1:nrow(P)) {
+    for (jj in seq_len(nrow(P))) {
       p <- P[jj, ]
       Tracks$track_num[ctr] <- x$`Segment ID`
       Tracks$pt_pair[ctr] <- paste(p$p1, p$p2, sep = ",")

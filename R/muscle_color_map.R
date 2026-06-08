@@ -8,6 +8,8 @@
 #'
 #' @export
 #'
+#' @examples
+#' muscle_color_map()
 muscle_color_map <- function(){
 
   cmap <- ggplot2::scale_color_manual(
@@ -39,6 +41,8 @@ muscle_color_map <- function(){
 #'
 #' @export
 #'
+#' @examples
+#' muscle_fill_map()
 muscle_fill_map <- function(){
 
   cmap <- ggplot2::scale_fill_manual(

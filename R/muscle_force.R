@@ -10,6 +10,9 @@
 #'
 #' @export
 #'
+#' @examples
+#' muscle_force(100)
+#' muscle_force(500, Tspec = 0.25)
 muscle_force <- function(PCSA, Tspec = 0.3) {
   return(PCSA * Tspec)
 }

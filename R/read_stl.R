@@ -20,7 +20,7 @@
 read_stl <- function(fname) {
   tryCatch(
     {
-      suppressWarnings(st <- rgl::readSTL(fname, plot = FALSE))
+      st <- suppressWarnings(rgl::readSTL(fname, plot = FALSE))
       return(st)
     },
     error = function(cond) {

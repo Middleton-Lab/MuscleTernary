@@ -12,78 +12,46 @@
 #'
 #' @export
 #'
+#' @examples
+#' coords <- data.frame(
+#'   muscle = "mPTd",
+#'   x_origin = 10, y_origin = 20, z_origin = 30,
+#'   x_insertion = 5, y_insertion = 15, z_insertion = 25
+#' )
+#' coords_to_ternary(coords)
 coords_to_ternary <- function(coords, grouping = NULL) {
+  .validate_coord_cols(coords)
 
-  for (ii in c("muscle", "x_origin", "y_origin", "z_origin",
-               "x_insertion", "y_insertion", "z_insertion")) {
-    if (!any(str_detect(ii, names(coords)))) {
-      stop('Check column names. At least "muscle", "x_origin",
-            "y_origin", "z_origin", "x_insertion", "y_insertion",
-            and "z_insertion" must be supplied.')
-    }
-  }
-
-  # Get other column names
+  cols_to_keep <- NULL
   if (ncol(coords) > 6) {
-    more_cols <- list()
-    for (ii in names(coords)) {
-      if (!any(stringr::str_detect(ii,
-                          c("x_origin",
-                            "y_origin", "z_origin",
-                            "x_insertion", "y_insertion",
-                            "z_insertion")))) {
-        more_cols <- append(more_cols, ii)
-      }
-      more_cols <- as.character(more_cols)
-    }
-    cols_to_keep <- coords |> dplyr::select(all_of(more_cols))
-  } else if (!is.null(grouping)) {
+    cols_to_keep <- .get_extra_cols(coords)
+    .check_col_types(cols_to_keep, grouping)
+  } else if (!is.null(grouping)) { # nocov start
     stop("No additional columns detected, but grouping requested.")
-  }
+  } # nocov end
 
-  # Check that additional, non-grouping columns aren't character
-  if (ncol(coords) > 6) {
-    if (!is.null(grouping)) {
-      cols_wo_grouping <- cols_to_keep |>
-        dplyr::select(-one_of(grouping))
-      col_classes <- sapply(cols_wo_grouping, class)
-      if ("character" %in% col_classes) {
-        stop("'character' class in columns not included for grouping.")
-      }
-      if ("factor" %in% col_classes) {
-        stop("'factor' class in columns not included for grouping.")
-      }
-    }
-  }
+  coords_or <- coords |> dplyr::select(dplyr::contains("origin"))
+  coords_ins <- coords |>
+    dplyr::select(dplyr::contains("insertion"))
 
-  coords_or <- coords |> dplyr::select(contains("origin"))
-  coords_ins <- coords |> dplyr::select(contains("insertion"))
-
-  # Calculate vector from origin to insertion.
   vectors <- as.matrix(coords_or) - as.matrix(coords_ins)
   colnames(vectors) <- c("x", "y", "z")
 
-  # Pass rows sequentially to make_unit_vector and relative proportion
-  unit_vectors <- t(apply(vectors, 1, make_unit_vector))
-  prop_vectors <- t(apply(vectors, 1, relative_proportion))
+  prop_vectors <- as.data.frame(
+    t(apply(vectors, 1, relative_proportion))
+  ) * 100
 
-  # Need a data.frame for ggplot.
-  prop_vectors <- as.data.frame(prop_vectors)
-
-  # Scale to percentage
-  prop_vectors <- prop_vectors * 100
-
-  # Reattach cols_to_keep
   if (ncol(coords) > 6) {
     df <- dplyr::bind_cols(cols_to_keep, prop_vectors)
   }
 
-  # Means based on grouping variables
   if (!is.null(grouping)) {
     df <- df |>
-      group_by_at(grouping) |>
-      summarise_all(list(~mean(.)))
-    names(df) <- stringr::str_remove(names(df), "_name")
+      dplyr::group_by_at(grouping) |>
+      dplyr::summarise_all(list(~ mean(.)))
+    names(df) <- stringr::str_remove(
+      names(df), stringr::fixed("_name")
+    )
   }
 
   return(df)

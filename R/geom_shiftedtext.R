@@ -13,6 +13,10 @@
 #'
 #' @export
 #'
+#' @examples
+#' \dontrun{
+#' geom_shiftedtext(ggplot2::aes(label = muscle))
+#' }
 geom_shiftedtext <- function (mapping = NULL,
                               data = NULL,
                               stat = "identity",
@@ -29,7 +33,7 @@ geom_shiftedtext <- function (mapping = NULL,
                    contour   = "interpolate_tern",
                    density2d = "density_tern",
                    smooth    = "smooth_tern",
-                   polygon   = "polygon_tern",
+                   polygon_tern = "polygon_tern",
                    rug       = "rug",
                    Tline     = "Tline",
                    Lline     = "Lline",
@@ -42,16 +46,18 @@ geom_shiftedtext <- function (mapping = NULL,
 
   utils::assignInNamespace(".approved", .approved, "ggtern")
 
+  # nocov start
   GeomShiftedtext$new(mapping = mapping,
                       data = data,
                       stat = stat,
                       position = position,
                       parse = parse, ...)
+  # nocov end
 }
 
-GeomShiftedtext <- ggproto(ggplot2:::GeomText, expr = {
+GeomShiftedtext <- ggproto(ggplot2::GeomText, expr = {
   objname <- "shiftedtext"
-  draw <- function(.,
+  draw <- function(., # nocov start
                    data,
                    scales,
                    coordinates, ...,
@@ -79,5 +85,5 @@ GeomShiftedtext <- ggproto(ggplot2:::GeomText, expr = {
                             fontface = fontface,
                             lineheight = lineheight))
     )
-  }
+  } # nocov end
 })

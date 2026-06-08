@@ -19,7 +19,11 @@
 #' @keywords package internal
 #'
 ## usethis namespace: start
-#' @import ggtern readxl tidyverse animation rlist dplyr
+#' @importFrom ggtern ggtern theme_showarrows
+#' @importFrom dplyr across all_of bind_cols contains everything
+#' @importFrom dplyr filter group_by group_by_at mutate one_of
+#' @importFrom dplyr select slice slice_head slice_tail summarise
+#' @importFrom dplyr summarise_all
 #' @importFrom ggplot2 ggproto
 #' @importFrom tibble tibble
 #' @importFrom purrr pmap

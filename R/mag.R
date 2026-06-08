@@ -11,10 +11,10 @@
 
 mag <- function(vector) {
   if (!is.numeric(vector)) {
-    stop("vector should be numeric.")
+    stop("vector should be numeric.") # nocov
   }
   if (length(vector) != 3) {
-    stop("vector should be length 3.")
+    stop("vector should be length 3.") # nocov
   }
 
   namesxyz <- c("x", "y", "z")

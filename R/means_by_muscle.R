@@ -8,6 +8,14 @@
 #'
 #' @export
 #'
+#' @examples
+#' \dontrun{
+#' df <- data.frame(
+#'   muscle = c("mPTd", "mPTd"),
+#'   x = c(30, 40), y = c(35, 45), z = c(35, 15)
+#' )
+#' means_by_muscle(df)
+#' }
 means_by_muscle <- function(df_no_means){
 
   # data.frame to hold factors
@@ -39,11 +47,14 @@ means_by_muscle <- function(df_no_means){
   message("\nAssuming that any categorical variables alternate by rows.\n")
 
   # Means by Left_Right
-  df_means <- df_no_means |> group_by(muscle) |> summarise_each(funs(mean))
+  df_means <- df_no_means |>
+    group_by(muscle) |>
+    dplyr::summarise(dplyr::across(dplyr::everything(), mean))
 
   # Put categorical variables back on. Note: Assumes alternating rows
   categorical_vars <-
-    categorical_vars[seq(1, nrow(categorical_vars), by = 2), ]
+    categorical_vars[seq(1, nrow(categorical_vars), by = 2), ,
+                     drop = FALSE]
 
   df_means <- merge(df_means, categorical_vars)
 

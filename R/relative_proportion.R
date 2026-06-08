@@ -6,6 +6,9 @@
 #'
 #' @export
 #'
+#' @examples
+#' relative_proportion(c(1, 2, 3))
+#' relative_proportion(c(3, 4, 0))
 relative_proportion <- function(x){
 
   # Check
