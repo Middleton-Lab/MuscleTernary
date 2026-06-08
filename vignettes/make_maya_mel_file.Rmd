@@ -18,6 +18,7 @@ Generating a Maya `.mel` script from a dataset is fairly straightforward. If the
 
 ```{r, warning=FALSE, message=FALSE}
 library(MuscleTernary)
+library(readr)
 
 AL008 <- read_csv(system.file("extdata",
                              "AL_008_data.csv",

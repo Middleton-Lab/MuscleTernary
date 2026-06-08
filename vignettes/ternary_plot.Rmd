@@ -18,6 +18,8 @@ To create a ternary plot from origin and insertion data, first we need data. Att
 
 ```{r, warning=FALSE, message=FALSE}
 library(MuscleTernary)
+library(ggtern)
+library(readr)
 
 AL008 <- read_csv(system.file("extdata",
                               "AL_008_data.csv",
@@ -30,7 +32,7 @@ AL008
 We need to convert the x, y, and z origin and insertion columns into relative ternary coordinates using the `coords_to_ternary()` function. Here we also use the `grouping` option to return the mean for each muscle, because the original data have both left and right (two rows per muscle; note that the `side` column was dropped above).
 
 ```{r}
-ternary_coords <- coords_to_ternary(coords = AL008, grouping = c("muscle"))
+ternary_coords <- coords_to_ternary(coords = AL008, grouping = "muscle")
 ternary_coords
 ```
 
