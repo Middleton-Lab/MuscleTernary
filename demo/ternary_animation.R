@@ -8,14 +8,14 @@ AL_008 <- read_csv(system.file("extdata",
                                package = "MuscleTernary"),
                    show_col_types = FALSE) |>
   dplyr::select(-side, -force) |>
-  coords_to_ternary(grouping = c("muscle"))
+  coords_to_ternary(grouping = "muscle")
 
 AL_031 <- read_csv(system.file("extdata",
                                "AL_031_data.csv",
                                package = "MuscleTernary"),
                    show_col_types = FALSE) |>
   dplyr::select(-side, -force) |>
-  coords_to_ternary(grouping = c("muscle"))
+  coords_to_ternary(grouping = "muscle")
 
 M <- left_join(AL_031, AL_008, by = "muscle", suffix = c("_1", "_2")) |>
   as.data.frame()
@@ -23,7 +23,7 @@ M <- left_join(AL_031, AL_008, by = "muscle", suffix = c("_1", "_2")) |>
 ## Interpolate each row into length_out new rows.
 length_out <- 100
 D <- list()
-for (i in 1:nrow(M)) {
+for (i in seq_len(nrow(M))) {
   D[[i]] <- interpolate_ternary(M[i, ],
                                 length_out = length_out)
 }

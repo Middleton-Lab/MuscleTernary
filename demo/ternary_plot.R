@@ -6,7 +6,7 @@ D <- read_csv(system.file("extdata",
               show_col_types = FALSE) |>
   dplyr::select(-side)
 
-coords_to_ternary(coords = D, grouping = c("muscle")) |>
+coords_to_ternary(coords = D, grouping = "muscle") |>
   ggtern(aes(x = x, y = y, z = z,
              color = muscle,
              size = force)) +
@@ -30,7 +30,7 @@ D <- read_csv(system.file("extdata",
               show_col_types = FALSE) |>
   dplyr::select(-side)
 
-coords_to_ternary(coords = D, grouping = c("muscle")) |>
+coords_to_ternary(coords = D, grouping = "muscle") |>
   ggtern(aes(x = x, y = y, z = z,
              color = muscle,
              size = force)) +
@@ -54,7 +54,7 @@ D <- read_csv(system.file("extdata",
               show_col_types = FALSE) |>
   dplyr::select(-side)
 
-coords_to_ternary(coords = D, grouping = c("muscle")) |>
+coords_to_ternary(coords = D, grouping = "muscle") |>
   ggtern(aes(x = x, y = y, z = z,
              color = muscle,
              size = force)) +
