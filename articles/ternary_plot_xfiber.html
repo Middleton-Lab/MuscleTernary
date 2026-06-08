@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">MuscleTernary</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.25</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.26</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,11 +42,13 @@
     <li><a class="dropdown-item" href="../articles/make_maya_mel_file.html">Make Maya mel File</a></li>
   </ul>
 </li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Middleton-Lab/MuscleTernary/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -63,7 +65,7 @@
       <h1>Make a ternary plot from Xfiber data</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/Middleton-Lab/MuscleTernary/blob/main/vignettes/ternary_plot_xfiber.Rmd" class="external-link"><code>vignettes/ternary_plot_xfiber.Rmd</code></a></small>
       <div class="d-none name"><code>ternary_plot_xfiber.Rmd</code></div>
     </div>
 
@@ -83,7 +85,9 @@ file. Or simply kept as <code>.xml</code>. The two functions are:</p>
 <p>The easiest option is to just keep the original file. Here we load
 the starling supracoracoideus data from Sullivan et al., 2019:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">MuscleTernary</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Middleton-Lab/MuscleTernary" class="external-link">MuscleTernary</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ggtern</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">D</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_xfiber_xml.html">read_xfiber_xml</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
 <span>                                 <span class="st">"AV069_SC.xml"</span>,</span>
@@ -210,8 +214,7 @@ plotting:</p>
 </h2>
 <p>Sullivan, S. P., F. R. McGechie, K. M. Middleton, and C. M. Holliday.
 2019. 3D Muscle Architecture of the Pectoral Muscles of European
-Starling (<em>Sturnus vulgaris</em>). <a href="http://dx.doi.org/10.1093/iob/oby010" class="external-link">Integr Org Biol
-1:oby010</a></p>
+Starling (<em>Sturnus vulgaris</em>). Integr Org Biol 1:oby010. <a href="doi:10.1093/iob/oby010" class="uri">doi:10.1093/iob/oby010</a></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

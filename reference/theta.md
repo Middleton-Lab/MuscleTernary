@@ -10,13 +10,13 @@ theta(vector1, vector2)
 
 ## Arguments
 
-- x:
+- vector1:
 
-  Vector
+  numeric vector of length 3
 
-- y:
+- vector2:
 
-  Vector
+  numeric vector of length 3
 
 ## Value
 

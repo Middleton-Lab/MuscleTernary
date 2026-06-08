@@ -9,7 +9,7 @@ the Holliday lab muscle color map."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">MuscleTernary</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.25</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.26</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,8 +26,10 @@ the Holliday lab muscle color map."></head><body>
     <li><a class="dropdown-item" href="../articles/ternary_animation.html">Animate a ternary plot</a></li>
     <li><a class="dropdown-item" href="../articles/make_maya_mel_file.html">Make Maya mel File</a></li>
   </ul></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Middleton-Lab/MuscleTernary/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -37,7 +39,7 @@ the Holliday lab muscle color map."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Holliday Lab Muscle Color Map</h1>
-
+      <small class="dont-index">Source: <a href="https://github.com/Middleton-Lab/MuscleTernary/blob/main/R/muscle_color_map.R" class="external-link"><code>R/muscle_color_map.R</code></a></small>
       <div class="d-none name"><code>muscle_color_map.Rd</code></div>
     </div>
 
@@ -57,6 +59,53 @@ the Holliday lab muscle color map.</p>
   ggplot</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">muscle_color_map</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;ggproto object: Class ScaleDiscrete, Scale, gg&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     aesthetics: colour</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     axis_order: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     break_info: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     break_positions: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     breaks: waiver</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     call: call</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     clone: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     dimension: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     drop: TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     expand: waiver</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     fallback_palette: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     get_breaks: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     get_breaks_minor: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     get_labels: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     get_limits: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     get_transformation: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     guide: legend</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     is_discrete: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     is_empty: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     labels: waiver</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     limits: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     make_sec_title: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     make_title: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     map: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     map_df: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     minor_breaks: waiver</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     n.breaks.cache: NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     na.translate: TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     na.value: grey50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     name: Muscle</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     palette: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     palette.cache: NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     position: left</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     range: environment</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     rescale: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     reset: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     train: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     train_df: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     transform: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     transform_df: function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     super:  &lt;ggproto object: Class ScaleDiscrete, Scale, gg&gt;</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

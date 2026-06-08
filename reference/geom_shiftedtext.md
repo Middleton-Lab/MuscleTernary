@@ -44,3 +44,11 @@ geom_shiftedtext(
 ## Value
 
 A geom usable by ggplot()
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+geom_shiftedtext(ggplot2::aes(label = muscle))
+} # }
+```

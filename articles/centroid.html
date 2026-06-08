@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">MuscleTernary</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.25</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.26</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,11 +42,13 @@
     <li><a class="dropdown-item" href="../articles/make_maya_mel_file.html">Make Maya mel File</a></li>
   </ul>
 </li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Middleton-Lab/MuscleTernary/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -63,7 +65,7 @@
       <h1>Working with stl files</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/Middleton-Lab/MuscleTernary/blob/main/vignettes/centroid.Rmd" class="external-link"><code>vignettes/centroid.Rmd</code></a></small>
       <div class="d-none name"><code>centroid.Rmd</code></div>
     </div>
 
@@ -98,7 +100,8 @@ installed with the package. In most cases, you would use a path to your
 mesh file in its place.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">MuscleTernary</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ggtern</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Middleton-Lab/MuscleTernary" class="external-link">MuscleTernary</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Save the local path to the stl file.</span></span>
 <span><span class="va">stl_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
@@ -237,7 +240,7 @@ orientations.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> mPTd   right  15.4  3.09  81.5</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/coords_to_ternary.html">coords_to_ternary</a></span><span class="op">(</span><span class="va">mPTd</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/ggtern.html" class="external-link">ggtern</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">z</span>, color <span class="op">=</span> <span class="va">side</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/ggtern.html" class="external-link">ggtern</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">z</span>, color <span class="op">=</span> <span class="va">side</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="centroid_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" alt="" width="700"></p>
 </div>
@@ -338,7 +341,7 @@ estimates:</p>
 <p>And make a ternary plot</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/coords_to_ternary.html">coords_to_ternary</a></span><span class="op">(</span><span class="va">mPTd</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/ggtern.html" class="external-link">ggtern</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">z</span>, color <span class="op">=</span> <span class="va">side</span>, size <span class="op">=</span> <span class="va">Force</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/ggtern.html" class="external-link">ggtern</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">z</span>, color <span class="op">=</span> <span class="va">side</span>, size <span class="op">=</span> <span class="va">Force</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="centroid_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="" width="700"></p>
 <p>By default, ggplot scales the point range to maximize difference, so
@@ -351,30 +354,28 @@ scale range.</p>
 </h2>
 <p>Cost IN, Middleton KM, Sellers KC, Echols MS, Witmer LM, Davis JL,
 Holliday CM. 2020. Palatal Biomechanics and Its Significance for Cranial
-Kinesis in <em>Tyrannosaurus rex</em>. <a href="http://dx.doi.org/10.1002/ar.24219" class="external-link">Anat Rec 303:999-1017.</a></p>
+Kinesis in <em>Tyrannosaurus rex</em>. Anat Rec 303:999-1017. <a href="doi:10.1002/ar.24219" class="uri">doi:10.1002/ar.24219</a></p>
 <p>Cost IN, Sellers KC, Rozin RE, Spates AT, Middleton KM, Holliday CM.
 2022. 2D and 3D visualizations of archosaur jaw muscle mechanics,
-ontogeny and phylogeny using ternary diagrams and 3D modeling. <a href="http://dx.doi.org/10.1242/jeb.243216" class="external-link">J Exp Biol 225</a></p>
+ontogeny and phylogeny using ternary diagrams and 3D modeling. J Exp
+Biol 225. <a href="doi:10.1242/jeb.243216" class="uri">doi:10.1242/jeb.243216</a></p>
 <p>Holmes, M., and A. B. Taylor. 2021. The influence of jaw-muscle
 fibre-type phenotypes on estimating maximum muscle and bite forces in
 primates. Interface Focus 11:20210009.</p>
 <p>Porro, L. B., C. M. Holliday, F. Anapol, L. C. Ontiveros, L. T.
 Ontiveros, and C. F. Ross. 2011. Free body analysis, beam mechanics, and
 finite element modeling of the mandible of <em>Alligator
-mississippiensis</em>. <a href="http://dx.doi.org/10.1002/jmor.10957" class="external-link">J.
-Morphol. 272:910-937.</a></p>
+mississippiensis</em>. J. Morphol. 272:910-937. <a href="doi:10.1002/jmor.10957" class="uri">doi:10.1002/jmor.10957</a></p>
 <p>Sellers, K. C., K. M. Middleton, J. L. Davis, and C. M. Holliday.
 2017. Ontogeny of bite force in a validated biomechanical model of the
-American alligator. <a href="http://dx.doi.org/10.1242/jeb.156281" class="external-link">J.
-Exp. Biol. 220:2036-2046.</a></p>
+American alligator. J. Exp. Biol. 220:2036-2046. <a href="doi:10.1242/jeb.156281" class="uri">doi:10.1242/jeb.156281</a></p>
 <p>Wilken AT, Middleton KM, Sellers KC, Cost IN, Holliday CM. 2019. The
 roles of joint tissues and jaw muscles in palatal biomechanics of the
 Savannah monitor (<em>Varanus exanthematicus</em>) and their
-significance for cranial kinesis. <a href="http://dx.doi.org/10.1242/jeb.201459" class="external-link">J Exp Biol 222:1-14.</a></p>
+significance for cranial kinesis. J Exp Biol 222:1-14. <a href="doi:10.1242/jeb.201459" class="uri">doi:10.1242/jeb.201459</a></p>
 <p>Wilken AT, Sellers KC, Cost IN, Rozin RE, Middleton KM, Holliday CM.
 2020. Connecting the chondrocranium: Biomechanics of the suspensorium in
-reptiles. <a href="http://dx.doi.org/10.26049/VZ70-3-2020-02" class="external-link">Vertebrate
-Zoology 70:275-290.</a></p>
+reptiles. Vertebrate Zoology 70:275-290. <a href="doi:10.26049/VZ70-3-2020-02" class="uri">doi:10.26049/VZ70-3-2020-02</a></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

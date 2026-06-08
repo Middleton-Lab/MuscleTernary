@@ -12,11 +12,11 @@ central_axis(origin_centroid, insertion_centroid)
 
 ## Arguments
 
-- origin_centroid::
+- origin_centroid:
 
   numeric vector of origin centroid, or equivalent point
 
-- insertion_centroid::
+- insertion_centroid:
 
   numeric vector of insertion centroid, or equivalent point
 

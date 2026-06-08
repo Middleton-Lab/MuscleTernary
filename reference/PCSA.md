@@ -46,3 +46,17 @@ pcsa(
 
 numeric: Estimate of PCSA for the muscle defined by the two attachments
 of \`stl1\` and \`stl2\`.
+
+## Examples
+
+``` r
+or_stl <- system.file("extdata", "L_mPTd_Or.stl",
+                       package = "MuscleTernary")
+ins_stl <- system.file("extdata", "L_mPTd_Ins.stl",
+                        package = "MuscleTernary")
+pcsa(or_stl, ins_stl)
+#> Assuming theta is measured in radians.
+#> Assuming units are mm.
+#> Using mesh area for calculation.
+#> [1] 1670.846
+```

@@ -9,7 +9,7 @@ between the central axis and each fiber endpoint vector"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">MuscleTernary</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.25</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.26</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,8 +26,10 @@ between the central axis and each fiber endpoint vector"></head><body>
     <li><a class="dropdown-item" href="../articles/ternary_animation.html">Animate a ternary plot</a></li>
     <li><a class="dropdown-item" href="../articles/make_maya_mel_file.html">Make Maya mel File</a></li>
   </ul></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Middleton-Lab/MuscleTernary/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -37,7 +39,7 @@ between the central axis and each fiber endpoint vector"></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Find pennation angle</h1>
-
+      <small class="dont-index">Source: <a href="https://github.com/Middleton-Lab/MuscleTernary/blob/main/R/pennation_angle.R" class="external-link"><code>R/pennation_angle.R</code></a></small>
       <div class="d-none name"><code>pennation_angle.Rd</code></div>
     </div>
 
@@ -55,13 +57,13 @@ between the central axis and each fiber endpoint vector</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-vector-table-">vector_table:<a class="anchor" aria-label="anchor" href="#arg-vector-table-"></a></dt>
-<dd><p>'data.frame' or 'tibble 'with unit vectors produced by
+<dl><dt id="arg-vector-table">vector_table<a class="anchor" aria-label="anchor" href="#arg-vector-table"></a></dt>
+<dd><p>'data.frame' or 'tibble' with unit vectors produced by
 'ends_to_vectors()'</p></dd>
 
 
-<dt id="arg-central">central<a class="anchor" aria-label="anchor" href="#arg-central"></a></dt>
-<dd><p>axis: Named numeric vector such as that produced by
+<dt id="arg-central-axis">central_axis<a class="anchor" aria-label="anchor" href="#arg-central-axis"></a></dt>
+<dd><p>Named numeric vector such as that produced by
 'central_axis()'</p></dd>
 
 </dl></div>
@@ -70,6 +72,33 @@ between the central axis and each fiber endpoint vector</p>
     <p>Xfiber dataframe/tibble with newly appended "PennationAngle" column</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">xml_f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"AV069_SC.xml"</span>,</span></span>
+<span class="r-in"><span>                     package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">D</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_xfiber_xml.html">read_xfiber_xml</a></span><span class="op">(</span><span class="va">xml_f</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>muscle <span class="op">=</span> <span class="st">"SC"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ends</span> <span class="op">&lt;-</span> <span class="fu"><a href="find_track_ends.html">find_track_ends</a></span><span class="op">(</span><span class="va">D</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">vecs</span> <span class="op">&lt;-</span> <span class="fu"><a href="ends_to_vectors.html">ends_to_vectors</a></span><span class="op">(</span><span class="va">ends</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ax</span> <span class="op">&lt;-</span> <span class="fu"><a href="central_axis.html">central_axis</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">pennation_angle</span><span class="op">(</span><span class="va">vecs</span>, <span class="va">ax</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 235 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    muscle track_num OrientationTheta OrientationPhi      x      y      z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> SC             0             73.0           32.5 -<span style="color: #BB0000;">0.816</span> -<span style="color: #BB0000;">0.505</span> -<span style="color: #BB0000;">0.281</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> SC             1             83.0           35.4 -<span style="color: #BB0000;">0.817</span> -<span style="color: #BB0000;">0.564</span> -<span style="color: #BB0000;">0.120</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> SC             2             33.4           48.3 -<span style="color: #BB0000;">0.365</span> -<span style="color: #BB0000;">0.412</span> -<span style="color: #BB0000;">0.835</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> SC             3             30.3           41.2 -<span style="color: #BB0000;">0.380</span> -<span style="color: #BB0000;">0.333</span> -<span style="color: #BB0000;">0.863</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> SC             4             39.6           37.3 -<span style="color: #BB0000;">0.506</span> -<span style="color: #BB0000;">0.383</span> -<span style="color: #BB0000;">0.773</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> SC             5             29.5           39.1 -<span style="color: #BB0000;">0.383</span> -<span style="color: #BB0000;">0.310</span> -<span style="color: #BB0000;">0.870</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> SC             6             48.2           35.0 -<span style="color: #BB0000;">0.610</span> -<span style="color: #BB0000;">0.428</span> -<span style="color: #BB0000;">0.667</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> SC             7             19.0           47.5 -<span style="color: #BB0000;">0.220</span> -<span style="color: #BB0000;">0.238</span> -<span style="color: #BB0000;">0.946</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> SC             8             36.5           37.4 -<span style="color: #BB0000;">0.467</span> -<span style="color: #BB0000;">0.352</span> -<span style="color: #BB0000;">0.811</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> SC             9             44.8           36.9 -<span style="color: #BB0000;">0.565</span> -<span style="color: #BB0000;">0.424</span> -<span style="color: #BB0000;">0.708</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 225 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: PennationAngle &lt;dbl&gt;</span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

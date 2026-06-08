@@ -9,7 +9,7 @@ Should be used following 'find_track_ends'"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">MuscleTernary</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.25</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.26</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,8 +26,10 @@ Should be used following 'find_track_ends'"></head><body>
     <li><a class="dropdown-item" href="../articles/ternary_animation.html">Animate a ternary plot</a></li>
     <li><a class="dropdown-item" href="../articles/make_maya_mel_file.html">Make Maya mel File</a></li>
   </ul></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Middleton-Lab/MuscleTernary/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -37,7 +39,7 @@ Should be used following 'find_track_ends'"></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Function turning xfiber endpoint vectors into unit vectors Should be used following 'find_track_ends'</h1>
-
+      <small class="dont-index">Source: <a href="https://github.com/Middleton-Lab/MuscleTernary/blob/main/R/ends_to_vectors.R" class="external-link"><code>R/ends_to_vectors.R</code></a></small>
       <div class="d-none name"><code>ends_to_vectors.Rd</code></div>
     </div>
 
@@ -55,14 +57,14 @@ Should be used following 'find_track_ends'</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-coords-">coords:<a class="anchor" aria-label="anchor" href="#arg-coords-"></a></dt>
+<dl><dt id="arg-coords">coords<a class="anchor" aria-label="anchor" href="#arg-coords"></a></dt>
 <dd><p>`data.frame` or `tibble` containing coordinates and other
 columns to be converted into unit vectors. Required columns are at least
 "muscle", "x_origin", "y_origin", "z_origin", "x_insertion",
 "y_insertion", and "z_insertion".</p></dd>
 
 
-<dt id="arg-grouping-">grouping:<a class="anchor" aria-label="anchor" href="#arg-grouping-"></a></dt>
+<dt id="arg-grouping">grouping<a class="anchor" aria-label="anchor" href="#arg-grouping"></a></dt>
 <dd><p>Character vector of grouping variables for calculating
 means. Defaults to `NULL`, which will return all the original rows and
 columns</p></dd>
@@ -79,9 +81,8 @@ fiber track</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">D</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_xfiber_xml.html">read_xfiber_xml</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span></span>
 <span class="r-in"><span>                     <span class="st">"AV069_SC.xml"</span>,</span></span>
 <span class="r-in"><span>                     package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>                     <span class="fu">mutate</span><span class="op">(</span>muscle <span class="op">=</span> <span class="st">"SC"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>muscle <span class="op">=</span> <span class="st">"SC"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ends</span> <span class="op">&lt;-</span> <span class="fu"><a href="find_track_ends.html">find_track_ends</a></span><span class="op">(</span><span class="va">D</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">ends_to_vectors</span><span class="op">(</span><span class="va">ends</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 235 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    muscle track_num OrientationTheta OrientationPhi      x      y      z</span>

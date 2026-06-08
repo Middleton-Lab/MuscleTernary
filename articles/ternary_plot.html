@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">MuscleTernary</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.25</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.26</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,11 +42,13 @@
     <li><a class="dropdown-item" href="../articles/make_maya_mel_file.html">Make Maya mel File</a></li>
   </ul>
 </li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Middleton-Lab/MuscleTernary/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -63,7 +65,7 @@
       <h1>Make a ternary plot</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/Middleton-Lab/MuscleTernary/blob/main/vignettes/ternary_plot.Rmd" class="external-link"><code>vignettes/ternary_plot.Rmd</code></a></small>
       <div class="d-none name"><code>ternary_plot.Rmd</code></div>
     </div>
 
@@ -75,7 +77,9 @@ specimen of <em>Alligator mississippiensis</em> (although similar data
 can be extracted directly from stl files; see the “Working with stl
 files” article).</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">MuscleTernary</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Middleton-Lab/MuscleTernary" class="external-link">MuscleTernary</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ggtern</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org" class="external-link">readr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">AL008</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
 <span>                              <span class="st">"AL_008_data.csv"</span>,</span>
@@ -111,7 +115,7 @@ the mean for each muscle, because the original data have both left and
 right (two rows per muscle; note that the <code>side</code> column was
 dropped above).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ternary_coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/coords_to_ternary.html">coords_to_ternary</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="va">AL008</span>, grouping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"muscle"</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">ternary_coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/coords_to_ternary.html">coords_to_ternary</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="va">AL008</span>, grouping <span class="op">=</span> <span class="st">"muscle"</span><span class="op">)</span></span>
 <span><span class="va">ternary_coords</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 5</span></span></span>
 <span><span class="co">#&gt;   muscle  force     x     y     z</span></span>
@@ -154,7 +158,7 @@ function that returns the mapping of muscle to its hex code.</p>
 <span><span class="co">#&gt;         mLPt = "#09C4A8", mEM = "#FFFF00", mPM = "#7DB7E6"))</span></span>
 <span><span class="co">#&gt;     return(cmap)</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55aaea303210&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55b8e5711c50&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:MuscleTernary&gt;</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/ggtern.html" class="external-link">ggtern</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ternary_coords</span>,</span>

@@ -17,3 +17,12 @@ stl_area(fname)
 ## Value
 
 Numeric: Area of the stl mesh
+
+## Examples
+
+``` r
+f <- system.file("extdata", "L_mPTd_Or.stl",
+                 package = "MuscleTernary")
+stl_area(f)
+#> [1] 478.8399
+```

@@ -14,6 +14,14 @@ More description
 | LazyLoad: | yes           |
 | LazyData: | yes           |
 
+## See also
+
+Useful links:
+
+- <https://github.com/Middleton-Lab/MuscleTernary>
+
+- Report bugs at <https://github.com/Middleton-Lab/MuscleTernary/issues>
+
 ## Author
 
 Kevin M. Middleton

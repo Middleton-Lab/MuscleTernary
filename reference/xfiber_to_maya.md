@@ -25,3 +25,18 @@ xfiber_to_maya(fname, outfile, radius = 8, n = NULL)
 - n:
 
   numeric: Number of tracks to randomly select
+
+## Value
+
+Invisibly returns `NULL`. Called for its side effect of writing a Maya
+mel script file.
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+f <- system.file("extdata", "AV069_SC.xml",
+                 package = "MuscleTernary")
+xfiber_to_maya(f, outfile = tempfile(fileext = ".mel"))
+} # }
+```

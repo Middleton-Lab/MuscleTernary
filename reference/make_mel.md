@@ -61,3 +61,19 @@ make_mel(
 - write_file:
 
   boolean (default `TRUE`) Should the mel file be written out
+
+## Value
+
+Invisibly returns `NULL`. Called for its side effect of writing a Maya
+mel script file.
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+data_file <- system.file("extdata", "AL_008_data.csv",
+                         package = "MuscleTernary")
+dat <- readr::read_csv(data_file)
+make_mel("L_mPTd_Or.stl", dat)
+} # }
+```

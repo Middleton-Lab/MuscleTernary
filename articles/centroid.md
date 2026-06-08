@@ -37,6 +37,7 @@ place.
 ``` r
 
 library(tidyverse)
+library(ggtern)
 library(MuscleTernary)
 
 # Save the local path to the stl file.
@@ -331,13 +332,13 @@ scale range.
 
 Cost IN, Middleton KM, Sellers KC, Echols MS, Witmer LM, Davis JL,
 Holliday CM. 2020. Palatal Biomechanics and Its Significance for Cranial
-Kinesis in *Tyrannosaurus rex*. [Anat Rec
-303:999-1017.](http://dx.doi.org/10.1002/ar.24219)
+Kinesis in *Tyrannosaurus rex*. Anat Rec 303:999-1017.
+<doi:10.1002/ar.24219>
 
 Cost IN, Sellers KC, Rozin RE, Spates AT, Middleton KM, Holliday CM.
 2022. 2D and 3D visualizations of archosaur jaw muscle mechanics,
-ontogeny and phylogeny using ternary diagrams and 3D modeling. [J Exp
-Biol 225](http://dx.doi.org/10.1242/jeb.243216)
+ontogeny and phylogeny using ternary diagrams and 3D modeling. J Exp
+Biol 225. <doi:10.1242/jeb.243216>
 
 Holmes, M., and A. B. Taylor. 2021. The influence of jaw-muscle
 fibre-type phenotypes on estimating maximum muscle and bite forces in
@@ -346,20 +347,18 @@ primates. Interface Focus 11:20210009.
 Porro, L. B., C. M. Holliday, F. Anapol, L. C. Ontiveros, L. T.
 Ontiveros, and C. F. Ross. 2011. Free body analysis, beam mechanics, and
 finite element modeling of the mandible of *Alligator mississippiensis*.
-[J. Morphol. 272:910-937.](http://dx.doi.org/10.1002/jmor.10957)
+J. Morphol. 272:910-937. <doi:10.1002/jmor.10957>
 
 Sellers, K. C., K. M. Middleton, J. L. Davis, and C. M. Holliday. 2017.
 Ontogeny of bite force in a validated biomechanical model of the
-American alligator. [J. Exp. Biol.
-220:2036-2046.](http://dx.doi.org/10.1242/jeb.156281)
+American alligator. J. Exp. Biol. 220:2036-2046.
+<doi:10.1242/jeb.156281>
 
 Wilken AT, Middleton KM, Sellers KC, Cost IN, Holliday CM. 2019. The
 roles of joint tissues and jaw muscles in palatal biomechanics of the
 Savannah monitor (*Varanus exanthematicus*) and their significance for
-cranial kinesis. [J Exp Biol
-222:1-14.](http://dx.doi.org/10.1242/jeb.201459)
+cranial kinesis. J Exp Biol 222:1-14. <doi:10.1242/jeb.201459>
 
 Wilken AT, Sellers KC, Cost IN, Rozin RE, Middleton KM, Holliday CM.
 2020. Connecting the chondrocranium: Biomechanics of the suspensorium in
-reptiles. [Vertebrate Zoology
-70:275-290.](http://dx.doi.org/10.26049/VZ70-3-2020-02)
+reptiles. Vertebrate Zoology 70:275-290. <doi:10.26049/VZ70-3-2020-02>

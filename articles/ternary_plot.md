@@ -8,6 +8,8 @@ directly from stl files; see the “Working with stl files” article).
 ``` r
 
 library(MuscleTernary)
+library(ggtern)
+library(readr)
 
 AL008 <- read_csv(system.file("extdata",
                               "AL_008_data.csv",
@@ -47,7 +49,7 @@ rows per muscle; note that the `side` column was dropped above).
 
 ``` r
 
-ternary_coords <- coords_to_ternary(coords = AL008, grouping = c("muscle"))
+ternary_coords <- coords_to_ternary(coords = AL008, grouping = "muscle")
 ternary_coords
 #> # A tibble: 9 × 5
 #>   muscle  force     x     y     z
@@ -101,7 +103,7 @@ muscle_color_map
 #>         mLPt = "#09C4A8", mEM = "#FFFF00", mPM = "#7DB7E6"))
 #>     return(cmap)
 #> }
-#> <bytecode: 0x55aaea303210>
+#> <bytecode: 0x55b8e5711c50>
 #> <environment: namespace:MuscleTernary>
 
 ggtern(data = ternary_coords,

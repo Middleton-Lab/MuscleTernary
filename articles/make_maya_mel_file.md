@@ -12,6 +12,7 @@ This would replace `AL_008` int he code below.
 ``` r
 
 library(MuscleTernary)
+library(readr)
 
 AL008 <- read_csv(system.file("extdata",
                              "AL_008_data.csv",

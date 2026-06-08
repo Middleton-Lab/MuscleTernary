@@ -19,3 +19,14 @@ read_xfiber(filename)
 ## Value
 
 tibble: All tracks concatenated.
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+# Requires an xlsx file produced by Avizo xfiber
+f <- system.file("extdata", "myfibers.xlsx",
+                 package = "MuscleTernary")
+read_xfiber(f)
+} # }
+```

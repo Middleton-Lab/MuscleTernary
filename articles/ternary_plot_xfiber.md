@@ -16,6 +16,8 @@ starling supracoracoideus data from Sullivan et al., 2019:
 ``` r
 
 library(MuscleTernary)
+library(ggtern)
+library(dplyr)
 
 D <- read_xfiber_xml(system.file("extdata",
                                  "AV069_SC.xml",
@@ -163,5 +165,5 @@ Ends |>
 
 Sullivan, S. P., F. R. McGechie, K. M. Middleton, and C. M. Holliday.
 2019. 3D Muscle Architecture of the Pectoral Muscles of European
-Starling (*Sturnus vulgaris*). [Integr Org Biol
-1:oby010](http://dx.doi.org/10.1093/iob/oby010)
+Starling (*Sturnus vulgaris*). Integr Org Biol 1:oby010.
+<doi:10.1093/iob/oby010>

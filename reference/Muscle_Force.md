@@ -23,3 +23,12 @@ muscle_force(PCSA, Tspec = 0.3)
 ## Value
 
 numeric: Estimate of muscle force
+
+## Examples
+
+``` r
+muscle_force(100)
+#> [1] 30
+muscle_force(500, Tspec = 0.25)
+#> [1] 125
+```
