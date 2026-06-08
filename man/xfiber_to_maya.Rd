@@ -15,6 +15,17 @@ xfiber_to_maya(fname, outfile, radius = 8, n = NULL)
 
 \item{n}{numeric: Number of tracks to randomly select}
 }
+\value{
+Invisibly returns \code{NULL}. Called for its side effect of
+  writing a Maya mel script file.
+}
 \description{
 Generate Maya mel file from xfiber tracing
+}
+\examples{
+\dontrun{
+f <- system.file("extdata", "AV069_SC.xml",
+                 package = "MuscleTernary")
+xfiber_to_maya(f, outfile = tempfile(fileext = ".mel"))
+}
 }

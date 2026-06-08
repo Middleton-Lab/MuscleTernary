@@ -20,3 +20,8 @@ interpolate_ternary(x, length_out = 200)
 \description{
 Interpolate between two point in a coordinates object.
 }
+\examples{
+row <- data.frame(x_1 = 0, y_1 = 0, z_1 = 0,
+                  x_2 = 1, y_2 = 1, z_2 = 1)
+interpolate_ternary(row, length_out = 5)
+}

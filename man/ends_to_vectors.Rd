@@ -8,12 +8,12 @@ Should be used following 'find_track_ends'}
 ends_to_vectors(coords, grouping = NULL)
 }
 \arguments{
-\item{coords:}{`data.frame` or `tibble` containing coordinates and other
+\item{coords}{`data.frame` or `tibble` containing coordinates and other
 columns to be converted into unit vectors. Required columns are at least
 "muscle", "x_origin", "y_origin", "z_origin", "x_insertion",
 "y_insertion", and "z_insertion".}
 
-\item{grouping:}{Character vector of grouping variables for calculating
+\item{grouping}{Character vector of grouping variables for calculating
 means. Defaults to `NULL`, which will return all the original rows and
 columns}
 }
@@ -29,9 +29,8 @@ Should be used following 'find_track_ends'
 D <- read_xfiber_xml(system.file("extdata",
                      "AV069_SC.xml",
                      package = "MuscleTernary")) |>
-                     mutate(muscle = "SC")
+  dplyr::mutate(muscle = "SC")
 ends <- find_track_ends(D)
-
 ends_to_vectors(ends)
 
 

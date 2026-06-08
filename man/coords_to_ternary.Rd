@@ -22,3 +22,11 @@ columns}
 \description{
 Process coordinates data.frame
 }
+\examples{
+coords <- data.frame(
+  muscle = "mPTd",
+  x_origin = 10, y_origin = 20, z_origin = 30,
+  x_insertion = 5, y_insertion = 15, z_insertion = 25
+)
+coords_to_ternary(coords)
+}

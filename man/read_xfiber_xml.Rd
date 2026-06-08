@@ -15,3 +15,8 @@ tibble: All tracks concatenated.
 \description{
 Import from Avizo xfiber XML
 }
+\examples{
+f <- system.file("extdata", "AV069_SC.xml",
+                 package = "MuscleTernary")
+read_xfiber_xml(f)
+}

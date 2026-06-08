@@ -32,3 +32,8 @@ A geom usable by ggplot()
 \description{
 See: http://stackoverflow.com/q/19694497/168137
 }
+\examples{
+\dontrun{
+geom_shiftedtext(ggplot2::aes(label = muscle))
+}
+}

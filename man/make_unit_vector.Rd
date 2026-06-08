@@ -15,3 +15,7 @@ A normalized unit vector of length 3
 \description{
 Create a unit vector from a given vector
 }
+\examples{
+make_unit_vector(c(3, 4, 0))
+make_unit_vector(c(1, 1, 1))
+}

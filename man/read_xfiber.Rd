@@ -16,3 +16,11 @@ tibble: All tracks concatenated.
 By default, xfiber write an excel file in XML format. Loading such a file
 and the resaving as xlsx will allow it to be read into R with this function.
 }
+\examples{
+\dontrun{
+# Requires an xlsx file produced by Avizo xfiber
+f <- system.file("extdata", "myfibers.xlsx",
+                 package = "MuscleTernary")
+read_xfiber(f)
+}
+}

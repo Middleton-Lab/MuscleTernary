@@ -7,10 +7,10 @@
 pennation_angle(vector_table, central_axis)
 }
 \arguments{
-\item{vector_table:}{'data.frame' or 'tibble 'with unit vectors produced by
+\item{vector_table}{'data.frame' or 'tibble' with unit vectors produced by
 'ends_to_vectors()'}
 
-\item{central}{axis: Named numeric vector such as that produced by
+\item{central_axis}{Named numeric vector such as that produced by
 'central_axis()'}
 }
 \value{
@@ -19,4 +19,14 @@ Xfiber dataframe/tibble with newly appended "PennationAngle" column
 \description{
 Measures pennation angles by calculating the angle
 between the central axis and each fiber endpoint vector
+}
+\examples{
+xml_f <- system.file("extdata", "AV069_SC.xml",
+                     package = "MuscleTernary")
+D <- read_xfiber_xml(xml_f) |>
+  dplyr::mutate(muscle = "SC")
+ends <- find_track_ends(D)
+vecs <- ends_to_vectors(ends)
+ax <- central_axis(c(0, 0, 0), c(1, 1, 1))
+pennation_angle(vecs, ax)
 }

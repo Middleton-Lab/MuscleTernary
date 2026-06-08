@@ -15,3 +15,8 @@ Numeric: Centroid size
 \description{
 Calculate centroid size for an stl file
 }
+\examples{
+f <- system.file("extdata", "L_mPTd_Or.stl",
+                 package = "MuscleTernary")
+centroid_size(f)
+}

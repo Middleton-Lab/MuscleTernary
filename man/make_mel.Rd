@@ -43,6 +43,18 @@ reversed (you probably want \code{TRUE})}
 \item{write_file}{boolean (default \code{TRUE}) Should the mel file be
 written out}
 }
+\value{
+Invisibly returns \code{NULL}. Called for its side effect of
+  writing a Maya mel script file.
+}
 \description{
 Write mel file
+}
+\examples{
+\dontrun{
+data_file <- system.file("extdata", "AL_008_data.csv",
+                         package = "MuscleTernary")
+dat <- readr::read_csv(data_file)
+make_mel("L_mPTd_Or.stl", dat)
+}
 }

@@ -15,3 +15,12 @@ means_by_muscle(df_no_means)
 \description{
 Aggregate means for each muscle.
 }
+\examples{
+\dontrun{
+df <- data.frame(
+  muscle = c("mPTd", "mPTd"),
+  x = c(30, 40), y = c(35, 45), z = c(35, 15)
+)
+means_by_muscle(df)
+}
+}

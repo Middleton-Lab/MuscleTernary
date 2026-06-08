@@ -7,10 +7,10 @@
 central_axis(origin_centroid, insertion_centroid)
 }
 \arguments{
-\item{origin_centroid:}{numeric vector of origin centroid, or equivalent
+\item{origin_centroid}{numeric vector of origin centroid, or equivalent
 point}
 
-\item{insertion_centroid:}{numeric vector of insertion centroid, or
+\item{insertion_centroid}{numeric vector of insertion centroid, or
 equivalent point}
 }
 \value{

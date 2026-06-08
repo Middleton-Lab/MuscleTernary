@@ -21,6 +21,6 @@ points of an Xfiber tracks object read by `read_xfiber_xml()`.
 D <- read_xfiber_xml(system.file("extdata",
                      "AV069_SC.xml",
                      package = "MuscleTernary")) |>
-                     mutate(muscle = "SC")
+  dplyr::mutate(muscle = "SC")
 ends <- find_track_ends(D)
 }

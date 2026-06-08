@@ -17,6 +17,14 @@ More description
               LazyLoad: \tab yes\cr
               LazyData: \tab yes\cr }
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/Middleton-Lab/MuscleTernary}
+  \item Report bugs at \url{https://github.com/Middleton-Lab/MuscleTernary/issues}
+}
+
+}
 \author{
 Kevin M. Middleton (\url{middletonk@missouri.edu})
 }

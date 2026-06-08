@@ -15,3 +15,7 @@ A normalized unit vector of length 3
 \description{
 Calculate the relative proportion of the items of a given vector
 }
+\examples{
+relative_proportion(c(1, 2, 3))
+relative_proportion(c(3, 4, 0))
+}

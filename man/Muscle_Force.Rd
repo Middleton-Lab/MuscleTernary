@@ -18,3 +18,7 @@ numeric: Estimate of muscle force
 \description{
 Use PCSA and specific tension to estimate muscle force
 }
+\examples{
+muscle_force(100)
+muscle_force(500, Tspec = 0.25)
+}

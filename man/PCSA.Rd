@@ -34,3 +34,10 @@ attachments of `stl1` and `stl2`.
 \description{
 Estimate PCSA from from a pair of muscle attachment stl meshes.
 }
+\examples{
+or_stl <- system.file("extdata", "L_mPTd_Or.stl",
+                       package = "MuscleTernary")
+ins_stl <- system.file("extdata", "L_mPTd_Ins.stl",
+                        package = "MuscleTernary")
+pcsa(or_stl, ins_stl)
+}

@@ -15,3 +15,8 @@ Numeric: Area of the stl mesh
 \description{
 Calculate area of an stl mesh
 }
+\examples{
+f <- system.file("extdata", "L_mPTd_Or.stl",
+                 package = "MuscleTernary")
+stl_area(f)
+}

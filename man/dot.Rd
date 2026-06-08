@@ -17,4 +17,9 @@ Numeric dot product of `u` and `v`.
 \description{
 Dot product
 }
+\examples{
+dot(c(1, 0, 0), c(0, 1, 0))
+dot(c(1, 2, 3), c(4, 5, 6))
+
+}
 \keyword{internal}

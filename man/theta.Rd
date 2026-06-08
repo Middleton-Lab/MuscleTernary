@@ -7,9 +7,9 @@
 theta(vector1, vector2)
 }
 \arguments{
-\item{x}{Vector}
+\item{vector1}{numeric vector of length 3}
 
-\item{y}{Vector}
+\item{vector2}{numeric vector of length 3}
 }
 \value{
 Angle 'theta' between the two input vectors in radians

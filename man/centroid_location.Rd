@@ -15,3 +15,8 @@ Numeric vector of centroid location
 \description{
 Calculate centroid location
 }
+\examples{
+f <- system.file("extdata", "L_mPTd_Or.stl",
+                 package = "MuscleTernary")
+centroid_location(f)
+}

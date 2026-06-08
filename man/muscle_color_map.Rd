@@ -14,3 +14,6 @@ A \code{scale_color_manual()} that can be added to a
 This function returns a \code{scale_color_manual()} that matches
 the Holliday lab muscle color map.
 }
+\examples{
+muscle_color_map()
+}
