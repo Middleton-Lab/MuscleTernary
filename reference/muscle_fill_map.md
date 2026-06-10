@@ -1,7 +1,8 @@
 # Holliday Lab Muscle Color Map
 
-This function returns a `scale_fill_manual()` that matches the Holliday
-lab muscle color map.
+This function returns a
+[`scale_fill_manual()`](https://ggplot2.tidyverse.org/reference/scale_manual.html)
+that matches the Holliday lab muscle color map.
 
 ## Usage
 
@@ -11,7 +12,9 @@ muscle_fill_map()
 
 ## Value
 
-A `scale_fill_manual()` that can be added to a ggplot
+A
+[`scale_fill_manual()`](https://ggplot2.tidyverse.org/reference/scale_manual.html)
+that can be added to a ggplot
 
 ## Examples
 

@@ -8,8 +8,6 @@ More description
 |-----------|---------------|
 | Package:  | MuscleTernary |
 | Type:     | Package       |
-| Version:  | 0.25          |
-| Date:     | 2025-11-11    |
 | License:  | GPL           |
 | LazyLoad: | yes           |
 | LazyData: | yes           |

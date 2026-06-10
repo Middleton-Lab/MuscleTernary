@@ -24,7 +24,8 @@ coords_to_ternary(coords, grouping = NULL)
 
 ## Value
 
-`data.frame` suitable for plotting with `ggtern()`.
+`data.frame` suitable for plotting with
+[`ggtern()`](https://rdrr.io/pkg/ggtern/man/ggtern.html).
 
 ## Examples
 

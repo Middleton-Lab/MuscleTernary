@@ -86,8 +86,6 @@ write_arrows(
 Invisibly returns `NULL`. Called for its side effect of writing MEL
 commands to a file.
 
-@export
-
 ## Examples
 
 ``` r

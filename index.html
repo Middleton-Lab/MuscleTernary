@@ -59,25 +59,47 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+<div class="page-header"><h1 id="muscleternary">MuscleTernary<a class="anchor" aria-label="anchor" href="#muscleternary"></a>
 </h1></div>
+<!-- badges: start -->
+
+<p>MuscleTernary provides tools for visualizing 3D muscle force resultants in ternary space. From muscle origin and insertion coordinates — optionally with force or moment data and any number of categorical or continuous variables — it computes the relative <em>x</em>, <em>y</em>, <em>z</em> proportions of each muscle’s line of action and plots them on a ternary diagram via extensions of the <a href="https://CRAN.R-project.org/package=ggtern" class="external-link"><code>ggtern</code></a> package.</p>
+<p>The package also:</p>
+<ul>
+<li>reads and reduces Avizo Xfiber fiber-tracking data (<code><a href="reference/read_xfiber_xml.html">read_xfiber_xml()</a></code>, <code><a href="reference/find_track_ends.html">find_track_ends()</a></code>, <code><a href="reference/ends_to_vectors.html">ends_to_vectors()</a></code>);</li>
+<li>works with <code>.stl</code> meshes to compute centroids, centroid size, surface area, PCSA, and muscle force (<code><a href="reference/read_stl.html">read_stl()</a></code>, <code><a href="reference/centroid_location.html">centroid_location()</a></code>, <code><a href="reference/centroid_size.html">centroid_size()</a></code>, <code><a href="reference/stl_area.html">stl_area()</a></code>, <code><a href="reference/PCSA.html">pcsa()</a></code>, <code><a href="reference/Muscle_Force.html">muscle_force()</a></code>);</li>
+<li>measures pennation angle relative to a central axis (<code><a href="reference/central_axis.html">central_axis()</a></code>, <code><a href="reference/pennation_angle.html">pennation_angle()</a></code>); and</li>
+<li>generates Maya MEL scripts to render models and force-vector arrows (<code><a href="reference/make_mel.html">make_mel()</a></code>, <code><a href="reference/xfiber_to_maya.html">xfiber_to_maya()</a></code>).</li>
+</ul>
 <div class="section level2">
-<h2 id="preliminaries">Preliminaries<a class="anchor" aria-label="anchor" href="#preliminaries"></a>
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <ul>
-<li>Install <code>pak</code> (if you haven’t already): <code>install.packages("pak")</code>
-</li>
+<li>Install <code>pak</code> (if you haven’t already): <code>install.packages("pak")</code>.</li>
+<li>Install MuscleTernary from GitHub: <code>pak::pak("Middleton-Lab/MuscleTernary")</code>.</li>
 </ul>
-<p>You might also need to install Rtools (<a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link uri">https://cran.r-project.org/bin/windows/Rtools/</a>) if the installation step below does not work correctly.</p>
 </div>
 <div class="section level2">
-<h2 id="for-initial-installation-or-updates">For initial installation or updates<a class="anchor" aria-label="anchor" href="#for-initial-installation-or-updates"></a>
+<h2 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
-<ul>
-<li>Install MuscleTernary from github: <code>pak::pak("Middleton-Lab/MuscleTernary")</code>
-</li>
-</ul>
-<p>View <code><a href="reference/MuscleTernary-package.html">?MuscleTernary</a></code> or <code>demo(ternary_plot)</code> for a demo.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Middleton-Lab/MuscleTernary" class="external-link">MuscleTernary</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ggtern</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Muscle origin/insertion coordinates, with side and force</span></span>
+<span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"AL_008_data.csv"</span>, package <span class="op">=</span> <span class="st">"MuscleTernary"</span><span class="op">)</span>,</span>
+<span>  show_col_types <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Convert 3D resultant vectors to ternary (x, y, z) proportions</span></span>
+<span><span class="va">tern</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/coords_to_ternary.html">coords_to_ternary</a></span><span class="op">(</span><span class="va">coords</span>, grouping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"muscle"</span>, <span class="st">"side"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot in ternary space</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ggtern/man/ggtern.html" class="external-link">ggtern</a></span><span class="op">(</span><span class="va">tern</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">z</span>, color <span class="op">=</span> <span class="va">muscle</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/muscle_color_map.html">muscle_color_map</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>See <code><a href="reference/MuscleTernary-package.html">?MuscleTernary</a></code>, <code>demo(ternary_plot)</code>, and the package vignettes (<code>browseVignettes("MuscleTernary")</code>) for fuller workflows, including Xfiber data, animation, and Maya MEL export.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -110,7 +132,13 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/Middleton-Lab/MuscleTernary/actions/workflows/check-release.yaml" class="external-link"><img src="https://github.com/Middleton-Lab/MuscleTernary/actions/workflows/check-release.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://app.codecov.io/gh/Middleton-Lab/MuscleTernary" class="external-link"><img src="https://codecov.io/gh/Middleton-Lab/MuscleTernary/graph/badge.svg" alt="Codecov test coverage"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
