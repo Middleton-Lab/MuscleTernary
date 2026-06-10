@@ -78,7 +78,7 @@
 #' @return Invisibly returns \code{NULL}. Called for its side effect of
 #'   writing MEL commands to a file.
 #'
-#'  @export
+#' @export
 #'
 #' @examples
 #' \dontrun{

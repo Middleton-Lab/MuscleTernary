@@ -10,6 +10,8 @@
 #'
 #' @keywords internal
 #'
+#' @noRd
+#'
 
 theta <- function(vector1, vector2) {
   if (!is.numeric(vector1)) {

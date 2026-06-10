@@ -8,6 +8,8 @@
 #'
 #' @keywords internal
 #'
+#' @noRd
+#'
 
 mag <- function(vector) {
   if (!is.numeric(vector)) {

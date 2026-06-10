@@ -8,9 +8,7 @@
 #'   "muscle", "x_origin", "y_origin", "z_origin", "x_insertion",
 #'   "y_insertion", and "z_insertion".
 #'
-#' @param grouping Character vector of grouping variables for calculating
-#' means. Defaults to `NULL`, which will return all the original rows and
-#' columns
+#' @inheritParams coords_to_ternary
 #'
 #' @return 'data.frame' with x, y, and z components of unit vectors of each
 #' fiber track

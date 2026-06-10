@@ -6,12 +6,14 @@
 #'
 #' @param start Vector of xyz coordinate for start position.
 #' @param end Vector of xyz coordinate for end position.
-#' @param length_out Total length of output `data.frame`.
+#' @param length_out Number of rows in the interpolated `data.frame`.
 #'
 #' @return `data.frame` interpolated between `start` and `end` with
 #'   column for frame number.
 #'
 #' @keywords internal
+#'
+#' @noRd
 #'
 interpolate_xyz <- function(start, end, length_out){
 

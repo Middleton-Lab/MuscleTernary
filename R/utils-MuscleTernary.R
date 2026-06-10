@@ -26,6 +26,8 @@ dot <- function(u, v) {
 #'
 #' @keywords internal
 #'
+#' @noRd
+#'
 norm <- function(u) {
   return(sqrt(sum(u ^ 2)))
 }
@@ -42,6 +44,8 @@ norm <- function(u) {
 #' @return Euler angles between A and B
 #'
 #' @keywords internal
+#'
+#' @noRd
 #'
 get_euler_angles <- function(A, B) {
   U <- RU(A, B)
@@ -63,6 +67,8 @@ get_euler_angles <- function(A, B) {
 #' @return U rotation matrix between A and B
 #'
 #' @keywords internal
+#'
+#' @noRd
 #'
 RU <- function(A, B) {
   A_norm <- A / norm(A)
@@ -92,6 +98,8 @@ RU <- function(A, B) {
 #'
 #' @keywords internal
 #'
+#' @noRd
+#'
 ssc <- function(v) {
   return(matrix(c(    0,   -v[3],  v[2],
                    v[3],       0, -v[1],
@@ -111,6 +119,8 @@ ssc <- function(v) {
 #' @return Euler angles
 #'
 #' @keywords internal
+#'
+#' @noRd
 #'
 euler <- function(U) {
   xrot <- atan2(U[3, 2], U[3, 3]) * 180 / pi
@@ -134,6 +144,8 @@ euler <- function(U) {
 #' @return Cross product matrix
 #'
 #' @keywords internal
+#'
+#' @noRd
 #'
 CrossProduct3D <- function(x, y, i=1:3) {
   # Project inputs into 3D, since the cross product only makes sense in 3D.

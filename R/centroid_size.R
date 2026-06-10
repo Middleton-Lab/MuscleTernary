@@ -1,6 +1,6 @@
 #' Calculate centroid size for an stl file
 #'
-#' @param fname String: Path to stl file
+#' @inheritParams centroid_location
 #'
 #' @return Numeric: Centroid size
 #' @export
