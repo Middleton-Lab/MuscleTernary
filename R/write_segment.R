@@ -17,23 +17,22 @@ write_segment <- function(ID,
   rotations <- paste(R, collapse = " ")
 
   # Create a curve from origin to insertion
-  write(paste0('curve -n curve1 -d 1 -p ', origin_coords, ' -p ',
-               insertion_coords, ' -k 0 -k 1;'),
+  write(glue::glue('curve -n curve1 -d 1 -p {origin_coords} ',
+                   '-p {insertion_coords} -k 0 -k 1;'),
         file = outfile, append = TRUE)
 
   # Create a circle at the origin with a (0, 1, 0) normal
-  write(paste0('circle -n circ -ch on -o on -c ', origin_coords,
-               ' -nrx 0 -nry 1 -nrz 0 -radius ', radius, ';'),
+  write(glue::glue('circle -n circ -ch on -o on -c {origin_coords} ',
+                   '-nrx 0 -nry 1 -nrz 0 -radius {radius};'),
         file = outfile, append = TRUE)
 
   # Apply Euler rotations
-  write(paste0('rotate -r -pivot ', origin_coords, ' -xyz ', rotations,
-               ' circ;'),
+  write(glue::glue('rotate -r -pivot {origin_coords} -xyz {rotations} ',
+                   'circ;'),
         file = outfile, append = TRUE)
 
   # Extrude cylinder
-  write(paste0('extrude -n ', ID,
-               'cyl -et 1 -po 0 circ curve1;'),
+  write(glue::glue('extrude -n {ID}cyl -et 1 -po 0 circ curve1;'),
         file = outfile, append = TRUE)
 
   # Clean up

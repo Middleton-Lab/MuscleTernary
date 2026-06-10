@@ -21,40 +21,35 @@
                                   insertion_coords, rotations,
                                   cylinder_r, cone_r, cone_hr,
                                   outfile) {
-  write(paste0('curve -n curve1 -d 1 -p ', origin_coords,
-               ' -p ', insertion_coords, ' -k 0 -k 1;'),
+  write(glue::glue('curve -n curve1 -d 1 -p {origin_coords} ',
+                   '-p {insertion_coords} -k 0 -k 1;'),
         file = outfile, append = TRUE)
-  write(paste0('circle -n circ -ch on -o on -c ', origin_coords,
-               ' -nrx 0 -nry 1 -nrz 0 -radius ', cylinder_r, ';'),
+  write(glue::glue('circle -n circ -ch on -o on -c {origin_coords} ',
+                   '-nrx 0 -nry 1 -nrz 0 -radius {cylinder_r};'),
         file = outfile, append = TRUE)
-  write(paste0('rotate -r -pivot ', origin_coords,
-               ' -xyz ', rotations, ' circ;'),
+  write(glue::glue('rotate -r -pivot {origin_coords} -xyz {rotations} ',
+                   'circ;'),
         file = outfile, append = TRUE)
-  write(paste0('extrude -n ', muscle_name,
-               'cyl -et 1 -po 0 circ curve1;'),
+  write(glue::glue('extrude -n {muscle_name}cyl -et 1 -po 0 circ curve1;'),
         file = outfile, append = TRUE)
-  write(paste0('cone -n ', muscle_name,
-               'Cone -po 0 -axis 0 1 0 -r ', cone_r,
-               ' -hr ', cone_hr, ';'),
+  write(glue::glue('cone -n {muscle_name}Cone -po 0 -axis 0 1 0 ',
+                   '-r {cone_r} -hr {cone_hr};'),
         file = outfile, append = TRUE)
-  write(paste0('rotate -r -xyz ', rotations, ' ',
-               muscle_name, 'Cone;'),
+  write(glue::glue('rotate -r -xyz {rotations} {muscle_name}Cone;'),
         file = outfile, append = TRUE)
-  write(paste0('move ', insertion_coords, ' ',
-               muscle_name, 'Cone;'),
+  write(glue::glue('move {insertion_coords} {muscle_name}Cone;'),
         file = outfile, append = TRUE)
   write('select -r curve1;', file = outfile, append = TRUE)
   write('doDelete;', file = outfile, append = TRUE)
   write('select -r circ;', file = outfile, append = TRUE)
   write('doDelete;', file = outfile, append = TRUE)
-  write(paste0('select -r ', muscle_name, 'Cone ',
-               muscle_name, 'cyl;'),
+  write(glue::glue('select -r {muscle_name}Cone {muscle_name}cyl;'),
         file = outfile, append = TRUE)
-  write(paste0('sets -e -forceElement ',
-               stringr::str_sub(muscle_name, end = -3), 'SG;'),
+  write(glue::glue('sets -e -forceElement ',
+                   '{stringr::str_sub(muscle_name, end = -3)}SG;'),
         file = outfile, append = TRUE)
-  write(paste0('reverseSurface -ch on -rpo on -d 3 ',
-               muscle_name, 'cyl;\n\n'),
+  write(glue::glue('reverseSurface -ch on -rpo on -d 3 ',
+                   '{muscle_name}cyl;\n\n', .trim = FALSE),
         file = outfile, append = TRUE)
 }
 
@@ -98,7 +93,7 @@ write_arrows <- function(muscle, side, x_origin, y_origin,
 
   write("/////////////////////////////////////",
         file = outfile, append = TRUE)
-  write(paste0("// ", muscle_name),
+  write(glue::glue("// {muscle_name}"),
         file = outfile, append = TRUE)
 
   coords <- .resolve_arrow_coords(

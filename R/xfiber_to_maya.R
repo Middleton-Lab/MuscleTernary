@@ -43,9 +43,9 @@ xfiber_to_maya <- function(fname, outfile, radius = 8, n = NULL) {
   message("Writing .mel file to ", outfile, "\n")
 
   # Write header info
-  write(paste0("// File: ", outfile), file = outfile)
-  write(paste0("// Generated: ",
-               format(Sys.time(), "%a %b %d %H:%M:%S %Y")),
+  write(glue::glue("// File: {outfile}"), file = outfile)
+  write(glue::glue("// Generated: ",
+                   "{format(Sys.time(), '%a %b %d %H:%M:%S %Y')}"),
         file = outfile, append = TRUE)
 
   write('', file = outfile, append = TRUE)

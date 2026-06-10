@@ -64,15 +64,15 @@
 }
 
 .write_mel_header <- function(outfile, data) {
-  write(paste0("// File: ", outfile), file = outfile)
+  write(glue::glue("// File: {outfile}"), file = outfile)
   write(
-    paste0("// Generated: ",
-           format(Sys.time(), "%a %b %d %H:%M:%S %Y")),
+    glue::glue("// Generated: ",
+               "{format(Sys.time(), '%a %b %d %H:%M:%S %Y')}"),
     file = outfile, append = TRUE
   )
   write(
-    paste0("// Note: the ratio of max to min forces is ",
-           round(max(data$force) / min(data$force), 3)),
+    glue::glue("// Note: the ratio of max to min forces is ",
+               "{round(max(data$force) / min(data$force), 3)}"),
     file = outfile, append = TRUE
   )
   write('', file = outfile, append = TRUE)
@@ -110,14 +110,14 @@
 .write_stl_import <- function(outfile, file_prefix, stl_path) {
   write('\n// Import stl model', file = outfile, append = TRUE)
   write(
-    paste0(
+    glue::glue(
       'file -import -type "STLImport" -ignoreVersion -ra true ',
-      '-mergeNamespacesOnClash false -namespace "',
-      file_prefix, '" -pr "', stl_path, '";'
+      '-mergeNamespacesOnClash false -namespace "{file_prefix}" ',
+      '-pr "{stl_path}";'
     ),
     file = outfile, append = TRUE
   )
-  write(paste0('select -r ', file_prefix, ';'),
+  write(glue::glue('select -r {file_prefix};'),
         file = outfile, append = TRUE)
   write('sets -e -forceElement BoneSG;',
         file = outfile, append = TRUE)
