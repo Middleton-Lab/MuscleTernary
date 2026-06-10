@@ -183,9 +183,9 @@ make_mel <- function(stl,
 
   if (write_file) {
     .write_stl_import(outfile, file_prefix, stl_path)
-    nul <- purrr::pmap(data, write_arrows,
-                       outfile = outfile,
-                       rev_arrows = rev_arrows)
+    purrr::pwalk(data, write_arrows,
+                 outfile = outfile,
+                 rev_arrows = rev_arrows)
   }
 
   return(invisible(NULL))

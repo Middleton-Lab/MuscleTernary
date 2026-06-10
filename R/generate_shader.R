@@ -25,8 +25,8 @@ generate_shader <- function(shader, outfile) {
   write('rename lambert2SG "BoneSG" ;', file = outfile, append = TRUE)
 
   # Iterate through shader file
-  nul <- purrr::map(.x = seq_len(nrow(shader)),
-                    .f = function(ii, shader, outfile) {
+  purrr::walk(.x = seq_len(nrow(shader)),
+              .f = function(ii, shader, outfile) {
     r <- shader |> slice(ii) |> as.data.frame()
     write(paste0('\n// ', r$muscle, ' shader'),
           file = outfile, append = TRUE)

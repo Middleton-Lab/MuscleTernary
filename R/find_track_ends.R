@@ -28,8 +28,8 @@ find_track_ends <- function(Tracks) {
     .f = function(ID, Tracks) {
       T_sub <- Tracks |>
         dplyr::filter(track_num == ID)
-      st <- slice_head(T_sub)
-      en <- slice_tail(T_sub)
+      st <- dplyr::slice_head(T_sub)
+      en <- dplyr::slice_tail(T_sub)
 
       return(tibble::tibble(
         muscle = st$muscle,

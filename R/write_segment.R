@@ -43,8 +43,4 @@ write_segment <- function(ID,
   write('doDelete;', file = outfile, append = TRUE)
 
   write('\n\n', file = outfile, append = TRUE)
-  # Reverse surface normals
-  # write(paste0('reverseSurface -ch on -rpo on -d 3 ', ID, 'cyl;\n\n'),
-  #       file = outfile, append = TRUE)
-
 }

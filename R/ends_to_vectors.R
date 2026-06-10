@@ -25,39 +25,6 @@
 #'
 #'
 ends_to_vectors <- function(coords, grouping = NULL) {
-  .validate_coord_cols(coords)
-
-  cols_to_keep <- NULL
-  if (ncol(coords) > 6) {
-    cols_to_keep <- .get_extra_cols(coords)
-    .check_col_types(cols_to_keep, grouping)
-  } else if (!is.null(grouping)) { # nocov start
-    stop("No additional columns detected, but grouping requested.")
-  } # nocov end
-
-  coords_or <- coords |> dplyr::select(dplyr::contains("origin"))
-  coords_ins <- coords |>
-    dplyr::select(dplyr::contains("insertion"))
-
-  vectors <- as.matrix(coords_or) - as.matrix(coords_ins)
-  colnames(vectors) <- c("x", "y", "z")
-
-  unit_vectors <- as.data.frame(
-    t(apply(vectors, 1, make_unit_vector))
-  )
-
-  if (ncol(coords) > 6) {
-    df <- dplyr::bind_cols(cols_to_keep, unit_vectors)
-  }
-
-  if (!is.null(grouping)) {
-    df <- df |>
-      dplyr::group_by_at(grouping) |>
-      dplyr::summarise_all(list(~ mean(.)))
-    names(df) <- stringr::str_remove(
-      names(df), stringr::fixed("_name")
-    )
-  }
-
-  return(df)
+  return(.coords_components(coords, grouping,
+                            transform = make_unit_vector))
 }

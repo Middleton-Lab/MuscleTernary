@@ -27,5 +27,5 @@ central_axis <- function(origin_centroid, insertion_centroid) {
 
   names(vector) <- namesxyz
 
-  make_unit_vector(vector)
+  return(make_unit_vector(vector))
 }

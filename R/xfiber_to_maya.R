@@ -25,7 +25,8 @@ xfiber_to_maya <- function(fname, outfile, radius = 8, n = NULL) {
     }
 
     Tracks <- Tracks |>
-      filter(track_num %in% sample(unique(Tracks$track_num), size = n))
+      dplyr::filter(track_num %in%
+                      sample(unique(Tracks$track_num), size = n))
   }
 
   # Generate ID for each segment
@@ -50,8 +51,10 @@ xfiber_to_maya <- function(fname, outfile, radius = 8, n = NULL) {
   write('', file = outfile, append = TRUE)
 
   # Process Tracks link by line, creating segments in Maya mel file
-  nul <- pmap(.l = Tracks,
-              .f = write_segment,
-              outfile = outfile,
-              radius = radius)
+  purrr::pwalk(.l = Tracks,
+               .f = write_segment,
+               outfile = outfile,
+               radius = radius)
+
+  return(invisible(NULL))
 }

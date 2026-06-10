@@ -16,5 +16,5 @@ relative_proportion <- function(x){
     stop("Vector of length 3 required.")
   }
 
-  return(x**2 / ((x[1])^2 + (x[2])^2 + (x[3])^2))
+  return(x^2 / ((x[1])^2 + (x[2])^2 + (x[3])^2))
 }

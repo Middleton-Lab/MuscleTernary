@@ -48,7 +48,7 @@ means_by_muscle <- function(df_no_means){
 
   # Means by Left_Right
   df_means <- df_no_means |>
-    group_by(muscle) |>
+    dplyr::group_by(muscle) |>
     dplyr::summarise(dplyr::across(dplyr::everything(), mean))
 
   # Put categorical variables back on. Note: Assumes alternating rows

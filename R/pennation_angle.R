@@ -30,17 +30,17 @@ pennation_angle <- function(vector_table, central_axis) {
     fiber_vector <- as.numeric(fiber_vector)
     angle <- theta(fiber_vector, central_axis)
 
-    angle <- angle * (180 / pi) #Conversion to degrees from radians
+    angle <- angle * (180 / pi) # Conversion to degrees from radians
 
     if (angle > 90) {
-      #for reversing angles that are obtuse
+      # For reversing angles that are obtuse
 
       angle <- (180 - angle)
     }
     PennationAngle <- append(PennationAngle, angle)
   }
 
-  #Adding new pennation angle column to original data frame
+  # Adding new pennation angle column to original data frame
 
   PennationAngle <- unlist(PennationAngle, use.names = FALSE)
   vector_table$PennationAngle <- PennationAngle
