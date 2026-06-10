@@ -22,6 +22,7 @@ Imports:
     dplyr,
     ggplot2,
     ggtern,
+    glue,
     grid,
     purrr,
     readr,
@@ -35,11 +36,13 @@ Imports:
 Encoding: UTF-8
 Suggests:
     animation,
+    covr,
     knitr,
     rmarkdown,
-    testthat,
+    testthat (>= 3.0.0),
     tidyverse,
     writexl
 VignetteBuilder: knitr
 Config/Needs/website: tidyverse/tidytemplate
 Config/roxygen2/version: 8.0.0
+Config/testthat/edition: 3
