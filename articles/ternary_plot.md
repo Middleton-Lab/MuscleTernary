@@ -103,7 +103,7 @@ muscle_color_map
 #>         mLPt = "#09C4A8", mEM = "#FFFF00", mPM = "#7DB7E6"))
 #>     return(cmap)
 #> }
-#> <bytecode: 0x55620a390e88>
+#> <bytecode: 0x5574c118f128>
 #> <environment: namespace:MuscleTernary>
 
 ggtern(data = ternary_coords,
