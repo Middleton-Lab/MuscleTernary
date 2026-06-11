@@ -2,7 +2,6 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/Middleton-Lab/MuscleTernary/actions/workflows/check-release.yaml/badge.svg)](https://github.com/Middleton-Lab/MuscleTernary/actions/workflows/check-release.yaml)
-[![Codecov test coverage](https://codecov.io/gh/Middleton-Lab/MuscleTernary/graph/badge.svg)](https://app.codecov.io/gh/Middleton-Lab/MuscleTernary)
 <!-- badges: end -->
 
 MuscleTernary provides tools for visualizing 3D muscle force resultants in
